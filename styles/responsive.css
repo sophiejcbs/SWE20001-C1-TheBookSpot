@@ -1,0 +1,61 @@
+/* For larger screen/tablet */
+/* media query for display: over 700px */
+@media screen and (min-width:701px)
+{
+    header .search{
+        order: 3;
+        width:100%;
+    }
+
+    header .search input[type="text"]{
+        width:90%;
+    }
+    
+    header .search button[type="submit"] { 
+        width:7%;
+    }
+
+    header .func{
+        font-size: 1.1em;
+        order: 2;
+    }
+
+    nav li a{
+        font-size: 1em;
+        padding:.7em;
+    }
+}
+
+/* For small screen/phone */
+/* media query for display:under 700px */
+@media screen and (max-width:700px)
+{
+    header .logo h1{
+        font-size: 1.3em;
+    }
+
+    header .search{
+        order: 3;
+        transform: scale(0.9);
+        width:100%;        
+    }
+
+    header .search input[type="text"]{
+        width:90%;
+    }
+    
+    header .search button[type="submit"] { 
+        width:7%;
+    }
+
+    header .func{
+        order: 2;
+        font-size: .9em;
+    }
+
+    nav li a{
+        font-size: .95em;
+        padding:.5em;
+        margin-top:.3em;
+    }
+}
