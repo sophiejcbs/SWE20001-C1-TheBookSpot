@@ -1,6 +1,6 @@
 <header>
     <div class="logo">
-        <a href="index.html" >
+        <a href="index.php" >
             <h1> <i class="fas fa-book text-primary"></i> The Book Spot</h1>
         </a>    
     </div>
