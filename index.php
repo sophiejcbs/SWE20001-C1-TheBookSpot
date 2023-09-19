@@ -21,8 +21,8 @@
     
     <!-- Header & Navigation Menu-->
     <?php
-        include 'header.inc';
-        include 'menu.inc';
+        include_once 'inc/header.inc';
+        include_once 'inc/menu.inc';
     ?>
     
 
