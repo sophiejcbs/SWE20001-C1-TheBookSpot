@@ -19,6 +19,7 @@
                 <span class="cart_count">2</span>
             </span> 
             <span class="cart">Cart</span></a>
-        <a href=""><i class="bi bi-question-circle"></i><span class="help">Help</span></a>
+         <a href=""><i class="bi bi-question-circle"></i><span class="help">Help</span></a>
+         <a href=""><i class="bi bi-person-circle"></i></a>
     </div>
 </header>
