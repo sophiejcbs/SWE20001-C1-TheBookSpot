@@ -100,6 +100,7 @@ nav ul {
     list-style-type: none;
     background-color: #38AEE6;
     text-align: center;
+    margin:0;
 }
   
 nav li {
