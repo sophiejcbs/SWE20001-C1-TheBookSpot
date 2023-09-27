@@ -4,7 +4,7 @@
     <meta charset="utf‐8" /> 
     <meta name="description" content="Assignment 1 - Party Equipment Hire About Page"/>
     <meta name="keywords" content="swinburne, party, hire, equipment"/> 
-    <meta name="author"   content="Goh En Ting" />
+    <meta name="author"   content="The Flying Fish" />
     <title>Home - The Book Spot</title>
     
     <link rel="icon" type="image/x-icon" href="images\logo.png">
