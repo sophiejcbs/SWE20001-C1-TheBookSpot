@@ -192,7 +192,7 @@
                 if($result) {
                     if (mysqli_num_rows($result) == 0) {
                         // No matching records found
-                        echo "<h3>No books found...<h3>";
+                        echo "<h3>No book found...<h3>";
                     } 
                     else{
                         while ($row = mysqli_fetch_assoc($result)) {
