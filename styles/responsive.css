@@ -1,7 +1,12 @@
+/* 
+Purpose: responsive style for header, navigation menu, footer and carousel (in home page)
+*/
+
 /* For larger screen/tablet */
 /* media query for display: over 700px */
 @media screen and (min-width:701px)
 {
+    /* HEADER */
     header .search{
         order: 3;
         width:100%;
@@ -20,9 +25,16 @@
         order: 2;
     }
 
+    /* MENU */
     nav li a{
-        font-size: 1em;
-        padding:.7em;
+        font-size: .9em;
+        padding:.6em;
+    }
+
+    /* CATALOGUE */
+    .bookCard{
+        width:28%;
+        min-width:0em;
     }
 }
 
@@ -30,6 +42,12 @@
 /* media query for display:under 700px */
 @media screen and (max-width:700px)
 {
+
+    /* HEADER */
+    header {
+        padding: 1em .5em;
+    }
+
     header .logo h1{
         font-size: 1.3em;
     }
@@ -53,9 +71,22 @@
         font-size: .9em;
     }
 
+    /* MENU */
     nav li a{
         font-size: .95em;
         padding:.5em;
         margin-top:.3em;
+    }
+
+    /* CAROUSEL */
+    .carousel_indicator{
+        display:none;
+    }
+
+    /* CATALOGUE */
+    .bookCard{
+        width:42.5%;
+        font-size: .8rem;
+
     }
 }
