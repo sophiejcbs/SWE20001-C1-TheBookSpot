@@ -88,15 +88,15 @@ header .func .carticon{
 header .func .cart_count{
     position: absolute;
     height: 1.3em;
-    width: 1.3em;
+    width: 1.5em;
     background-color: #569EBD;
     color:white;
     border-radius: 50%;
     bottom:.7em;
     left:1em;
     text-align: center;
-    font-size:.9em;
-    line-height: 1.3em; 
+    font-size:.83em;
+    line-height: 1.3em;
 }
 
 /* FOOTER */
