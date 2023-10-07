@@ -44,7 +44,7 @@
         <?php
             $sql_table="books";
             $query = "SELECT * FROM $sql_table WHERE genre LIKE '$genre'";
-            displayBooks ($conn, $query);
+            bookCatDisplay ($conn, $query);
             // close the database connection
             mysqli_close ($conn) ;
         ?>
