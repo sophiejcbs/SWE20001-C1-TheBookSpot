@@ -184,54 +184,51 @@
         }
     }
 
-
-    //Display Book Catalogue
-    function displayBooks ($conn, $query){
+//Display Book Catalogue
+    function bookCatDisplay($conn,$query){
         $result = mysqli_query($conn, $query);
 
-        // Counter variable to limit the number of displayed results
-        $counter = 0;
-        if ($conn){
-            if($result) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    // Limit the display to the first 5 results
-                    if ($counter >= 5) {
-                        break;
-                    }
-
-                    // Extract data for each book
-                    $id=$row['book_id'];
-                    $imgSrc = $row['image']; 
-                    $bookTitle = $row['title']; 
-                    $price = $row['price']; 
-
-                    //Stock status
-                    if ($row['stock']>0){
-                        $stockIndicator = "instock";
-                        $stockTxt="In Stock";
-                    }
+            if ($conn){
+                if($result) {
+                    if (mysqli_num_rows($result) == 0) {
+                        // No matching records found
+                        echo "<h3>No books found...<h3>";
+                    } 
                     else{
-                        $stockIndicator = "outstock";
-                        $stockTxt="Out of Stock";
-                    }
+                        while ($row = mysqli_fetch_assoc($result)) {
 
-                    // Display book
-                    echo <<<EOD
-                    <div class="bookCard">
-                        <a href="book_details.php?book_id=$id">
-                            <img src="$imgSrc">
-                            <p class = "bookTitle">$bookTitle</p>
-                        </a>
-                        
-                        <p class="price">RM$price</p>
-                        <p class="$stockIndicator" ><i class="bi bi-circle-fill"></i> <span class="stockTxt">$stockTxt</span></p>
-                    </div>
-EOD;
-                    // Increment the counter
-                    $counter++;
+                            // Extract data for each book
+                            $id=$row['book_id'];
+                            $imgSrc = $row['image']; 
+                            $bookTitle = $row['title']; 
+                            $price = $row['price']; 
+    
+                            //Stock status
+                            if ($row['stock']>0){
+                                $stockIndicator = "instock";
+                                $stockTxt="In Stock";
+                            }
+                            else{
+                                $stockIndicator = "outstock";
+                                $stockTxt="Out of Stock";
+                            }
+    
+                            // Display book
+                            echo <<<EOD
+                            <div class="bookCard">
+                                <a href="book_details.php?book_id=$id">
+                                    <img src="$imgSrc">
+                                    <p class = "bookTitle">$bookTitle</p>
+                                </a>
+                                
+                                <p class="price">RM$price</p>
+                                <p class="$stockIndicator" ><i class="bi bi-circle-fill"></i> <span class="stockTxt">$stockTxt</span></p>
+                            </div>
+    EOD;
+                        }
+                    }                    
                 }
             }
-        }
     }
 
 ?>
