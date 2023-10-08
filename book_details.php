@@ -71,6 +71,50 @@
         }
     ?>
 
+    <?php
+        if(isset($_POST['add'])) {
+            if(isset($_SESSION["cart"])) {
+                $exist = false; 
+                foreach($_SESSION["cart"] as $index => $item) {
+                    if($item["book_id"] == $_POST["book_id"]) {
+                        $newQty = intval($_SESSION['cart'][$index]["qty"]) + intval($_POST["qty"]);
+                        $_SESSION['cart'][$index]["qty"] = $newQty;
+                        $exist = true;
+                    }
+                }
+
+                if(!$exist) {
+                    $count = count($_SESSION['cart']);
+
+                    $book_array= [];
+                    $book_array["book_id"] = $_POST["book_id"];
+                    $book_array["qty"] = $_POST["qty"];
+                    $book_array["dateTime"] = time();
+        
+                    array_push($_SESSION['cart'], $book_array);
+                }
+            }
+            else {
+                $book_array= [];
+                $book_array["book_id"] = $_POST["book_id"];
+                $book_array["qty"] = $_POST["qty"];
+                $book_array["dateTime"] = time();
+
+                //create new session var
+                $_SESSION["cart"][0] = $book_array;
+            }
+
+            usort($_SESSION['cart'], function($a, $b) {
+                return $a['dateTime'] - $b['dateTime'];
+            });
+
+            $_SESSION['cart'] = array_reverse($_SESSION['cart']);
+            
+            header('Location: cart.php'); //redirect to cart pg (PRG pattern)
+            exit(); 
+        }
+    ?>
+
     <!-- Back button -->
     <div class="backContainer">
         <a href="javascript:history.back()"><i class="bi bi-arrow-left text-dark"></i></a>
@@ -94,10 +138,17 @@
                 <button type="button" class="incrementButton" onclick = "increment()">+</button>
             </div>
         
-            <div class="purchaseContainer">
-                <button type="button" class="cartButton">Add To Cart</button>
-                <button type="button" class="buyButton">Buy It Now</button>
-            </div>
+            <!-- form for submitting prod data -->
+            <form id = "cartForm" action = "book_details.php?book_id=<?php echo $book_id?>" method = "post">
+                <div class="purchaseContainer">
+                    <button type="submit" name = "add" class="cartButton" id = "addToCart" onclick = "updateCart()">Add To Cart</button>
+                    <button type="button" class="buyButton">Buy It Now</button>
+
+                    <!-- hidden product id to submit with add click -->
+                    <input type = "hidden" name = "book_id" value = "<?php echo $book_id?>"/>
+                    <input type = "hidden" name = "qty" id = "hiddenQty" value = "1"/>
+                </div>
+            </form>
             <hr>
             <div class="prodDetails">
                 <table>
