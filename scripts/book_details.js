@@ -4,7 +4,7 @@ function increment() {
         quantity.setAttribute("value", parseInt(quantity.getAttribute("value")) + 1);
     }
 
-    hiddenQty.value = quantity.value;
+    document.getElementById("hiddenQty").value = quantity.value;
 }
 
 function decrement() {
@@ -15,5 +15,5 @@ function decrement() {
         }
     }
 
-    hiddenQty.value = quantity.value;
+    document.getElementById("hiddenQty").value = quantity.value;
 }
