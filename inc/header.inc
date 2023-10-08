@@ -16,7 +16,19 @@
         <a href="">
             <span class="carticon">
                 <i class="bi bi-cart carticon"></i>
-                <span class="cart_count">2</span>
+                <?php
+                    session_start();
+                    if(isset($_SESSION["cart"])) {
+                        $totalQty = 0;
+                        foreach ($_SESSION["cart"] as $index => $item) {
+                            $totalQty += $item['qty'];
+                        }
+                        echo '<span class="cart_count" id = "cart_num">'.$totalQty.'</span>';
+                    }
+                    else {
+                        echo '<span class="cart_count" id = "cart_num">0</span>';
+                    }
+                ?>
             </span> 
             <span class="cart">Cart</span></a>
         <a href=""><i class="bi bi-question-circle"></i><span class="title">Help</span></a>
