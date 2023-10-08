@@ -1,0 +1,187 @@
+.cartHeader {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 8% 0% 0% 4%;
+    font-weight: bolder;
+    padding: 2%;
+    background-color: rgb(238, 234, 234);
+    border: 0.5px solid rgb(185, 183, 183);
+}
+
+.emptyHeader, .emptyReco {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 3% 0% 0% 4%;
+}
+
+.emptyReco {
+    margin-bottom: 2%;
+}
+
+.cartItem {
+    border: 0.5px solid rgb(185, 183, 183);
+    border-top:0cm;
+    margin-left: 4%;
+    margin-right: 0%;
+    padding: 2%;
+    padding-left: 4%;
+    display:flex;
+    align-items:center;
+    gap: 2%;
+}
+
+.coverContainer {
+    width :16%;
+}
+
+.cover {
+    width: 100%;
+}
+
+.title, .bookPrice {
+    font-size: 1rem;
+}
+
+.bookDetails {
+    margin-left: 2%;
+    width: 80%;
+}
+
+.bookDetails p {
+    margin-bottom: 0.5%;
+}
+
+.author {
+    font-size: 0.8rem;
+}
+
+.format {
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.cartItem .instock, .cartItem .outstock {
+    font-size: 0.75rem;
+}
+
+.cartItem .price {
+    font-size: 1rem;
+    color: #1B99D4;
+    font-weight: bold;
+}
+
+.incrementButton, .decrementButton {
+    height: 2rem;
+    width:2rem;
+    border:0.1rem solid rgb(0,0,0,0.7);
+    font-size:0.9rem;
+    color:black;
+}
+
+.quanContainer{
+    display:inline-block;
+    font-size:0rem;
+    margin-top: 3%;
+}
+
+.quanInput{
+    height: 2rem;
+    width:5rem;
+    border:0.1rem solid rgb(0,0,0,0.7);
+    border-left: none;
+    border-right: none;
+    text-align: center;
+    font-size:0.9rem;
+    color:black;
+}
+
+.deleteBtn {
+    border: 0;
+    font-size: 0.75rem;
+    background-color: white;
+    margin-left: 30px;
+    padding-top: -10px;
+    color: #df4759;
+}
+
+.cartContainer {
+    display: flex;
+    gap: 10%;
+}
+
+.cartForm {
+    width: 60%;
+    margin-right: 0;
+    margin-left: 2%;
+}
+
+.subtotalContainer {
+    margin-top: 4.8%;
+    border: 1px solid rgb(185, 183, 183);
+    height: 10%;
+    width: 25%;
+}
+
+.labelAmtContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 5%;
+}
+
+.detailsContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.divider {
+    margin-top: -5%;
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 0;
+}
+
+.subtotal {
+    font-weight: bold;
+}
+
+.instructLabel {
+    font-weight: bold;
+    padding-left: 5%;
+}
+
+.checkout {
+    color: white;
+    background-color: #1B99D4;
+    width: 70%;
+    padding: 3%;
+    font-size: 0.9rem;
+    border: 0;
+    font-weight: bold;
+    border-radius: 1rem;
+    margin-bottom: 8%;
+}
+
+.shopNow {
+    color: white;
+    background-color: #1B99D4;
+    border-radius: 1rem;
+    border: 0;
+    padding: 0.75%;
+    margin-left: 4%;
+    margin-top: 1%;
+}
+
+.checkoutContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.checkout:hover, .shopNow:hover {
+    background-color: #167CAC;
+}
+
+.title:hover, .cover:hover {
+    cursor:pointer;
+}
