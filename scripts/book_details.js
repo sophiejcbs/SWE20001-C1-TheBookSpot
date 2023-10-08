@@ -3,6 +3,8 @@ function increment() {
     if(quantity) {
         quantity.setAttribute("value", parseInt(quantity.getAttribute("value")) + 1);
     }
+
+    hiddenQty.value = quantity.value;
 }
 
 function decrement() {
@@ -12,4 +14,6 @@ function decrement() {
             quantity.setAttribute("value", parseInt(quantity.getAttribute("value")) - 1);
         }
     }
+
+    hiddenQty.value = quantity.value;
 }
