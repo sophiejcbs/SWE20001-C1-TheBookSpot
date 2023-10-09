@@ -32,6 +32,15 @@
             </span> 
             <span class="cart">Cart</span></a>
         <a href=""><i class="bi bi-question-circle"></i><span class="title">Help</span></a>
-        <a href=""><i class="bi bi-person-circle"></i><span class="title">Profile</span></a>
+        <?php
+        //displays Profile button only when user is logged in, otherwise Log In button
+        if(isset($_SESSION["userid"])){
+            echo "<a href=''><i class='bi bi-person-circle'></i><span class='title'>Profile</span></a>";
+            echo "<a href='inc/logout.inc.php'><i class='bi bi-lock'></i><span class='title'>Log Out</span></a>";
+        }
+        else{
+            echo "<a href='loginUser.php'><i class='bi bi-lock'></i><span class='title'>Log In</span>";
+        }
+        ?>
     </div>
 </header>
