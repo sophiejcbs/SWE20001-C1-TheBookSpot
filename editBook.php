@@ -25,8 +25,8 @@
 
 <body>
     <?php
-        include 'includes/header.inc';
-        include 'includes/menu.inc';
+        include 'inc/header.inc';
+        include 'inc/menu.inc';
 
         $book_id = $_GET['book_id'];
 
@@ -138,5 +138,5 @@
 </body>
 
 <?php
-    include 'includes/footer.inc';
+    include 'inc/footer.inc';
 ?>
