@@ -21,8 +21,8 @@
 </head>
 
 <?php
-    include 'includes/header.inc';
-    include 'includes/menu.inc';
+    include 'inc/header.inc';
+    include 'inc/menu.inc';
 ?>
 
 <body>
@@ -113,5 +113,5 @@
         } // end if no rows
         mysqli_close($conn);  // close the database connection
     }
-    include 'includes/footer.inc';
+    include 'inc/footer.inc';
 ?>
