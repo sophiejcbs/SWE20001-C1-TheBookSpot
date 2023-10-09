@@ -6,7 +6,7 @@
     </div>
     
     <div class="search">
-        <form action="">
+        <form method="post" action="search.php">
             <input type="text" placeholder="Search..." name="search">
             <button type="submit"><i class="fa fa-search text-white"></i></button>
         </form>
