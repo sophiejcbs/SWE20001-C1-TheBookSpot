@@ -136,15 +136,15 @@
             //admin exists
             //validate password
             $admin = mysqli_fetch_assoc($userExists);
-            $userid = $admin['userid'];
+            $adminid = $admin['adminID'];
             $username = $admin['username'];
             $hashedPwd = $admin['pwd'];
             if(password_verify($pwd,$hashedPwd)){
                 //start session with userid
                 session_start();
-                $_SESSION["userid"] = $userid;
+                $_SESSION["adminid"] = $adminid;
                 $_SESSION["username"] = $username;
-                header("location: ../admin.php?");
+                header("location: ../book_record.php");
                 exit();
             }
             else{
@@ -156,30 +156,74 @@
     }
 
     //Sign Up Administrators
-    function signupAdmin($conn, $username, $pwd){
+    function signupAdmin($conn, $username, $pwd, $repeatpwd){
         $userQuery = "SELECT * FROM admins WHERE username = '$username'";
         $userExists = mysqli_query($conn,$userQuery);
 
         //check if username is taken
         if(mysqli_num_rows($userExists)>0){
             //username taken
-            header("location: ../loginAdmin.php?error=userexists");
+            header("location: ../add_admin.php?error=userexists");
             exit();
         }
-        else{
-            //username not taken
-            //hash password to store into database
+
+        //check password match
+        if(strcmp($pwd, $repeatpwd) !== 0){
+            //password does not match
+            header("location: ../add_admin.php?error=pwdnomatch");
+            exit();
+        }
+
+        //valid account
+        //hash password to store into database
+        $hashedPwd = password_hash($pwd,PASSWORD_DEFAULT);
+        //add user to admins table
+        $addUserQuery = "INSERT INTO admins (username, pwd) VALUES ('$username','$hashedPwd')";
+        mysqli_query($conn, $addUserQuery);
+        //start session with userid
+        session_start();
+        $_SESSION["userid"] = mysqli_insert_id($conn);
+        $_SESSION["username"] = $username;
+        header("location: ../add_admin.php?error=success");
+        exit();
+    }
+
+    //Change Admin Account Password
+    function changePasswordAdmin($conn, $adminid, $pwdold, $pwd, $repeatpwd){
+        $adminQuery = "SELECT * FROM admins WHERE adminID = '$adminid'";
+        $adminExists = mysqli_query($conn,$adminQuery);
+        $admin = mysqli_fetch_assoc($adminExists);
+        $oldpwd_hashed = $admin['pwd'];
+
+        //validate old password match
+        if(password_verify($pwdold,$oldpwd_hashed)){
+            //old and new password cannot be same
+            if(strcmp($pwdold,$pwd) == 0){
+                header("location: ../admin_profile.php?error=oldnewsame");
+                exit();
+            }
+
+            //check password match
+            if(strcmp($pwd, $repeatpwd) !== 0){
+                //password does not match
+                header("location: ../admin_profile.php?error=pwdnomatch");
+                exit();
+            }
+
+            //hash password to replace old hash
             $hashedPwd = password_hash($pwd,PASSWORD_DEFAULT);
-
-            //add user to admins table
-            $addUserQuery = "INSERT INTO admins (username, pwd) VALUES ('$username','$hashedPwd')";
-            mysqli_query($conn, $addUserQuery);
-
-            //start session with userid
-            session_start();
-            $_SESSION["userid"] = mysqli_insert_id($conn);
-            $_SESSION["username"] = $username;
-            header("location: ../admin.php");
+            $sql = "UPDATE admins SET pwd = ? WHERE adminid = ?";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt,"si",$hashedPwd,$adminid);
+            mysqli_stmt_execute($stmt);
+            if(mysqli_stmt_affected_rows($stmt) > 0){
+                header("location: ../admin_profile.php?error=success");
+                exit();
+            }
+        }
+        else{
+            //incorrect old password
+            header("location: ../admin_profile.php?error=wrongoldpwd");
             exit();
         }
     }
