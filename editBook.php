@@ -1,3 +1,16 @@
+<?php
+//start session on every page of admin to check authenthcation
+session_start(); 
+
+if (isset($_SESSION['adminid']) && !empty($_SESSION['adminid'])) {
+    //in session
+}
+else {
+    //no session id
+    header("location: index.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +38,8 @@
 
 <body>
     <?php
-        include 'inc/header.inc';
-        include 'inc/menu.inc';
+        include 'inc/adminHeader.inc';
+        include 'inc/adminMenu.inc';
 
         $book_id = $_GET['book_id'];
 
