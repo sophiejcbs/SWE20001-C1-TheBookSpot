@@ -10,6 +10,7 @@
     <link rel="icon" type="image/x-icon" href="images\logo.png">
     <!-- CSS -->
     <link href = "styles/style.css" rel="stylesheet">
+    <link href = "styles/bookCat.css" rel="stylesheet"/>
     <link href = "styles/cart.css" rel="stylesheet"/>
     <link href = "styles/responsive.css" rel="stylesheet" media ="screen and (max-width:1024px)"/>
 
