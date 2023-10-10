@@ -144,7 +144,7 @@
                 session_start();
                 $_SESSION["adminid"] = $adminid;
                 $_SESSION["username"] = $username;
-                header("location: ../book_record.php");
+                header("location: ../bookRecord.php");
                 exit();
             }
             else{
