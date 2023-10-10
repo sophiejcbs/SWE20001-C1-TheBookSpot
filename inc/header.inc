@@ -13,7 +13,7 @@
     </div>
 
     <div class="func">
-        <a href="">
+        <a href="cart.php">
             <span class="carticon">
                 <i class="bi bi-cart carticon"></i>
                 <?php
