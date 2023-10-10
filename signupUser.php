@@ -106,6 +106,7 @@
         <input class="login" type="submit" name="signupUser" value="Signup">
         <a class="signup" href="loginUser.php"><p>Already have an account?</p></a>
     </form>
+    <a class="login-switch" href="loginAdmin.php">Admin Login <i class="bi bi-box-arrow-in-right"></i></a>
   </div>
 </body>
 </html>
