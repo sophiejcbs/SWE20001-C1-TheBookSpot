@@ -228,6 +228,46 @@
         }
     }
 
+    //Change User Account Password
+    function changePasswordUser($conn, $userid, $pwdold, $pwd, $repeatpwd){
+        $userQuery = "SELECT * FROM users WHERE userid = '$userid'";
+        $userExists = mysqli_query($conn, $userQuery);
+        $user = mysqli_fetch_assoc($userExists);
+        $oldpwd_hashed = $user['pwd'];
+
+        //validate old password match
+        if(password_verify($pwdold, $oldpwd_hashed)){
+            //old and new password cannot be same
+            if(strcmp($pwdold, $pwd) == 0){
+                header("location: ../user_profile.php?error=oldnewsame");
+                exit();
+            }
+
+            //check password match
+            if(strcmp($pwd, $repeatpwd) !== 0){
+                //password does not match
+                header("location: ../user_profile.php?error=pwdnomatch");
+                exit();
+            }
+
+            //hash password to replace old hash
+            $hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
+            $sql = "UPDATE users SET pwd = ? WHERE userid = ?";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt,"si",$hashedPwd,$userid);
+            mysqli_stmt_execute($stmt);
+            if(mysqli_stmt_affected_rows($stmt) > 0){
+                header("location: ../user_profile.php?error=success");
+                exit();
+            }
+        }
+        else{
+            //incorrect old password
+            header("location: ../user_profile.php?error=wrongoldpwd");
+            exit();
+        }
+    }
+
 //Display Book Catalogue
     function bookCatDisplay($conn,$query){
         $result = mysqli_query($conn, $query);
