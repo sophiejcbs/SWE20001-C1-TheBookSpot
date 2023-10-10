@@ -1,0 +1,321 @@
+*{
+    font-family: Verdana, sans-serif;
+}
+
+/* HEADER */
+header a, nav a{
+    text-decoration:none;
+}
+
+header {
+    padding: 1em 2em;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap onto the next line */
+    align-items: center;
+    justify-content: space-between; 
+}
+
+header .logo h1{
+    font-size: 1.5em;
+    color:black;
+    font-weight: bold;
+    white-space: nowrap;
+    margin-bottom: 1em;
+}
+
+header .logo{
+    order: 1;
+    flex-grow: 1;
+}
+
+header .search{
+    order: 2;
+    margin-bottom: 1em;
+    flex-grow: 3;
+    text-align: center;
+}
+
+header .search input[type="text"]{
+    padding: .8em;
+    width:70%;
+    border-radius: 1em 0 0 1em;
+    border: 1px solid grey;
+}
+
+header .search button[type="submit"] { 
+    padding: .8em;
+    width:7%;
+    min-width: 4em;
+    border-radius: 0 1em 1em 0;
+    border: 1px solid grey;
+    margin-left: -2em;
+    background: #38AEE6;
+}
+
+header .func{
+    order: 3;
+    flex-grow: 1;
+    margin-bottom: 1em;
+    font-size: 1.1em;
+    text-align: right;
+}
+
+header .func a{
+    color:black;
+    margin:0 .6em;
+}
+
+header .func .bi{
+    font-size: 1.2em;
+}
+
+header .func .title{
+    margin-left:.3em;
+}
+
+header .func .cart{
+    margin-left:.5em;
+}
+
+header .func .carticon{
+    position: relative; /* Make the position of cart_count relative to this container */
+}
+
+header .func .cart_count{
+    position: absolute;
+    height: 1.3em;
+    width: 1.3em;
+    background-color: #569EBD;
+    color:white;
+    border-radius: 50%;
+    bottom:.7em;
+    left:1em;
+    text-align: center;
+    font-size:.9em;
+    line-height: 1.3em; 
+}
+
+/* FOOTER */
+footer{
+    clear: both; 
+    padding:1em 3%;
+    margin-top:5em;
+    border-top:1px solid gray;
+    text-align:center;
+}
+
+/* NAVIGATION MENU */
+nav ul {
+    list-style-type: none;
+    background-color: #38AEE6;
+    text-align: center;
+    margin:0;
+}
+  
+nav li {
+    display: inline-block; 
+}
+
+nav li a{
+    color:white;
+    padding:1em;
+    display: inline-block;
+}
+
+nav li a:hover, header .search button[type="submit"]:hover{
+    color:white;
+    background-color: #3a8db3;
+}
+
+.func a:hover{
+    color:#3a8db3;
+}
+
+/*FOR ADMIN PROFILE AND CREATE ADMIN*/
+.bg-text{
+    background-color: white;
+    background-color: #38AEE6;
+    color: white;
+    font-weight: bold;
+    border: 3px solid #2E8BC0;
+    width: 80%;
+    padding-top: 50px;
+    border-radius: 1rem;
+    margin-left: 10%;
+    margin-top: 50px;
+    padding-bottom: 30px; 
+}
+
+form{
+    margin: 0 11%;
+    width: 78%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+fieldset{
+    border: 1px solid lightgray;
+    flex:100%;
+}
+
+legend{
+    font-weight: 700;
+}
+
+div + div{
+    margin-top: 1em;
+}
+
+input, textarea{
+    width: 100%;
+    border: 1px solid #999;
+}
+
+textarea{
+    vertical-align: top;
+    height: 12em;
+    resize: vertical;
+}
+
+.submitButton{
+    margin: .5em;
+    font-size: 1em;
+    text-transform: capitalize;
+    background-color: #11577892;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 2px;
+}
+
+#submitButton{
+    margin: 0 15%;
+    font-family: Verdana;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: #0B415A;
+    width: 70%;
+    border-radius: 1rem;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+}
+
+#submitButton:hover {
+    cursor: pointer;
+    background-color: #003060;
+}
+
+.formGroup {
+    font-size: 1.25rem;
+    font-family: Verdana;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    margin-bottom: 20px;
+}
+
+.fields, .textField {
+    margin-top: 10px; 
+    padding-bottom: 8px;
+    padding-top: 8px; 
+    font-size: 1rem;
+    font-family: Verdana;
+    width: 98%;
+    padding-left: 1%;
+    margin-right: 1%;
+}
+
+.required {
+    color: red;
+    display: inline;
+}
+
+.menuLabel {
+    font-size: 1rem;
+    display: inline;
+    margin-top: -50px;
+    font-family: Verdana;
+}
+
+.formName {
+    margin-left: -10000px;
+}
+
+h1_bryan {
+    font-size: 2rem;
+    margin-left: -25px;
+    margin-top: -10px;
+    
+}
+
+.error{
+    color:rgb(235, 61, 61);
+    font-size:0.9rem;
+    margin-bottom:15px;
+}
+
+/*Message Alert*/
+.wrong {color:red; font-weight: bold;}
+.correct {color: green; font-weight: bold;}
+
+.description-row{
+    max-height: 150px;
+    overflow-y: scroll;
+}
+
+.column-width-s{
+    width: 20px;
+}
+
+.column-width-m{
+    width: 100px;
+}
+
+.column-width-l{
+    width: 150px;
+}
+
+.column-width-xl{
+    width: 200px;
+}
+
+h2_bryan {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+/*Admin Profile*/
+.profile-box {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.icon-large {
+    font-size: 100px;
+}
+
+.profile-blue-box {
+    background-color: #38AEE6;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+}
+
+/*Error message*/
+.errormessage {
+    text-align: center;
+    color: rgb(197, 6, 6);
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+.success {
+  text-align: center;
+  color: rgb(13, 241, 32);
+  font-weight: bold;
+  font-size: 16px;
+}
