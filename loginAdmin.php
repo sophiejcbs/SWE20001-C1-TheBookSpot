@@ -57,6 +57,7 @@
             <input class="login" type="submit" name="loginAdmin" value="Login">
             <br><br>
     </form>
+        <a class="login-switch" href="loginUser.php">User Login <i class="bi bi-box-arrow-in-right"></i></a>
   </div>
   </body>
   </html>
