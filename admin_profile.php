@@ -36,8 +36,8 @@ else {
 
 <body>
     <?php
-        include 'inc/adminHeader.inc.php';
-        include 'inc/adminMenu.inc.php';
+        include 'inc/adminHeader.inc';
+        include 'inc/adminMenu.inc';
     ?>
 
 <div class="profile-box">
