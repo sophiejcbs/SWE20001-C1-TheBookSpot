@@ -40,3 +40,7 @@ function displayBook(book_id) {
 function bookCatalogue() {
     window.location.href = "book_catalogue.php?genre=Young%20Adult%20Fantasy";
 }
+
+function checkout() {
+    window.location.href = "payment.php";
+}
