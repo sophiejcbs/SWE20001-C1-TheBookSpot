@@ -128,6 +128,20 @@ form .txt_field{
   text-decoration: underline;
 }
 
+/*Login Switch Button - to and fro user and admin login pages*/
+.login-switch{
+  color: #2691d9;
+  display: block;
+  text-align: right;
+  text-decoration: none;
+  font-size: 15px;
+  padding-right: 8px;
+}
+
+.login-switch:hover{
+  text-decoration: underline;
+}
+
 /*Signup page*/
 .centerSignup{
   position: absolute;
