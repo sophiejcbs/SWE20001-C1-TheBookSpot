@@ -35,7 +35,7 @@
         <?php
         //displays Profile button only when user is logged in, otherwise Log In button
         if(isset($_SESSION["userid"])){
-            echo "<a href=''><i class='bi bi-person-circle'></i><span class='title'>Profile</span></a>";
+            echo "<a href='user_profile.php'><i class='bi bi-person-circle'></i><span class='title'>Profile</span></a>";
             echo "<a href='inc/logout.inc.php'><i class='bi bi-lock'></i><span class='title'>Log Out</span></a>";
         }
         else{
