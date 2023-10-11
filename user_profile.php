@@ -51,7 +51,7 @@
             <div class="form">
                 <form method="post" action="inc/editUserInfo.inc.php" novalidate>
                     <fieldset>
-                        <legend class="formGroup">Account Information</legend>
+                        <legend class="formGroup">Account Information <i class="bi bi-person-fill"></i></legend>
                         <?php
                         if(isset($_GET["error"])){
                             if($_GET["error"] == "emptynameinput"){
@@ -88,7 +88,7 @@
             <div class="form">
                 <form method="post" action="inc/changePassword.inc.php" novalidate>
                     <fieldset>
-                        <legend class="formGroup">Change password</legend>
+                        <legend class="formGroup">Change password <i class="bi bi-lock-fill"></i></legend>
                         <?php
                         if(isset($_GET["error"])){
                             if($_GET["error"] == "pwdemptyinput"){
@@ -137,7 +137,7 @@
             <div class="form">
                 <form method="post" action="inc/editUserInfo.inc.php" novalidate>
                     <fieldset>
-                        <legend class="formGroup">Shipping Address</legend>
+                        <legend class="formGroup">Shipping Address <i class="bi bi-house-door-fill"></i></legend>
                         <?php
                         if(isset($_GET["error"])){
                             if($_GET["error"] == "addressempty"){
@@ -192,7 +192,7 @@
             <div class="form">
                 <form method="post" action="inc/editUserInfo.inc.php" novalidate>
                     <fieldset>
-                        <legend class="formGroup">Payment Information</legend>
+                        <legend class="formGroup">Payment Information <i class="bi bi-credit-card-fill"></i></legend>
                         <?php
                         if(isset($_GET["error"])){
                             if($_GET["error"] == "paymentempty"){
