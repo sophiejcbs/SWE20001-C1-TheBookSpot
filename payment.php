@@ -11,6 +11,7 @@
     <!-- CSS -->
     <link href = "styles/style.css" rel="stylesheet">
     <link href = "styles/responsive.css" rel="stylesheet" media ="screen and (max-width:1024px)"/>
+    <link href = "styles/bookCat.css" rel="stylesheet">
     <link href = "styles/payment.css" rel="stylesheet">
 
     <!-- Javascript -->
@@ -45,6 +46,7 @@
         <!-- Order Summary -->
         <div class = "checkoutSubcontainer">
             <?php
+                $totalTax = 0;
                 $emptyCart = false;
 
                 if(isset($_SESSION['cart'])) {
@@ -60,7 +62,7 @@
                             if($row = mysqli_fetch_assoc($result)) {
                                 if($count == 0) {
                                     echo <<<EOD
-                                        <form class = "cartForm" action="cart.php?action=remove&id=$book_id" method="post">
+                                        <form class = "cartForm" action="payment.php?action=remove&id=$book_id" method="post">
                                         <h1 class = "cartHeader">1. Order Summary ($totalQty items)</h1>
 EOD;
                                     }
@@ -128,98 +130,166 @@ EOD;
                 }
         
                 if($emptyCart || !isset($_SESSION["cart"])) {
-                    header("cart.php");
+                    echo "<script>window.location.href = 'cart.php';</script>";
                 }
             ?>
         </div>
 
         <!-- Shipment Form -->
         <div class = "checkoutSubcontainer">
-            <form class = "shipmentForm">
+            <form action = "payment_posting.php" method = "post" name="paymentForm" class = "paymentForm" novalidate onsubmit = "return validate()">
                 <h1 class = "cartHeader">2. Shipment Details</h1>
                 <div class = "shipmentFields">
                     <p>
-                        <label for = "fname">First name</label><br>
-                        <input type = "text" name = "fname" id = "fname" pattern = "[a-zA-Z]{2,25}" required>
+                        <label for = "fname">First Name<span class="required">*</span></label><br>
+                        <input type = "text" name = "fname" id = "fname" pattern = "[a-zA-Z]{2,25}" placeholder = "John" required>
+                        <span id = "errFname" class = "errMsg"></span>
                     </p>
                     
                     <p>
-                        <label for = "lname">Last name</label><br>
-                        <input type = "text" name = "lname" id = "lname" pattern = "[a-zA-Z]{2,25}" required>
+                        <label for = "lname">Last Name<span class="required">*</span></label><br>
+                        <input type = "text" name = "lname" id = "lname" pattern = "[a-zA-Z]{2,25}" placeholder = "Doe" required>
+                        <span id = "errLname" class = "errMsg"></span>
                     </p>
                     <p>
-                        <label for = "email">Email</label><br>
+                        <label for = "email">Email<span class="required">*</span></label><br>
                         <input type = "email" name = "email" id = "email" placeholder = "johndoe123@example.com" required>
+                        <span id = "errEmail" class = "errMsg"></span>
                     </p>
 
                     <p>
-                        <label for = "phoneNumber">Phone number</label><br>
+                        <label for = "phoneNumber">Phone Number<span class="required">*</span></label><br>
                         <input type = "text" name = "phoneNumber" id = "phoneNumber" pattern = "\d{8,10}" placeholder = "0123456789" required>
+                        <span id = "errPhoneNum" class = "errMsg"></span>
                     </p>
                 
                     <p>
-                        <label for = "shipmentAddress">Shipment address</label><br>
-                        <input type = "text" name = "shipmentAddress" id = "shipmentAddress" pattern = ".{5,40}" required>
+                        <label for = "shipmentAddress">Shipment Address<span class="required">*</span></label><br>
+                        <textarea name = "shipmentAddress" id = "shipmentAddress" pattern = ".{5,40}" placeholder = "No. 3, Jalan SS15/8, SS 15" required></textarea>
+                        <span id = "errAddr" class = "errMsg"></span>
                     </p>
                     
                     <p>
-                        <label for = "city">City</label><br>
-                        <input type = "text" name = "city" id = "city" pattern = "[a-zA-Z ]{2,20}" required>
+                        <label for = "city">City<span class="required">*</span></label><br>
+                        <input type = "text" name = "city" id = "city" pattern = "[a-zA-Z ]{2,20}" placeholder = "Subang Jaya" required>
+                        <span id = "errCity" class = "errMsg"></span>
                     </p>
-                    <p><label for = "state">State</label><br>
+                    <p><label for = "state">State<span class="required">*</span></label><br>
                         <select name = "state" id = "state" required>
                             <option value = "">Please Select</option>
-                            <option value = "VIC">VIC</option>
-                            <option value = "NSW">NSW</option>
-                            <option value = "QLD">QLD</option>
-                            <option value = "NT">NT</option>
-                            <option value = "WA">WA</option>
-                            <option value = "SA">SA</option>
-                            <option value = "TAS">TAS</option>
-                            <option value = "ACT">ACT</option>
+                            <option value = "Johor">Johor</option>
+                            <option value = "Kedah">Kedah</option>
+                            <option value = "Kelantan">Kelantan</option>
+                            <option value = "Malacca">Malacca</option>
+                            <option value = "Negeri Sembilan">Negeri Sembilan</option>
+                            <option value = "Pahang">Pahang</option>
+                            <option value = "Penang">Penang</option>
+                            <option value = "Perlis">Perlis</option>
+                            <option value = "Sabah">Sabah</option>
+                            <option value = "Sarawak">Sarawak</option>
+                            <option value = "Selangor">Selangor</option>
+                            <option value = "Terengganu">Terengganu</option>
                         </select>
                     </p>
                     <p>
-                        <label for = "postCode">Postcode</label><br>
-                        <input type = "text" name = "postCode" id = "postCode" pattern = "[0-9]{4,4}" required>
+                        <span id = "errState" class = "errMsg"></span>
                     </p>
+                    <p>
+                        <label for = "postCode">Postcode<span class="required">*</span></label><br>
+                        <input type = "text" name = "postCode" id = "postCode" pattern = "[0-9]{4,4}" placeholder = "47500" required>
+                        <span id = "errPostcode" class = "errMsg"></span>
+                    </p>
+                    <span class = "requiredText"><i><span class="required">*</span> indicates REQUIRED</i><br></span>
                 </div>
-            </form>
         </div>
 
         <!-- Payment Form -->
-        <div class = "checkoutSubcontainer">
-            <form class = "paymentForm">
+        <div id = "paymentSub" class = "checkoutSubcontainer">
+                <h1 class = "cartHeader">3. Payment Details</h1>
                 <div class = "paymentFields">
+                    <p class = "unofficialLabel">Credit Card Type<span class="required">*</span></p>
                     <section id = "ccTypeSect">
-                        <section class = "ccSub">
+                        <section class = "ccSub" id = "visaContainer">
                             <input type="radio" name="ccType" id="visa" value="Visa"></input> <!-- -->
-                            <label for="visa" class = "ccType"><img class = "ccIcon" src = "images/visa.png" alt = "Visa Credit Card Icon"><p>Visa</p></label>
+                            <label for="visa" id = "visaLabel" class = "ccType"><img class = "ccIcon" src = "images/visa.png" alt = "Visa Credit Card Icon"><p>Visa</p></label>
                         </section>
                         
-                        <section class = "ccSub">
+                        <section class = "ccSub" id = "mcContainer">
                             <input type="radio" name="ccType" id="mastercard" value="Mastercard">
                             <label for="mastercard" class = "ccType"><img class = "ccIcon" src = "images/mastercard.png" alt = "Mastercard Card Icon"><p>Mastercard</p></label>
                         </section>
                         
-                        <section class = "ccSub">
+                        <section class = "ccSub" id = "amexContainer">
                             <input type="radio" name="ccType" id="amex" value="American Express">
-                            <label for="amex" class = "ccType"><img class = "ccIcon" src = "images/american-express.png" alt = "American Express Credit Card Icon"><p id = "amexOpt">AmEx</p></label><br>
+                            <label for="amex" class = "ccType"><img class = "ccIcon" src = "images/american-express.png" alt = "American Express Credit Card Icon"><p id = "amexOpt">AmEx</p></label>
                         </section>
                     </section>
-                        
-                    <label for = "ccName">Name on Credit Card</label><br>
-                    <input type = "text" name = "ccName" id = "ccName" placeholder="John Doe" pattern="[a-zA-Z ]{2,40}" required><br>
+                    <p>
+                        <span id = "errCCType" class = "errMsg"></span>
+                    </p>
 
-                    <label for = "ccNum">Credit Card Number</label><br>
-                    <input type = "text" name = "ccNum" id = "ccNum" placeholder="1111222233334444" pattern="\d{15,16}" required><br>
-
-                    <label for="expDate">Credit Card Expiry Date</label><br>
-                    <input type="text" id="expDate" name="expDate" placeholder="MM-YY" pattern="\d{2}-\d{2}" required><br>
-
-                    <label for = "cvv">Card Verification Value (CVV)</label><br>
-                    <input type = "text" name = "cvv" id = "cvv" placeholder="123" pattern="\d{3,4}" required><br>
+                    <p>
+                        <label for = "ccName">Name on Credit Card<span class="required">*</span></label><br>
+                        <input type = "text" name = "ccName" id = "ccName" placeholder="John Doe" pattern="[a-zA-Z ]{2,40}" required><br>
+                        <span id = "errCCName" class = "errMsg"></span>
+                    </p>
+                    <p>
+                        <label for = "ccNum">Credit Card Number<span class="required">*</span></label><br>
+                        <input type = "text" name = "ccNum" id = "ccNum" placeholder="1111222233334444" pattern="\d{15,16}" required><br>
+                        <span id = "errCCNum" class = "errMsg"></span>
+                    </p>
+                    <p>
+                        <label for="expDate">Credit Card Expiry Date<span class="required">*</span></label><br>
+                        <input type="text" id="expDate" name="expDate" placeholder="MM-YY" pattern="\d{2}-\d{2}" required><br>
+                        <span id = "errExpDate" class = "errMsg"></span>
+                    </p>
+                    <p>
+                        <label for = "cvv">Card Verification Value (CVV)<span class="required">*</span></label><br>
+                        <input type = "text" name = "cvv" id = "cvv" placeholder="123" pattern="\d{3,4}" required><br>
+                        <span id = "errCVV" class = "errMsg"></span>
+                    </p>
+                    <span class = "requiredText"><i><span class="required">*</span> indicates REQUIRED</i><br></span>
                 </div>
+                <div class = "summaryContainer">
+                    <?php
+                        if(isset($_SESSION["cart"])) {
+                            echo "<h1 class = 'cartHeader'>Order Summary</h1><br>";
+                            foreach ($_SESSION["cart"] as $index => $item) {
+                                $book_id = $item['book_id'];
+                                $query = "SELECT * FROM $sql_table WHERE book_id LIKE '$book_id'";
+                                $result = mysqli_query($conn, $query);
+                
+                                $price = $row['price']; 
+                                $qty = $item['qty'];
+        
+                                //Calculate indv total and subtotal price
+                                $indvTotal = ((float)$row['price']*(int)$item['qty']);
+                                $indvTotal = number_format($indvTotal, 2);
+
+                                if($conn && $result) {
+                                    if($row = mysqli_fetch_assoc($result)) { 
+                                        echo "<div class = 'indvItemContainer'><span class = 'indvItem'>".$_SESSION['cart'][$index]["qty"]." x ".$row['title']."</span><span class = 'indvPrice'>RM".$indvTotal."</span><br></div>";
+                                    }
+                                }
+                            }
+                            echo "<hr class = 'divider'>";
+                            echo "<div class = 'indvItemContainer' id = 'subtotalVal'><span class = 'indvItem'>Subtotal</span><span class = 'indvPrice'>RM$total</span></div>";
+                            echo "<div class = 'indvItemContainer' id = 'shippingFee'><span class = 'indvItem'>Shipping within Malaysia</span><span class = 'indvPrice'>FREE</span></div>";
+
+                            $salesTax = number_format(0.06*$total, 2);
+                            $totalTax = number_format($salesTax + $total, 2);
+
+                            echo "<div class = 'indvItemContainer'><span class = 'indvItem'>Sales Tax (6%)</span><span class = 'indvPrice'>RM$salesTax</span></div>";
+                            echo "<div class = 'indvItemContainer' id = 'orderTotal'><span class = 'indvItem'>ORDER TOTAL</span><span class = 'indvPrice'>RM$totalTax</span></div>";
+
+                            echo "<input type = 'hidden' name = 'totalB4Tax' value = '$total'</input>";
+                            echo "<input type = 'hidden' name = 'salesTax' value = '$salesTax'</input>";
+                            echo "<input type = 'hidden' name = 'totalPrice' value = '$totalTax'</input>";
+                        }
+                    ?>
+                </div>
+                <br>
+                <button type = "submit" class = "submitOrderBtn">COMPLETE ORDER</button>
             </form>
         </div>
     </div>
