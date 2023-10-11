@@ -51,7 +51,7 @@
             if(password_verify($pwd,$hashedPwd)){
                 //start session when password is verified
                 session_start();
-                $_SESSION["userid"] = mysqli_insert_id($conn); //session with user's id
+                $_SESSION["userid"] = $userid;
                 $_SESSION["username"] = $username;
                 //store user info into session storage
                 $_SESSION["fname"] = $user['firstName'];
