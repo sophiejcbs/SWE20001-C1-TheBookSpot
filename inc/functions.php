@@ -44,14 +44,31 @@
         //validate password
         else{
             $user = mysqli_fetch_assoc($userExists);
-            $userid = $user['userid'];
+            $userid = $user['userID'];
             $username = $user['username'];
             $hashedPwd = $user['pwd'];
+            
             if(password_verify($pwd,$hashedPwd)){
                 //start session when password is verified
                 session_start();
                 $_SESSION["userid"] = mysqli_insert_id($conn); //session with user's id
                 $_SESSION["username"] = $username;
+                //store user info into session storage
+                $_SESSION["fname"] = $user['firstName'];
+                $_SESSION["lname"] = $user['lastName'];
+                $_SESSION["email"] = $user['email'];
+                $_SESSION["phone"] = $user['phone'];
+                $_SESSION["address"] = $user['address'];
+                $_SESSION["country"] = $user['country'];
+                $_SESSION["city"] = $user['city'];
+                $_SESSION["state"] = $user['state'];
+                $_SESSION["postcode"] = $user['postcode'];
+                $_SESSION["ccName"] = $user['ccName'];
+                $_SESSION["cardno"] = $user['cardNo'];
+                $_SESSION["expiry"] = $user['expiry'];
+                $_SESSION["cvv"] = $user['cvv'];
+                $_SESSION["ccType"] = $user['ccType'];
+                
                 header("location: ../index.php");
                 exit();
             }
@@ -118,6 +135,27 @@
         session_start();
         $_SESSION["userid"] = mysqli_insert_id($conn); //most recently inserted primary key while $connection is still open
         $_SESSION["username"] = $username;
+        //store user info into session storage
+        $_SESSION["fname"] = $firstname;
+        $_SESSION["lname"] = $lastname;
+        $_SESSION["email"] = $email;
+        $_SESSIOM["phone"] = $phone;
+
+        //fetch user information and prepare session storage
+        $userQuery = "SELECT * FROM users WHERE username = '$username'";
+        $userExists = mysqli_query($conn, $userQuery);
+        $user = mysqli_fetch_assoc($userExists);
+        $_SESSION["address"] = $user['address'];
+        $_SESSION["country"] = $user['country'];
+        $_SESSION["city"] = $user['city'];
+        $_SESSION["state"] = $user['state'];
+        $_SESSION["postcode"] = $user['postcode'];
+        $_SESSION["ccName"] = $user['ccName'];
+        $_SESSION["cardno"] = $user['cardNo'];
+        $_SESSION["expiry"] = $user['expiry'];
+        $_SESSION["cvv"] = $user['cvv'];
+        $_SESSION["ccType"] = $user['ccType'];
+        
         header("location: ../index.php");
         exit();
         }
