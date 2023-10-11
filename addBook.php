@@ -38,8 +38,8 @@ else {
     
 <body>
     <?php
-        include 'includes/adminHeader.inc';
-        include 'includes/adminMenu.inc';
+        include 'inc/adminHeader.inc';
+        include 'inc/adminMenu.inc';
     ?>
     
     <!-- New Book Information -->
@@ -140,5 +140,5 @@ else {
 </body>
 
 <?php
-    include 'includes/footer.inc';
+    include 'inc/footer.inc';
 ?>
