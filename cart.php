@@ -101,7 +101,7 @@ EOD;
                         if($count == 0) {
                             echo <<<EOD
                             <div class = "cartContainer">
-                                <form class = "cartForm" action="cart.php?action=remove&id=$book_id" method="post">
+                                <div class = "cartForm" action="cart.php?action=remove&id=$book_id" method="post">
                                 <h1 class = "cartHeader">Shopping Cart ($totalQty items)</h1>
 EOD;
                             }
@@ -133,27 +133,29 @@ EOD;
                         
                         // Display book
                         echo <<<EOD
-                            <div class = "cartItem">
-                                <div class = "coverContainer">
-                                    <img src = '$img' class = "cover" onclick = displayBook($book_id)></img>
-                                </div>
-                                <div class = "bookDetails">
-                                    <div class = "detailsContainer">
-                                        <p class = "title" onclick = displayBook($book_id)>$title</p>
-                                        <p class = "bookPrice">RM$indvTotal</p>
+                            <form action="cart.php?action=remove&id=$book_id" method="post">
+                                <div class = "cartItem">
+                                    <div class = "coverContainer">
+                                        <img src = '$img' class = "cover" onclick = displayBook($book_id)></img>
                                     </div>
-                                    <p class = "author">by $author</p>
-                                    <p class = "price">RM $price</p>
-                                    <p class = "format">$format</p>
-                                    <p class="$stockIndicator" ><i class="bi bi-circle-fill"></i> <span class="stockTxt">$stockTxt</span></p>
-                                    <div class="quanContainer">
-                                        <button type="button" id = "decrement" class="decrementButton" onclick = "decrementFunc($book_id)">—</button>
-                                        <input type="text" name="Quantity" value="$qty" class="quanInput" id = "quantity_$book_id" readonly>  
-                                        <button type="button" id = "increment" class="incrementButton" onclick = "incrementFunc($book_id)">+</button>
+                                    <div class = "bookDetails">
+                                        <div class = "detailsContainer">
+                                            <p class = "title" onclick = displayBook($book_id)>$title</p>
+                                            <p class = "bookPrice">RM$indvTotal</p>
+                                        </div>
+                                        <p class = "author">by $author</p>
+                                        <p class = "price">RM $price</p>
+                                        <p class = "format">$format</p>
+                                        <p class="$stockIndicator" ><i class="bi bi-circle-fill"></i> <span class="stockTxt">$stockTxt</span></p>
+                                        <div class="quanContainer">
+                                            <button type="button" id = "decrement" class="decrementButton" onclick = "decrementFunc($book_id)">—</button>
+                                            <input type="text" name="Quantity" value="$qty" class="quanInput" id = "quantity_$book_id" readonly>  
+                                            <button type="button" id = "increment" class="incrementButton" onclick = "incrementFunc($book_id)">+</button>
+                                        </div>
+                                        <button type = "submit" class = "deleteBtn" name = "remove"><i class="bi bi-trash"></i>&nbsp;Delete</button>
                                     </div>
-                                    <button type = "submit" class = "deleteBtn" name = "remove"><i class="bi bi-trash"></i>&nbsp;Delete</button>
                                 </div>
-                            </div>
+                            </form>
 EOD;
                         $count++;
                     }
@@ -162,7 +164,7 @@ EOD;
             
             if($count != 0) {
                 echo <<<EOD
-                    </form>
+                    </div>
                     <div class = "subtotalContainer">
                         <div class = "labelAmtContainer">
                             <p class = "subtotal">Subtotal</p><span class = "subtotal">RM$total</span>
@@ -229,6 +231,7 @@ EOD;
                     if($item["book_id"] == $_GET['id']){
                         unset($_SESSION['cart'][$index]);
                         echo "<script>location.reload();</script>";
+                        break;
                     }
                 }
             }
