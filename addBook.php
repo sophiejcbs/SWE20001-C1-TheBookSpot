@@ -38,8 +38,8 @@ else {
     
 <body>
     <?php
-        include 'inc/adminHeader.inc';
-        include 'inc/adminMenu.inc';
+        include 'includes/adminHeader.inc';
+        include 'includes/adminMenu.inc';
     ?>
     
     <!-- New Book Information -->
@@ -126,8 +126,19 @@ else {
             <button type="submit" id="submitButton" class="submitButton">Create New Book</button>
         </form>
     </div>
+    <script>
+        <?php
+            // Check if a response message should be displayed
+            if (isset($_GET['message'])) 
+            {
+                $message = $_GET['message'];
+                // Display the response message using JavaScript alert
+                echo "alert('$message');";
+            }
+        ?>
+    </script>
 </body>
 
 <?php
-    include 'inc/footer.inc';
+    include 'includes/footer.inc';
 ?>
