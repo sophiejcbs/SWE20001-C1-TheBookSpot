@@ -110,6 +110,16 @@
             exit();
         }
 
+        //check if phone is taken
+        $userQuery = "SELECT * FROM users WHERE phone = '$phone'";
+        $phoneExists = mysqli_query($conn, $userQuery);
+
+        if(mysqli_num_rows($phoneExists)>0){
+            //phone taken
+            header("location: ../signupUser.php?error=phoneexists");
+            exit();
+        }
+
         //check if phone is numeric only
         if(preg_match('/^[0-9]+$/', $phone) == false ){
             //phone is not numeric only
@@ -266,7 +276,7 @@
         }
     }
 
-    //Change User Account Password
+//Change User Account Password
     function changePasswordUser($conn, $userid, $pwdold, $pwd, $repeatpwd){
         $userQuery = "SELECT * FROM users WHERE userid = '$userid'";
         $userExists = mysqli_query($conn, $userQuery);
@@ -304,6 +314,78 @@
             header("location: ../user_profile.php?error=wrongoldpwd");
             exit();
         }
+    }
+
+//Edit User Information
+    function editAccountInformation($conn, $userid, $fname, $lname){
+        $sql = "UPDATE users SET firstName = ?, lastName = ? WHERE userid = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "ssi", $fname, $lname, $userid);
+        if(mysqli_stmt_execute($stmt)){
+            mysqli_stmt_close($stmt);
+            userSessionRefresh($conn, $userid);
+            header("location: ../user_profile.php?error=namesuccess");
+            exit();
+        } else {
+            mysqli_stmt_close($stmt);
+            header("location: ../user_profile.php?error=nameerror");
+            exit();
+        }
+    }
+
+//Shipping Information
+    function updateShippingAddress($conn, $userid, $address, $city, $state, $postcode){
+        $sql = "UPDATE users SET address = ?, city = ?, state = ?, postcode = ? WHERE userid = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "ssssi", $address, $city, $state, $postcode, $userid);
+        if(mysqli_stmt_execute($stmt)){
+            mysqli_stmt_close($stmt);
+            userSessionRefresh($conn, $userid);
+            header("location: ../user_profile.php?error=addresssuccess");
+            exit();
+        } else{
+            mysqli_stmt_close($stmt);
+            header("location: ../user_profile.php?error=addresserror");
+            exit();
+        }
+    }
+
+//Payment Information
+    function updatePaymentInformation($conn, $userid, $ccName, $cardNo, $expiry, $cvv, $ccType){
+        $sql = "UPDATE users SET ccName = ?, cardNo = ?, expiry = ?, cvv = ?, ccType = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "sisis", $ccName, $cardNo, $expiry, $cvv, $ccType);
+        if(mysqli_stmt_execute($stmt)){
+            mysqli_stmt_close($stmt);
+            userSessionRefresh($conn, $userid);
+            header("location: ../user_profile.php?error=paymentsuccess");
+            exit();
+        } else{
+            mysqli_stmt_close($stmt);
+            header("location: ../user_profile.php?error=paymenterror");
+            exit();
+            }
+    }
+
+
+    //Refresh all session variables for users
+    function userSessionRefresh($conn, $userid){
+        $sql = "SELECT * FROM users WHERE userid = $userid";
+        $user = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+
+        //refresh user info in session storage
+        $_SESSION["fname"] = $user['firstName'];
+        $_SESSION["lname"] = $user['lastName'];
+        $_SESSION["address"] = $user['address'];
+        $_SESSION["country"] = $user['country'];
+        $_SESSION["city"] = $user['city'];
+        $_SESSION["state"] = $user['state'];
+        $_SESSION["postcode"] = $user['postcode'];
+        $_SESSION["ccName"] = $user['ccName'];
+        $_SESSION["cardno"] = $user['cardNo'];
+        $_SESSION["expiry"] = $user['expiry'];
+        $_SESSION["cvv"] = $user['cvv'];
+        $_SESSION["ccType"] = $user['ccType'];
     }
 
 //Display Book Catalogue
