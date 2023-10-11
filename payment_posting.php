@@ -373,16 +373,16 @@
                     $_SESSION["totalPrice"] = $row['total_price']; 
                     $_SESSION["status"] = $row['status']; 
                     $_SESSION["create_at"] = $row['create_at']; 
-                    $_SESSION["address"] = $row['address']; 
-                    $_SESSION["city"] = $row['city']; 
-                    $_SESSION["state"] = $row['state']; 
-                    $_SESSION["country"] = $row['country']; 
-                    $_SESSION["postcode"] = $row['postcode']; 
-                    $_SESSION["ccName"] = $row['ccName']; 
-                    $_SESSION["cardNo"] = $row['cardNo']; 
-                    $_SESSION["expiry"] = $row['expiry']; 
-                    $_SESSION["cvv"] = $row['cvv']; 
-                    $_SESSION["ccType"] = $row['ccType']; 
+                    $_SESSION["p_address"] = $row['address']; 
+                    $_SESSION["p_city"] = $row['city']; 
+                    $_SESSION["p_state"] = $row['state']; 
+                    $_SESSION["p_country"] = $row['country']; 
+                    $_SESSION["p_postcode"] = $row['postcode']; 
+                    $_SESSION["p_ccName"] = $row['ccName']; 
+                    $_SESSION["p_cardNo"] = $row['cardNo']; 
+                    $_SESSION["p_expiry"] = $row['expiry']; 
+                    $_SESSION["p_cvv"] = $row['cvv']; 
+                    $_SESSION["p_ccType"] = $row['ccType']; 
                 }
             }
 
