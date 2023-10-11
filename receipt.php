@@ -53,7 +53,7 @@
                 echo "<h3 class = 'greetings'>Hi $_SESSION[fname] $_SESSION[lname], here's your receipt!</h3>";
                 echo "<hr class = 'divider'>";
                 $formattedDateTime = date('Y-m-d H:i', strtotime($_SESSION["create_at"]));
-                $ccNum = substr($_SESSION["cardNo"], -4);
+                $ccNum = substr($_SESSION["p_cardNo"], -4);
                 echo <<<EOD
                 <div class = "paySubcontainer">
                     <h1 class = 'itemsHeader'>Order Details</h1>
@@ -74,10 +74,10 @@
                             <p>$_SESSION[status]</p>
                             <p>$_SESSION[ccType] *$ccNum</p>
                             <p>
-                                $_SESSION[address]<br>
-                                $_SESSION[postcode] $_SESSION[city]<br>
-                                $_SESSION[state]<br>
-                                $_SESSION[country]
+                                $_SESSION[p_address]<br>
+                                $_SESSION[p_postcode] $_SESSION[city]<br>
+                                $_SESSION[p_state]<br>
+                                $_SESSION[p_country]
                             </p>
                         </div>
                     </div>
@@ -128,6 +128,8 @@ EOD;
                     }
                 }
 
+                $totalPrice = number_format($_SESSION["totalPrice"], 2);
+
                 echo <<<EOD
                     <hr class = "divider2">
                     <div class = "priceContainer">
@@ -146,7 +148,7 @@ EOD;
                             <p>Total</p>
                         </div>
                         <div class = "priceVal" id = "totalVal">
-                            <p>RM$_SESSION[totalPrice]</p>
+                            <p>RM$totalPrice</p>
                         </div>
                     </div>
 EOD;                
