@@ -31,6 +31,8 @@ else {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    
+    <script src="scripts/tableSortable.js"></script>
 </head>
 
 <?php
@@ -65,7 +67,7 @@ else {
         //Checks if the execution was successful
         if(!$result) 
         {
-            echo "<p class=\"wrong_bryan\">Something is wrong with ", $query, "</p>";
+            echo "<p>Something is wrong with ", $query, "</p>";
         } 
         else 
         {
@@ -73,23 +75,23 @@ else {
             {
                 // Display the retrieved records
                 echo "<div class=\"table-responsive\">";
-                echo "<table class=\"table table-bordered table-hover\">";
+                echo "<table id=\"bookTable\" class=\"table table-bordered table-hover\">";
                 echo "<thead class=\"table-dark\">";
                 echo "<tr>\n"
-                    ."<th><div class=\"column-width-s\">#</div></th>\n"
-                    ."<th><div class=\"column-width-l\">Title</div></th>\n"
+                    ."<th><div class=\"column-width\">#</div></th>\n"
+                    ."<th><div class=\"column-width\">Title<i class=\"fas fa-sort\" onclick=sortTable(1)></i></div></th>\n"
                     ."<th>Cover</div></th>\n"
-                    ."<th><div class=\"column-width-l\">Author</div></th>\n"
-                    ."<th><div class=\"column-width-l\">Genre</div></th>\n"
-                    ."<th><div class=\"column-width-m\">Type</div></th>\n"
-                    ."<th><div class=\"column-width-m\">Publisher</div></th>\n"
-                    ."<th><div class=\"column-width-l\">Publication Date</div></th>\n"
-                    ."<th><div class=\"column-width-xl\">Description</div></th>\n"
-                    ."<th><div class=\"column-width-l\">ISBN Number</div></th>\n"
-                    ."<th><div class=\"column-width-m\">Language</div></th>\n"
-                    ."<th><div class=\"column-width-m\">Price(RM)</div></th>\n"
-                    ."<th><div class=\"column-width-m\">Stock</div></th>\n"
-                    ."<th><div class=\"column-width-m\">Sold</div></th>\n"
+                    ."<th><div class=\"column-width\">Author<i class=\"fas fa-sort\" onclick=sortTable(3)></i></div></th>\n"
+                    ."<th><div class=\"column-width\">Genre<i class=\"fas fa-sort\" onclick=sortTable(4)></i></div></th>\n"
+                    ."<th><div class=\"column-width\">Type<i class=\"fas fa-sort\" onclick=sortTable(5)></i></div></th>\n"
+                    ."<th><div class=\"column-width\">Publisher<i class=\"fas fa-sort\" onclick=sortTable(6)></i></div></th>\n"
+                    ."<th><div class=\"column-width\">Publication Date<i class=\"fas fa-sort\" onclick=sortTable(7)></i></div></th>\n"
+                    ."<th><div class=\"column-width-xl\">Description<i class=\"fas fa-sort\" onclick=sortTable(8)></i></div></th>\n"
+                    ."<th><div class=\"column-width\">ISBN Number<i class=\"fas fa-sort\" onclick=sortTable(9)></i></div></th>\n"
+                    ."<th><div class=\"column-width\">Language<i class=\"fas fa-sort\" onclick=sortTable(10)></i></div></th>\n"
+                    ."<th><div class=\"column-width\">Price(RM)<i class=\"fas fa-sort\" onclick=sortTable(11)></i></div></th>\n"
+                    ."<th><div class=\"column-width\">Stock<i class=\"fas fa-sort\" onclick=sortTable(12)></i></div></th>\n"
+                    ."<th><div class=\"column-width\">Sold<i class=\"fas fa-sort\" onclick=sortTable(13)></i></div></th>\n"
                     ."<th><div class=\"column-width-l\">Action</div></th>\n"
                     ."</tr>\n";
                 echo "</thead>";
@@ -99,7 +101,7 @@ else {
                 {
                     echo "<tbody class=\"table-group-divider\">";
                     echo "<tr>";
-                    echo "<td>", $int++,"</td>";  
+                    echo "<td>", $row["book_id"],"</td>";  
                     echo "<td>", $row["title"], "</td>";  
                     echo "<td><img src='", $row["image"], "'alt='Book Cover' width=100></td>";
                     echo "<td>", $row["author"], "</td>";
@@ -120,11 +122,24 @@ else {
                 }
                 echo "</table>";
                 echo "</div>";
+
                 // Frees up the memory, after using the result pointer
                 mysqli_free_result($result);
             } // if successful query operation
         } // end if no rows
         mysqli_close($conn);  // close the database connection
-    }
+    }  
     include 'inc/footer.inc';
 ?>
+
+<script>
+    <?php
+        // Check if a response message should be displayed
+        if (isset($_GET['message'])) 
+        {
+            $message = $_GET['message'];
+            // Display the response message using JavaScript alert
+            echo "alert('$message');";
+        }
+    ?>
+</script>
