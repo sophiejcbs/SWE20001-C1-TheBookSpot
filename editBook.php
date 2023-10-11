@@ -50,7 +50,7 @@ else {
         if (!$conn) 
         {
             // Displays an error message
-            echo "<p>Database connection failure</p>";
+            echo "<p class=\"wrong\">Database connection failure!</p>";
         } 
         else 
         {
