@@ -1,0 +1,206 @@
+.itemsHeader {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 8% 0% 0% 4%;
+    font-weight: bolder;
+    padding: 2%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    background-color: rgb(238, 234, 234);
+    border: 0.5px solid rgb(185, 183, 183);
+    padding-left: 5%;
+    width: 90%;
+}
+
+.thanksMsg {
+    margin-top: 5%;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.greetings {
+    margin-top: 3%;
+    font-size: 1.25rem;
+    margin-bottom: 3%;
+}
+
+.orderNum {
+    font-weight: bold;
+}
+
+.receiptContainer {
+    display: flex;
+    gap: 3%;
+}
+
+.orderItem {
+    display: flex;
+    border: 0.5px solid rgb(185, 183, 183);
+    border-top:0cm;
+    margin-left: 4%;
+    margin-right: 0%;
+    padding: 1%;
+    padding-right: 2%;
+    padding-left: 4%;
+    display:flex;
+    align-items:center;
+    gap: 2%;
+    padding-bottom: 1%;
+    background-color: white;
+    width: 90%;
+}
+
+.coverContainer {
+    width :18%;
+}
+.cover {
+    width: 100%;
+}
+
+.orderItem .title {
+    margin-bottom: 0;
+}
+
+.orderItem .title, .qty, .bookPrice {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.orderItem .price {
+    font-weight: bold;
+}
+
+.orderItem .price {
+    color: #1B99D4;
+}
+
+.paymentContainer {
+    width: 100%;
+    margin-left: 5%;
+}
+
+.detailsContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detailsContainer p {
+    margin: 0;
+}
+
+.bookDetails {
+    width: 80%;
+    margin-top: 2.5%;
+}
+
+.orderItem .title:hover, .cover:hover {
+    cursor:pointer;
+}
+
+.author {
+    margin-top: 4%;
+    margin-bottom: 0;
+    font-size: 0.75rem;
+}
+
+.price {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.format {
+    font-weight: bold;
+    font-size: 0.75rem;
+    margin-top: 5%;
+}
+
+.paymentDetails {
+    display: flex;
+    justify-content: space-between;
+    border: 0.5px solid rgb(185, 183, 183);
+    width: 70%;
+    padding: 4%;
+    border-top: 0;
+}
+
+.labels p, .details p {
+   margin: 0;
+   margin-bottom: 4%;
+   font-size: 0.95rem;
+}
+
+.details p {
+    margin-bottom: 6%;
+}
+
+.labels {
+    width: 50%;
+    font-weight: bold;
+}
+
+.details {
+    text-align: right;
+}
+
+.paymentContainer .itemsHeader {
+    width: 70%;
+    margin-left: 0;
+    margin-top: 2%;
+    padding-left: 4%;
+}
+
+.paySubcontainer {
+    display: flex;
+    justify-content: center;
+}
+
+hr {
+    border-color: black;
+}
+
+.priceContainer {
+    display: flex;
+    margin-left: 8%;
+}
+
+.priceLabels {
+    width: 75%;
+}
+
+.priceVal {
+    text-align: right;
+}
+
+.priceLabels p {
+    margin-bottom: 3%;
+}
+
+.priceVal p {
+    margin-bottom: 15%;
+}
+
+.divider {
+    border: 1px solid black;
+}
+
+.divider2 {
+    margin-top: 5%;
+}
+
+.divider2, .divider3 {
+    width: 90%;
+    margin-left: 3.8%;
+    border: 1px solid black;
+}
+
+.divider3 {
+    margin-top: 1%;
+}
+
+#totalLabel, #totalVal {
+    font-weight: bold;
+}
+
+#totalLabel {
+    width: 74%;
+}
