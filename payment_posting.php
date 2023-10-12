@@ -276,7 +276,7 @@
                     $price = 0;
 
                     $query = "UPDATE books
-                    SET amt_sold = amt_sold + 1
+                    SET amt_sold = amt_sold + (int)$qty
                     WHERE book_id = '$book_id'";
                     $result = mysqli_query($conn, $query);
                     
@@ -315,7 +315,7 @@
                 $price = 0;
 
                 $query = "UPDATE books
-                SET amt_sold = amt_sold + 1
+                SET amt_sold = amt_sold + (int)$qty
                 WHERE book_id = '$book_id'";
                 $result = mysqli_query($conn, $query);
 
