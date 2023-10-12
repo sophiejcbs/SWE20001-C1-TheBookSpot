@@ -274,6 +274,11 @@
                     $book_id = $item['book_id'];
                     $qty = $item['qty'];
                     $price = 0;
+
+                    $query = "UPDATE books
+                    SET amt_sold = amt_sold + 1
+                    WHERE book_id = '$book_id'";
+                    $result = mysqli_query($conn, $query);
                     
                     $query = "SELECT * FROM books WHERE book_id LIKE '$book_id'";
                     $result = mysqli_query($conn, $query);
@@ -308,7 +313,12 @@
                 $book_id = $item['book_id'];
                 $qty = $item['qty'];
                 $price = 0;
-                
+
+                $query = "UPDATE books
+                SET amt_sold = amt_sold + 1
+                WHERE book_id = '$book_id'";
+                $result = mysqli_query($conn, $query);
+
                 $query = "SELECT * FROM books WHERE book_id LIKE '$book_id'";
                 $result = mysqli_query($conn, $query);
 
