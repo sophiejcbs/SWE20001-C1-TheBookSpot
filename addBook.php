@@ -51,7 +51,7 @@ else {
                 <legend class="formGroup">Book Information</legend>
                 
                 <label for="image">Book Image</label><p class="required">*</p><br>
-                <input type="text" name="image" id="image" placeholder="https://......" class="fields"> <br>
+                <input type="text" name="image" id="image" placeholder="Eg: https://......" class="fields"> <br>
                 <div class="error" id="errImage"></div>
                     
                 <label for="title">Book Title</label><p class="required">*</p><br>
