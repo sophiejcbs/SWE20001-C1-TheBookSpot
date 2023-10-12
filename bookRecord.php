@@ -78,7 +78,7 @@ else {
                 echo "<table id=\"bookTable\" class=\"table table-bordered table-hover\">";
                 echo "<thead class=\"table-dark\">";
                 echo "<tr>\n"
-                    ."<th><div class=\"column-width\">#</div></th>\n"
+                    ."<th><div class=\"column-width\">#<i class=\"fas fa-sort\" onclick=sortTable(0)></i></div></th>\n"
                     ."<th><div class=\"column-width\">Title<i class=\"fas fa-sort\" onclick=sortTable(1)></i></div></th>\n"
                     ."<th>Cover</div></th>\n"
                     ."<th><div class=\"column-width\">Author<i class=\"fas fa-sort\" onclick=sortTable(3)></i></div></th>\n"
