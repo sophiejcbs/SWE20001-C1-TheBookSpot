@@ -149,9 +149,17 @@ nav li a:hover, header .search button[type="submit"]:hover{
     width: 200px;
 }
 
-h2_var2 {
-    font-size: x-large;
+.heading{
+    margin-left: 2%;
+    font-size: 2rem;
     font-weight: bold;
+    margin-top: 1%;
+}
+
+.title {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    text-align: right;
 }
 
 .fa-sort{
