@@ -237,7 +237,7 @@
                         <div class="txt_field">
                             <input type="text" name="expiry" id="expiry" required <?php if (!empty($_SESSION["expiry"])) { echo "value='{$_SESSION['expiry']}'"; } ?>>
                             <span></span>
-                            <label for="expiry">Expiry Date (MM/YY)</label>
+                            <label for="expiry">Expiry Date (MM-YY)</label>
                         </div>
 
                         <div class="txt_field">
