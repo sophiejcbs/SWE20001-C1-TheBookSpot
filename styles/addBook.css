@@ -127,6 +127,14 @@ nav li a:hover, header .search button[type="submit"]:hover{
     background-color: #3a8db3;
 }
 
+nav li a, header button[type="submit"] {
+    transition: background-color 0.5s, color 0.5s; /* Add transition properties for background-color and color */
+}
+
+.shaded{
+    background-color: #3a8db3;
+}
+
 .func a:hover{
     color:#3a8db3;
 }
