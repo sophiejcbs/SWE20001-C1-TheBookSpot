@@ -72,10 +72,10 @@
                             <p>#$_SESSION[salesID]</p>
                             <p>$formattedDateTime</p>
                             <p>$_SESSION[status]</p>
-                            <p>$_SESSION[ccType] *$ccNum</p>
+                            <p>$_SESSION[p_ccType] *$ccNum</p>
                             <p>
                                 $_SESSION[p_address]<br>
-                                $_SESSION[p_postcode] $_SESSION[city]<br>
+                                $_SESSION[p_postcode] $_SESSION[p_city]<br>
                                 $_SESSION[p_state]<br>
                                 $_SESSION[p_country]
                             </p>
