@@ -1,9 +1,3 @@
-<?php
-    session_start();
-    include_once 'settings.php';
-    include_once 'inc/functions.php';
-?>
-
 <!DOCTYPE html> 
 <html lang="en">
 <head>
@@ -31,6 +25,8 @@
     
     <!-- Header & Navigation Menu-->
     <?php
+        include_once 'settings.php';
+        include_once 'inc/functions.php';
         include_once 'inc/header.inc';
         include_once 'inc/menu.inc';
     ?>
