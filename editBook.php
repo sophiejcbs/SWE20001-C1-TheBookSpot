@@ -73,7 +73,7 @@ else {
                 <input type="hidden" name="book_id" value="<?php echo $book_id; ?>">
 
                 <label for="image">Book Image</label><p class="required">*</p><br>
-                <input type="text" name="image" id="image" value="<?php echo $book['image']; ?>" placeholder="https://......" class="fields"> <br>
+                <input type="text" name="image" id="image" value="<?php echo $book['image']; ?>" placeholder="Eg: https://......" class="fields"> <br>
                 <div class="error" id="errImage"></div>
                     
                 <label for="title">Book Title</label><p class="required">*</p><br>
