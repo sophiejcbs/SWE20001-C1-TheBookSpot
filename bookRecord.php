@@ -41,96 +41,97 @@ else {
 ?>
 
 <body>
-    <h2_var2>Book Record</h2_var2>
-</body>
+    <h2 class="heading">Book Record</h2>
+    <div class="title"><a class="btn btn-primary" href="addBook.php" role="button">Create New Book</a></div>
 
-<?php
-    require_once('settings.php');
-            
-    $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
+    <?php
+        require_once('settings.php');
+                
+        $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
 
-    // Checks if connection is successful
-    if (!$conn) 
-    {
-        // Displays an error message
-        echo "<p>Database connection failure</p>";
-    } 
-    else 
-    {
-        // Upon successful connection
-        $sql_table="books";
-        $int = 1;
-
-        $query = "SELECT book_id, title, image, author, genre, format, publisher, publication_date, description, book_ISBN, language, price, stock, amt_sold FROM $sql_table;";
-        $result = mysqli_query($conn, $query);
-
-        //Checks if the execution was successful
-        if(!$result) 
+        // Checks if connection is successful
+        if (!$conn) 
         {
-            echo "<p>Something is wrong with ", $query, "</p>";
+            // Displays an error message
+            echo "<p>Database connection failure</p>";
         } 
         else 
         {
-            if(mysqli_num_rows($result) > 0) 
-            {
-                // Display the retrieved records
-                echo "<div class=\"table-responsive\">";
-                echo "<table id=\"bookTable\" class=\"table table-bordered table-hover\">";
-                echo "<thead class=\"table-dark\">";
-                echo "<tr>\n"
-                    ."<th><div class=\"column-width\">#<i class=\"fas fa-sort\" onclick=sortTable(0)></i></div></th>\n"
-                    ."<th><div class=\"column-width\">Title<i class=\"fas fa-sort\" onclick=sortTable(1)></i></div></th>\n"
-                    ."<th>Cover</div></th>\n"
-                    ."<th><div class=\"column-width\">Author<i class=\"fas fa-sort\" onclick=sortTable(3)></i></div></th>\n"
-                    ."<th><div class=\"column-width\">Genre<i class=\"fas fa-sort\" onclick=sortTable(4)></i></div></th>\n"
-                    ."<th><div class=\"column-width\">Type<i class=\"fas fa-sort\" onclick=sortTable(5)></i></div></th>\n"
-                    ."<th><div class=\"column-width\">Publisher<i class=\"fas fa-sort\" onclick=sortTable(6)></i></div></th>\n"
-                    ."<th><div class=\"column-width\">Publication Date<i class=\"fas fa-sort\" onclick=sortTable(7)></i></div></th>\n"
-                    ."<th><div class=\"column-width-xl\">Description<i class=\"fas fa-sort\" onclick=sortTable(8)></i></div></th>\n"
-                    ."<th><div class=\"column-width\">ISBN Number<i class=\"fas fa-sort\" onclick=sortTable(9)></i></div></th>\n"
-                    ."<th><div class=\"column-width\">Language<i class=\"fas fa-sort\" onclick=sortTable(10)></i></div></th>\n"
-                    ."<th><div class=\"column-width\">Price(RM)<i class=\"fas fa-sort\" onclick=sortTable(11)></i></div></th>\n"
-                    ."<th><div class=\"column-width\">Stock<i class=\"fas fa-sort\" onclick=sortTable(12)></i></div></th>\n"
-                    ."<th><div class=\"column-width\">Sold<i class=\"fas fa-sort\" onclick=sortTable(13)></i></div></th>\n"
-                    ."<th><div class=\"column-width-l\">Action</div></th>\n"
-                    ."</tr>\n";
-                echo "</thead>";
-                // retrieve current record pointed by the result pointer
-                
-                while ($row = mysqli_fetch_assoc($result))
-                {
-                    echo "<tbody class=\"table-group-divider\">";
-                    echo "<tr>";
-                    echo "<td>", $row["book_id"],"</td>";  
-                    echo "<td>", $row["title"], "</td>";  
-                    echo "<td><img src='", $row["image"], "'alt='Book Cover' width=100></td>";
-                    echo "<td>", $row["author"], "</td>";
-                    echo "<td>", $row["genre"], "</td>";
-                    echo "<td>", $row["format"], "</td>";
-                    echo "<td>", $row["publisher"], "</td>";
-                    echo "<td>", $row["publication_date"], "</td>";
-                    echo "<td><div class=\"description-row\">", $row["description"], "</div></td>";
-                    echo "<td>", $row["book_ISBN"], "</td>";
-                    echo "<td>", $row["language"], "</td>";
-                    echo "<td>", $row["price"], "</td>";
-                    echo "<td>", $row["stock"], "</td>";
-                    echo "<td>", $row["amt_sold"], "</td>";
-                    echo "<td><a class=\"btn btn-success\" href=\"editBook.php?book_id={$row["book_id"]}\" role=\"button\">Edit</a>
-                          <a class=\"btn btn-danger\" href=\"deleteBook_posting.php?book_id={$row["book_id"]}\" role=\"button\">Delete</a></td>";
-                    echo "</tr>";
-                    echo "</tbody>";
-                }
-                echo "</table>";
-                echo "</div>";
+            // Upon successful connection
+            $sql_table="books";
+            $int = 1;
 
-                // Frees up the memory, after using the result pointer
-                mysqli_free_result($result);
-            } // if successful query operation
-        } // end if no rows
-        mysqli_close($conn);  // close the database connection
-    }  
-    include 'inc/footer.inc';
-?>
+            $query = "SELECT book_id, title, image, author, genre, format, publisher, publication_date, description, book_ISBN, language, price, stock, amt_sold FROM $sql_table;";
+            $result = mysqli_query($conn, $query);
+
+            //Checks if the execution was successful
+            if(!$result) 
+            {
+                echo "<p>Something is wrong with ", $query, "</p>";
+            } 
+            else 
+            {
+                if(mysqli_num_rows($result) > 0) 
+                {
+                    // Display the retrieved records
+                    echo "<div class=\"table-responsive\">";
+                    echo "<table id=\"bookTable\" class=\"table table-bordered table-hover\">";
+                    echo "<thead class=\"table-dark\">";
+                    echo "<tr>\n"
+                        ."<th><div class=\"column-width\">#<i class=\"fas fa-sort\" onclick=sortTable(0)></i></div></th>\n"
+                        ."<th><div class=\"column-width\">Title<i class=\"fas fa-sort\" onclick=sortTable(1)></i></div></th>\n"
+                        ."<th>Cover</div></th>\n"
+                        ."<th><div class=\"column-width\">Author<i class=\"fas fa-sort\" onclick=sortTable(3)></i></div></th>\n"
+                        ."<th><div class=\"column-width\">Genre<i class=\"fas fa-sort\" onclick=sortTable(4)></i></div></th>\n"
+                        ."<th><div class=\"column-width\">Type<i class=\"fas fa-sort\" onclick=sortTable(5)></i></div></th>\n"
+                        ."<th><div class=\"column-width\">Publisher<i class=\"fas fa-sort\" onclick=sortTable(6)></i></div></th>\n"
+                        ."<th><div class=\"column-width\">Publication Date<i class=\"fas fa-sort\" onclick=sortTable(7)></i></div></th>\n"
+                        ."<th><div class=\"column-width-xl\">Description<i class=\"fas fa-sort\" onclick=sortTable(8)></i></div></th>\n"
+                        ."<th><div class=\"column-width\">ISBN Number<i class=\"fas fa-sort\" onclick=sortTable(9)></i></div></th>\n"
+                        ."<th><div class=\"column-width\">Language<i class=\"fas fa-sort\" onclick=sortTable(10)></i></div></th>\n"
+                        ."<th><div class=\"column-width\">Price(RM)<i class=\"fas fa-sort\" onclick=sortTable(11)></i></div></th>\n"
+                        ."<th><div class=\"column-width\">Stock<i class=\"fas fa-sort\" onclick=sortTable(12)></i></div></th>\n"
+                        ."<th><div class=\"column-width\">Sold<i class=\"fas fa-sort\" onclick=sortTable(13)></i></div></th>\n"
+                        ."<th><div class=\"column-width-l\">Action</div></th>\n"
+                        ."</tr>\n";
+                    echo "</thead>";
+                    // retrieve current record pointed by the result pointer
+                    
+                    while ($row = mysqli_fetch_assoc($result))
+                    {
+                        echo "<tbody class=\"table-group-divider\">";
+                        echo "<tr>";
+                        echo "<td>", $row["book_id"],"</td>";  
+                        echo "<td>", $row["title"], "</td>";  
+                        echo "<td><img src='", $row["image"], "'alt='Book Cover' width=100></td>";
+                        echo "<td>", $row["author"], "</td>";
+                        echo "<td>", $row["genre"], "</td>";
+                        echo "<td>", $row["format"], "</td>";
+                        echo "<td>", $row["publisher"], "</td>";
+                        echo "<td>", $row["publication_date"], "</td>";
+                        echo "<td><div class=\"description-row\">", $row["description"], "</div></td>";
+                        echo "<td>", $row["book_ISBN"], "</td>";
+                        echo "<td>", $row["language"], "</td>";
+                        echo "<td>", $row["price"], "</td>";
+                        echo "<td>", $row["stock"], "</td>";
+                        echo "<td>", $row["amt_sold"], "</td>";
+                        echo "<td><a class=\"btn btn-success\" href=\"editBook.php?book_id={$row["book_id"]}\" role=\"button\">Edit</a>
+                            <a class=\"btn btn-danger\" href=\"deleteBook_posting.php?book_id={$row["book_id"]}\" role=\"button\">Delete</a></td>";
+                        echo "</tr>";
+                        echo "</tbody>";
+                    }
+                    echo "</table>";
+                    echo "</div>";
+
+                    // Frees up the memory, after using the result pointer
+                    mysqli_free_result($result);
+                } // if successful query operation
+            } // end if no rows
+            mysqli_close($conn);  // close the database connection
+        }  
+        include 'inc/footer.inc';
+    ?>
+</body>
 
 <script>
     <?php
