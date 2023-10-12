@@ -42,6 +42,8 @@
         $query = "SELECT * FROM $sql_table WHERE book_id LIKE '$book_id'";
         $result = mysqli_query($conn, $query);
 
+        $stock = 0;
+
         if ($conn && $result){
             // Check if a row was returned from the query
             if ($row = mysqli_fetch_assoc($result)) {
@@ -53,6 +55,7 @@
                 $publisher = $row['publisher'];
                 $ISBN = $row['book_ISBN'];
                 $language = $row['language'];
+                $stock = $row['stock'];
                 $description = $row['description'];
 
                 //Stock status
@@ -72,7 +75,7 @@
     ?>
 
     <?php
-        if(isset($_POST['add'])) {
+        if(isset($_POST['add']) && $_POST["stock"]>0) {
             if(isset($_SESSION["cart"])) {
                 $exist = false; 
                 foreach($_SESSION["cart"] as $index => $item) {
@@ -141,12 +144,13 @@
             <!-- form for submitting prod data -->
             <form id = "cartForm" action = "book_details.php?book_id=<?php echo $book_id?>" method = "post">
                 <div class="purchaseContainer">
-                    <button type="submit" name = "add" class="cartButton" id = "addToCart" onclick = "updateCart()">Add To Cart</button>
+                    <button type="submit" name = "add" class="cartButton" id = "addToCart">Add To Cart</button>
                     <button type="button" class="buyButton">Buy It Now</button>
 
                     <!-- hidden product id to submit with add click -->
                     <input type = "hidden" name = "book_id" value = "<?php echo $book_id?>"/>
                     <input type = "hidden" name = "qty" id = "hiddenQty" value = "1"/>
+                    <?php echo "<input type = 'hidden' name = 'stock' value = '$stock'/>"; ?>
                 </div>
             </form>
             <hr>
