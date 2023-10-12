@@ -272,11 +272,11 @@
             {
                 foreach ($_SESSION["cart"] as $item) {
                     $book_id = $item['book_id'];
-                    $qty = $item['qty'];
+                    $qty = (int)$item['qty'];
                     $price = 0;
 
                     $query = "UPDATE books
-                    SET amt_sold = amt_sold + (int)$qty
+                    SET amt_sold = amt_sold + $qty
                     WHERE book_id = '$book_id'";
                     $result = mysqli_query($conn, $query);
                     
@@ -311,11 +311,11 @@
         {
             foreach ($_SESSION["cart"] as $item) {
                 $book_id = $item['book_id'];
-                $qty = $item['qty'];
+                $qty = (int)$item['qty'];
                 $price = 0;
 
                 $query = "UPDATE books
-                SET amt_sold = amt_sold + (int)$qty
+                SET amt_sold = amt_sold + $qty
                 WHERE book_id = '$book_id'";
                 $result = mysqli_query($conn, $query);
 
