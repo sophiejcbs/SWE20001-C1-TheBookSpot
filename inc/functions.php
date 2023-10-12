@@ -211,14 +211,14 @@
         //check if username is taken
         if(mysqli_num_rows($userExists)>0){
             //username taken
-            header("location: ../add_admin.php?error=userexists");
+            header("location: ../addAdmin.php?error=userexists");
             exit();
         }
 
         //check password match
         if(strcmp($pwd, $repeatpwd) !== 0){
             //password does not match
-            header("location: ../add_admin.php?error=pwdnomatch");
+            header("location: ../addAdmin.php?error=pwdnomatch");
             exit();
         }
 
@@ -232,7 +232,7 @@
         session_start();
         $_SESSION["userid"] = mysqli_insert_id($conn);
         $_SESSION["username"] = $username;
-        header("location: ../add_admin.php?error=success");
+        header("location: ../addAdmin.php?error=success");
         exit();
     }
 
