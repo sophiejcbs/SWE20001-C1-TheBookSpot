@@ -44,14 +44,16 @@
     padding-left: 4%;
     display:flex;
     align-items:center;
-    gap: 2%;
+    gap: 4%;
     padding-bottom: 1%;
     background-color: white;
     width: 90%;
 }
 
 .coverContainer {
-    width :18%;
+    width:23%;
+    min-width: 5.25rem;
+    max-width: 15rem;
 }
 .cover {
     width: 100%;
@@ -63,8 +65,9 @@
 
 .orderItem .title, .qty, .bookPrice {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
+
 
 .orderItem .price {
     font-weight: bold;
@@ -75,7 +78,7 @@
 }
 
 .paymentContainer {
-    width: 100%;
+    width: 60%;
     margin-left: 5%;
 }
 
