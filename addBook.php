@@ -121,7 +121,7 @@ else {
                 <input type="text" name="amount" id="amount" placeholder="Enter whole number only" class="fields"> <br>
                 <div class="error" id="errAmount"></div>
             </fieldset>
-            <i><p class="required" style = "margin-top: 10px;">*</p> indicate REQUIRED</i><br>
+            <i><p class="required" style = "margin-top: 10px;">*</p> indicates REQUIRED</i><br>
 
             <button type="submit" id="submitButton" class="submitButton">Create New Book</button>
         </form>
