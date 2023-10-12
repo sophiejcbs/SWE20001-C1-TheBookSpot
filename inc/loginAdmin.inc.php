@@ -32,7 +32,7 @@ else if(isset($_POST["signupAdmin"])){
     $repeatpwd =sanitizeInput($_POST["repeatpwd"]);
 
     if(emptyInput($username, $pwd, $repeatpwd)!==false){
-        header("location: ../add_admin.php?error=emptyinput");
+        header("location: ../addAdmin.php?error=emptyinput");
         exit();
     }
  
