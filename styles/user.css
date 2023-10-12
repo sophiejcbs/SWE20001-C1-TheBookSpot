@@ -165,6 +165,7 @@ nav li a:hover, header .search button[type="submit"]:hover{
     font-size: 18px;
     font-weight: 200;
     margin: 2px auto;
+    color: black;
 }
 
 /*USER PROFILE FORMS (RIGHT)*/
