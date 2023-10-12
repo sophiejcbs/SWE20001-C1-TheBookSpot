@@ -73,15 +73,15 @@ else {
                 <input type="hidden" name="book_id" value="<?php echo $book_id; ?>">
 
                 <label for="image">Book Image</label><p class="required">*</p><br>
-                <input type="text" name="image" id="image" value="<?php echo $book['image']; ?>" placeholder="Book Image Hyperlink" class="fields"> <br>
+                <input type="text" name="image" id="image" value="<?php echo $book['image']; ?>" placeholder="https://......" class="fields"> <br>
                 <div class="error" id="errImage"></div>
                     
                 <label for="title">Book Title</label><p class="required">*</p><br>
-                <input type="text" name="title" id="title" value="<?php echo $book['title']; ?>" placeholder="Book Title" class="fields"><br>
+                <input type="text" name="title" id="title" value="<?php echo $book['title']; ?>" placeholder="Eg: Peter and Jane" class="fields"><br>
                 <div class="error" id="errTitle"></div>
                             
                 <label for="author">Book Author</label><p class="required">*</p><br>
-                <input type="text" name="author" id="author" value="<?php echo $book['author']; ?>" placeholder="Name of Book Author" class="fields"> <br>
+                <input type="text" name="author" id="author" value="<?php echo $book['author']; ?>" placeholder="Eg: John Doe" class="fields"> <br>
                 <div class="error" id="errAuthor"></div>
 
                 <label for="genre">Book Genre</label><p class="required">*</p><br>
@@ -104,7 +104,7 @@ else {
                 <div class="error" id="errType"></div>
 
                 <label for="publisher">Book Publisher</label><p class="required">*</p><br>
-                <input type="text" name="publisher" id="publisher" value="<?php echo $book['publisher']; ?>" placeholder="Name of Book Publisher" class="fields"> <br>
+                <input type="text" name="publisher" id="publisher" value="<?php echo $book['publisher']; ?>" placeholder="Eg:Scholastic" class="fields"> <br>
                 <div class="error" id="errPublisher"></div>
 
                 <label for="pubDate">Publication Date</label><p class="required">*</p><br>
@@ -113,16 +113,16 @@ else {
 
                 <label for="bookDesc">Book Description</label><p class="required">*</p><br>
                 <div>
-                    <textarea class="textField" name="bookDesc" id="msg" rows="10" cols="40" placeholder="Book Description"><?php echo $book['description']; ?></textarea>
+                    <textarea class="textField" name="bookDesc" id="msg" rows="10" cols="40" placeholder="Book Description or Book Summary"><?php echo $book['description']; ?></textarea>
                     <div class="error" id="errBookDesc"></div>
                 </div>
 
                 <label for="isbn">Book ISBN Number</label><p class="required">*</p><br>
-                <input type="text" name="isbn" id="isbn" value="<?php echo $book['book_ISBN']; ?>" placeholder="ISBN Number without -" maxlength="13" class="fields"><br>
+                <input type="text" name="isbn" id="isbn" value="<?php echo $book['book_ISBN']; ?>" placeholder="ISBN Number without - (13 characters)" maxlength="13" class="fields"><br>
                 <div class="error" id="errISBN"></div>
                             
                 <label for="bookLang">Book Language</label><p class="required">*</p><br>
-                <input type="text" name="bookLang" id="bookLang" value="<?php echo $book['language']; ?>" placeholder="Book Language" class="fields"> <br>
+                <input type="text" name="bookLang" id="bookLang" value="<?php echo $book['language']; ?>" placeholder="Eg: English" class="fields"> <br>
                 <div class="error" id="errBookLang"></div>
 
             </fieldset>
@@ -131,19 +131,19 @@ else {
             <fieldset>
                 <legend class="formGroup">Book Stock Information</legend>
                 
-                <label for="price">Book Price: RM</label><p class="required">*</p><br>
-                <input type="text" name="price" id="price" value="<?php echo $book['price']; ?>" placeholder="Individual Book Selling Price in RM" class="fields"> <br>
+                <label for="price">Book Price (RM)</label><p class="required">*</p><br>
+                <input type="text" name="price" id="price" value="<?php echo $book['price']; ?>" placeholder="Eg: 40.50" class="fields"> <br>
                 <div class="error" id="errPrice"></div>
                     
                 <label for="stock">Stock Available</label><p class="required">*</p><br>
-                <input type="text" name="stock" id="stock" value="<?php echo $book['stock']; ?>" placeholder="Stock Available" class="fields"><br>
+                <input type="text" name="stock" id="stock" value="<?php echo $book['stock']; ?>" placeholder="Enter whole number only" class="fields"><br>
                 <div class="error" id="errStock"></div>
                             
                 <label for="amount">Amount Sold</label><p class="required">*</p><br>
-                <input type="text" name="amount" id="amount" value="<?php echo $book['amt_sold']; ?>" placeholder="Amount Sold" class="fields"> <br>
+                <input type="text" name="amount" id="amount" value="<?php echo $book['amt_sold']; ?>" placeholder="Enter whole number only" class="fields"> <br>
                 <div class="error" id="errAmount"></div>
             </fieldset>
-            <i><p class="required" style = "margin-top: 10px;">*</p> indicate REQUIRED field</i><br>
+            <i><p class="required" style = "margin-top: 10px;">*</p> indicates REQUIRED</i><br>
 
             <button type="submit" id="submitButton" class="submitButton">Update Book Information</button>
         </form>
