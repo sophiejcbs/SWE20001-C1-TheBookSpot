@@ -51,15 +51,15 @@ else {
                 <legend class="formGroup">Book Information</legend>
                 
                 <label for="image">Book Image</label><p class="required">*</p><br>
-                <input type="text" name="image" id="image" placeholder="Book Image Hyperlink" class="fields"> <br>
+                <input type="text" name="image" id="image" placeholder="https://......" class="fields"> <br>
                 <div class="error" id="errImage"></div>
                     
                 <label for="title">Book Title</label><p class="required">*</p><br>
-                <input type="text" name="title" id="title" placeholder="Book Title" class="fields"><br>
+                <input type="text" name="title" id="title" placeholder="Eg: Peter and Jane" class="fields"><br>
                 <div class="error" id="errTitle"></div>
                             
                 <label for="author">Book Author</label><p class="required">*</p><br>
-                <input type="text" name="author" id="author" placeholder="Name of Book Author" class="fields"> <br>
+                <input type="text" name="author" id="author" placeholder="Eg: John Doe" class="fields"> <br>
                 <div class="error" id="errAuthor"></div>
 
                 <label for="genre">Book Genre</label><p class="required">*</p><br>
@@ -82,7 +82,7 @@ else {
                 <div class="error" id="errType"></div>
 
                 <label for="publisher">Book Publisher</label><p class="required">*</p><br>
-                <input type="text" name="publisher" id="publisher" placeholder="Name of Book Publisher" class="fields"> <br>
+                <input type="text" name="publisher" id="publisher" placeholder="Eg: Scholastic" class="fields"> <br>
                 <div class="error" id="errPublisher"></div>
 
                 <label for="pubDate">Publication Date</label><p class="required">*</p><br>
@@ -91,16 +91,16 @@ else {
 
                 <label for="bookDesc">Book Description</label><p class="required">*</p><br>
                 <div>
-                    <textarea class = "textField" name="bookDesc" id="msg" rows="10" cols="40" placeholder="Book Description"></textarea>
+                    <textarea class = "textField" name="bookDesc" id="msg" rows="10" cols="40" placeholder="Book Description or Book Summary"></textarea>
                     <div class="error" id="errBookDesc"></div>
                 </div>
 
                 <label for="isbn">Book ISBN Number</label><p class="required">*</p><br>
-                <input type="text" name="isbn" id="isbn" placeholder="ISBN Number without -" maxlength="13" class="fields"><br>
+                <input type="text" name="isbn" id="isbn" placeholder="ISBN Number without - (13 characters)" maxlength="13" class="fields"><br>
                 <div class="error" id="errISBN"></div>
                             
                 <label for="bookLang">Book Language</label><p class="required">*</p><br>
-                <input type="text" name="bookLang" id="bookLang" placeholder="Book Language" class="fields"> <br>
+                <input type="text" name="bookLang" id="bookLang" placeholder="Eg: English" class="fields"> <br>
                 <div class="error" id="errBookLang"></div>
 
             </fieldset>
@@ -109,19 +109,19 @@ else {
             <fieldset>
                 <legend class="formGroup">Book Stock Information</legend>
                 
-                <label for="price">Book Price: RM</label><p class="required">*</p><br>
-                <input type="text" name="price" id="price" placeholder="Individual Book Selling Price in RM" class="fields"> <br>
+                <label for="price">Book Price (RM)</label><p class="required">*</p><br>
+                <input type="text" name="price" id="price" placeholder="Eg: 40.50" class="fields"> <br>
                 <div class="error" id="errPrice"></div>
                     
                 <label for="stock">Stock Available</label><p class="required">*</p><br>
-                <input type="text" name="stock" id="stock" placeholder="Stock Available" class="fields"><br>
+                <input type="text" name="stock" id="stock" placeholder="Enter whole number only" class="fields"><br>
                 <div class="error" id="errStock"></div>
                             
                 <label for="amount">Amount Sold</label><p class="required">*</p><br>
-                <input type="text" name="amount" id="amount" placeholder="Amount Sold" class="fields"> <br>
+                <input type="text" name="amount" id="amount" placeholder="Enter whole number only" class="fields"> <br>
                 <div class="error" id="errAmount"></div>
             </fieldset>
-            <i><p class="required" style = "margin-top: 10px;">*</p> indicate REQUIRED field</i><br>
+            <i><p class="required" style = "margin-top: 10px;">*</p> indicate REQUIRED</i><br>
 
             <button type="submit" id="submitButton" class="submitButton">Create New Book</button>
         </form>
