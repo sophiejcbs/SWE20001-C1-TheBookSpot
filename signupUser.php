@@ -33,11 +33,8 @@
             if($_GET["error"] == "emptyinput"){
                 echo "<p class = \"errormessage\">Fill in all fields!</p>";
             }
-            else if($_GET["error"] == "nouser"){
-                echo "<p class = \"errormessage\">Wrong username or password!</p>";
-            }
-            else if($_GET["error"] == "wrongpwd"){
-                echo "<p class = \"errormessage\">Wrong username or password!</p>";
+            else if($_GET["error"] == "namelength"){
+                echo "<p class = \"errormessage\">First and Last name cannot exceed 50 characters!</p>";
             }
             else if($_GET["error"] == "userexists"){
                 echo "<p class = \"errormessage\">Username already in use!</p>";
