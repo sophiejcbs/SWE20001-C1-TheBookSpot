@@ -144,7 +144,7 @@
                                 echo "<p class = \"errormessage\">Fields must not be empty!*</p>";
                             }
                             else if($_GET["error"] == "invalidaddress"){
-                                echo "<p class = \"errormessage\">Your address should be between 5 and 40 characters.</p>";
+                                echo "<p class = \"errormessage\">Your address should be between 5 and 100 characters.</p>";
                             }
                             else if($_GET["error"] == "invalidstate"){
                                 echo "<p class = \"errormessage\">Please enter a valid state!</p>";
