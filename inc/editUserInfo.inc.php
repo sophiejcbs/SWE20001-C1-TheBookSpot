@@ -29,7 +29,7 @@ else if(isset($_POST["addressInfo"])){
     }
 
     //Validation for address
-    if(strlen($address)<5 || strlen($address)>40){
+    if(strlen($address)<5 || strlen($address)>100){
         header("location: ../user_profile.php?error=invalidaddress");
         exit();
     }
