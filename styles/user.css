@@ -277,6 +277,7 @@ nav li a:hover, header .search button[type="submit"]:hover{
     font-weight: 700;
     cursor: pointer;
     outline: none;
+    transition: .5s;
   }
   .submit:hover{
     border-color: #2691d9;
