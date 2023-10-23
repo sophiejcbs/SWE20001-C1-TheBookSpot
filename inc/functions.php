@@ -83,6 +83,12 @@
     //Sign Up Users
     function signupUser($conn, $firstname, $lastname, $username, $email, $phone, $pwd, $repeatpwd){
 
+        //fname and lname length
+        if(strlen($firstname)>50 || strlen($lastname)>50){
+            header("location: ../signupUser.php?error=namelength");
+            exit();
+        }
+
         //check if username is taken
         $userQuery = "SELECT * FROM users WHERE username = '$username'";
         $userExists = mysqli_query($conn, $userQuery);
@@ -333,8 +339,32 @@
         }
     }
 
+//Valid Postcodes based on state
+    function validatePostcode($state, $postcode) {
+        $validPostcodes = [
+            "Johor" => [80000, 81760],
+            "Kedah" => [5000, 9990],
+            "Kelantan" => [15000, 19650],
+            "Malacca" => [75000, 78200],
+            "Negeri Sembilan" => [70000, 73990],
+            "Pahang" => [25000, 28700],
+            "Penang" => [10000, 14490],
+            "Perlis" => [1000, 2800],
+            "Sabah" => [88000, 91309],
+            "Sarawak" => [93000, 98859],
+            "Selangor" => [40000, 48300],
+            "Terengganu" => [20000, 24300]
+        ];
+        
+        if (isset($validPostcodes[$state])) {
+            $validRange = $validPostcodes[$state];
+            return ($postcode >= $validRange[0] && $postcode <= $validRange[1]);
+        }
+        return false;
+    }
+
 //Shipping Information
-    function updateShippingAddress($conn, $userid, $address, $city, $state, $postcode){
+    function updateShippingAddress($conn, $userid, $address, $city, $state, $postcode){     
         $sql = "UPDATE users SET address = ?, city = ?, state = ?, postcode = ? WHERE userid = ?";
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "ssssi", $address, $city, $state, $postcode, $userid);
@@ -434,5 +464,4 @@
                 }
             }
     }
-
 ?>
