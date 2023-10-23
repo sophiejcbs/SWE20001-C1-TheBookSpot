@@ -38,6 +38,7 @@
         <!-- Side Panel -->
         <div class="side-panel">
             <div class="profile-blue-box">
+            <!-- <img src="images/minon.jpg" alt="Minion with cigar" width="200" height="200"> -->
                 <i class="bi bi-person-circle icon-large"></i>
                 <p class="profile-info">Welcome, <?php echo $_SESSION["username"]; ?>.</p>
                 <p class="profile-info"><?php echo $_SESSION["email"];?></p>
@@ -91,7 +92,7 @@
                         <?php
                         if(isset($_GET["error"])){
                             if($_GET["error"] == "pwdemptyinput"){
-                                echo "<p class = \"errormessage\">Fill in all fields!*</p>";
+                                echo "<p class = \"errormessage\">Fields must not be empty!*</p>";
                             }
                             else if($_GET["error"] == "wrongoldpwd"){
                                 echo "<p class = \"errormessage\">Current Password does not match!*</p>";
@@ -140,7 +141,19 @@
                         <?php
                         if(isset($_GET["error"])){
                             if($_GET["error"] == "addressempty"){
-                                echo "<p class = \"errormessage\">Fill in all fields!*</p>";
+                                echo "<p class = \"errormessage\">Fields must not be empty!*</p>";
+                            }
+                            else if($_GET["error"] == "invalidaddress"){
+                                echo "<p class = \"errormessage\">Your address should be between 5 and 40 characters.</p>";
+                            }
+                            else if($_GET["error"] == "invalidstate"){
+                                echo "<p class = \"errormessage\">Please enter a valid state!</p>";
+                            }
+                            else if($_GET["error"] == "invalidpostcode"){
+                                echo "<p class = \"errormessage\">Please enter a valid postcode!</p>";
+                            }
+                            else if($_GET["error"] == "invalidstatepostcode"){
+                                echo "<p class = \"errormessage\">Please enter a valid postcode for the selected state!</p>";
                             }
                             else if($_GET["error"] == "addresserror"){
                                 echo "<p class = \"errormessage\">Error occured! Please try again later.</p>";
@@ -194,18 +207,13 @@
                         <legend class="formGroup">Payment Information <i class="bi bi-credit-card-fill"></i></legend>
                         <?php
                         if(isset($_GET["error"])){
-                            if($_GET["error"] == "paymentempty"){
-                                echo "<p class = \"errormessage\">Fill in all fields!*</p>";
-                            }
-                            else if($_GET["error"] == "cardTypeempty"){
-                                echo "<p class = \"errormessage\">Select a card type!</p>";
-                            }
-                            else if($_GET["error"] == "paymenterror"){
-                                echo "<p class = \"errormessage\">Error occured! Please try again later.</p>";
-                            }
-                            else if($_GET["error"] == "paymentsuccess"){
-                                echo "<p class = \"success\">Payment information successfully updated!</p>";
-                            }
+                            $error = $_GET["error"];
+                                if ($error === "paymenterror") {
+                                    echo '<div class="errormessage">' . urldecode($_GET["details"]) . '</div>';
+                                }
+                                else if($error === "paymentsuccess"){
+                                    echo "<p class = \"success\">Payment information successfully updated!</p>";
+                                }
                         }
                       ?>
                         <section id = "ccTypeSect">
