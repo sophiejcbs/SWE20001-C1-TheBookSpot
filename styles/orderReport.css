@@ -10,18 +10,19 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-right: 5%;
+    margin-right: 3%;
     margin-left: 5%;
 }
 
 .cards{
-    width:22%;
+    width:20%;
     border: 1px solid rgb(132, 131, 131);
     border-radius: 3%;
     margin-top:3em;
     box-shadow: 0 0 12px 1px rgb(165, 164, 164);
     padding:1.2em;
     min-width: 18em;
+    margin-right:2%;
 }
 
 .col {
@@ -81,6 +82,10 @@
 }
 
 /* The Chart */
+.chartsec {
+    margin-right: 5%;
+}
+
 .chart{
     margin-top:5em;
     text-align: center;
