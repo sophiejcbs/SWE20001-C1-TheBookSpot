@@ -1,0 +1,34 @@
+/* 
+Purpose: responsive style for order report page
+*/
+
+/* For larger screen/tablet */
+/* media query for display: over 700px */
+@media screen and (min-width:701px)
+{
+    .cards_row{
+        background-color: purple;
+    }
+
+    .cards {
+        width:45%;
+    }
+
+    .barchart, .piechart {
+        width:100%;
+    }
+    
+}
+
+/* For small screen/phone */
+/* media query for display:under 700px */
+@media screen and (max-width:700px)
+{
+    .cards {
+        width:95%;
+    }
+    
+    .barchart, .piechart {
+        width:100%;
+    }
+}
