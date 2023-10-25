@@ -148,7 +148,7 @@ else {
     <?php
         include_once 'inc/functions.php';
     ?>
-    <div id="chartsec">
+    <div class="chartsec">
         <div class="chart linechart">
             <h2 class="charttitle">Earnings Overview</h2>
             <div id="earningsOverview" class="chartsize"></div>
