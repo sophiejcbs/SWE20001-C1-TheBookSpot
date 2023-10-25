@@ -464,4 +464,90 @@
                 }
             }
     }
+
+   // GET DATA FOR CHART
+    // For earning overiew chart
+    function earningsData($conn){
+        $earningSql = "
+            SELECT 
+                YEAR(all_months.month_date) AS sales_year,
+                MONTH(all_months.month_date) AS sales_month,
+                IFNULL(SUM(total_price), 0) AS total_earning
+            FROM 
+                (
+                    SELECT 
+                        DATE_ADD(DATE(NOW()), INTERVAL - (a.a + (10 * b.a) + (100 * c.a)) MONTH) AS month_date
+                    FROM 
+                        (SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS a
+                        CROSS JOIN (SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS b
+                        CROSS JOIN (SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS c
+                ) AS all_months
+            LEFT JOIN sales ON MONTH(all_months.month_date) = MONTH(sales.create_at) AND YEAR(all_months.month_date) = YEAR(sales.create_at)
+            WHERE 
+                all_months.month_date >= DATE_SUB(NOW(), INTERVAL 12 MONTH)
+            GROUP BY 
+                sales_year, sales_month
+            ORDER BY 
+                sales_year ASC, sales_month ASC;
+        ";
+
+        $result = mysqli_query($conn, $earningSql);
+        // Initialize the array with column headers
+        $earnings = [['Months', 'Total Earning']];
+
+        // Fetch data from the result set
+        while ($row = mysqli_fetch_assoc($result)) {
+            $month = date('M Y', strtotime("{$row['sales_year']}-{$row['sales_month']}-01"));
+            $earnings[] = [$month, (float)$row['total_earning']];
+        }
+
+        // Convert the PHP array to JSON for use in JavaScript
+        $earnings_json = json_encode($earnings);
+        return $earnings_json;
+    }
+
+    // For best sellers chart
+    function getBestSellersData($conn){
+        $query="SELECT title, amt_sold FROM books ORDER BY amt_sold DESC LIMIT 6";
+
+        $result = mysqli_query($conn, $query);
+        // Initialize the array with column headers
+        $data = [['Book Name', 'Amount Sold',['role' => 'style']]];
+
+        // Color for the bar
+        $colors=['#006bcf','#FFA500','#FFD700', '#3eb55a','#2850a6','#f7346b'];
+        $count=0;
+        // Fetch data from the result set
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = [$row['title'], (int)$row['amt_sold'],$colors[$count]];
+            $count++;
+        }
+
+        // Convert the PHP array to JSON for use in JavaScript
+        $data_json = json_encode($data);
+        return $data_json;
+    }
+
+    // For genre sales chart
+    function getGenreSalesData($conn){
+        $query="
+        SELECT b.genre, SUM(o.quantity) AS total_amount_sold
+        FROM orders o
+        JOIN books b ON o.book_id = b.book_id
+        GROUP BY b.genre;
+        ";
+
+        $result = mysqli_query($conn, $query);
+        // Initialize the array with column headers
+        $data = [['Genre', 'Amount Sold']];
+
+        // Fetch data from the result set
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = [$row['genre'], (int)$row['total_amount_sold']];
+        }
+
+        // Convert the PHP array to JSON for use in JavaScript
+        $data_json = json_encode($data);
+        return $data_json;
+    }
 ?>
