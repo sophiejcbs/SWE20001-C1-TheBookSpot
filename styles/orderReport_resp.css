@@ -6,10 +6,6 @@ Purpose: responsive style for order report page
 /* media query for display: over 700px */
 @media screen and (min-width:701px)
 {
-    .cards_row{
-        background-color: purple;
-    }
-
     .cards {
         width:45%;
     }
