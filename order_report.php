@@ -42,6 +42,9 @@ else {
 <body>
     <!-- Header & Menu -->
     <?php
+        $url = parse_url($_SERVER['REQUEST_URI']);
+        $path = $url['path'];
+        $shade = basename($path);
         include 'inc/adminHeader.inc';
         include 'inc/adminMenu.inc';
 
