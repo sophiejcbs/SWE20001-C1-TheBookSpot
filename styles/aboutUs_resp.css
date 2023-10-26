@@ -1,0 +1,43 @@
+/* 
+Purpose: responsive style for about us page
+*/
+
+/* For larger screen/tablet */
+/* media query for display: over 700px */
+@media screen and (min-width:701px)
+{
+    .aboutsec{
+        text-align: center;
+        margin-bottom:4%;
+    }
+
+    .imageContainer, .infoConatiner{
+        flex:100%;
+        margin:0;
+    }
+
+    .aboutsec img{
+        max-width:20em;
+    }
+
+    
+}
+
+/* For small screen/phone */
+/* media query for display:under 700px */
+@media screen and (max-width:700px)
+{
+    .aboutsec{
+        text-align: center;
+        margin-bottom:4%;
+    }
+
+    .imageContainer, .infoConatiner{
+        flex:100%;
+        margin:0;
+    }
+
+    .aboutsec img{
+        max-width:15em;
+    }
+}
