@@ -224,7 +224,7 @@ CREATE TABLE `support` (
   `phone` varchar(255) DEFAULT NULL,
   `reason` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `create_at` timestamp(6) NULL DEFAULT current_timestamp(6)
+  `create_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
