@@ -19,7 +19,7 @@ else {
     <meta name="description" content="The Book Spot" />
     <meta name="author" content="The Flying Fish" />
     <meta name="keywords" content="The Book Spot Book Management" />
-    <title>Book Record | Administrator</title>
+    <title>Book Records | Administrator</title>
 
     <link rel="icon" type="image/x-icon" href="images\logo.png" />
     <!-- CSS -->
@@ -44,7 +44,7 @@ else {
 ?>
 
 <body>
-    <h2 class="heading">Book Record</h2>
+    <h2 class="heading">Book Records</h2>
     <div class="title"><a class="btn btn-primary" href="addBook.php" role="button">Create New Book</a></div>
 
     <?php
