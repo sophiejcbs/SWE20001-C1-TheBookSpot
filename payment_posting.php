@@ -1,9 +1,3 @@
-<?php
-    $loggedIn = false;
-    if(isset($_SESSION["userid"])) {
-        $loggedIn = true;
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +21,11 @@
 </head>
     
 <?php
-    include 'inc/header.inc';
-    include 'inc/menu.inc';
+    $url = parse_url($_SERVER['REQUEST_URI']);
+    $genre = isset($_GET['genre']) ? $_GET['genre'] : ''; // Check if 'genre' is set, if not, set it to an empty string
+    $shade = basename($url['path']);
+    include_once 'inc/header.inc';
+    include_once 'inc/menu.inc';
 
     function sanitise_input($data)
     {
@@ -59,6 +56,8 @@
     if (isset($_POST["salesTax"])) $salesTax = $_POST["salesTax"];
     if (isset($_POST["totalPrice"])) $total_price = $_POST["totalPrice"];
 
+    if (isset($_POST["saveDetails"])) $saveDetails = $_POST["saveDetails"];
+
     $fname = sanitise_input($fname);
     $lname = sanitise_input($lname);
     $email = sanitise_input($email);
@@ -78,10 +77,17 @@
     $salesTax = sanitise_input($salesTax);
     $total_price = sanitise_input($total_price);
 
+    $saveDetails = sanitise_input($saveDetails);
+
     require_once ("settings.php"); //Connection Info
     $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
 
     $orderPlaced = true;
+
+    $loggedIn = false;
+    if(isset($_SESSION["userid"])) {
+        $loggedIn = true;
+    }
     
     if(!$conn) //Connection Failed
     {
@@ -123,7 +129,7 @@
                 } 
                 else 
                 {                
-                    $query = "INSERT INTO guests (firstName, lastName, email, phone, address, city, state, postcode, ccName, cardNo, expiry, cvv, ccType) 
+                    $query = "INSERT INTO $sql_table (firstName, lastName, email, phone, address, city, state, postcode, ccName, cardNo, expiry, cvv, ccType) 
                     VALUES ('$fname', '$name', '$email', '$phone', '$shipmentAddress', '$city', '$state', '$postCode', '$ccName', '$ccNum', '$expDate', '$cvv', '$ccType')";        
 
                     if(mysqli_query($conn, $query)) 
@@ -139,7 +145,7 @@
             }
             else
             {
-                $query = "INSERT INTO guests (firstName, lastName, email, phone, address, city, state, postcode, ccName, cardNo, expiry, cvv, ccType) 
+                $query = "INSERT INTO $sql_table (firstName, lastName, email, phone, address, city, state, postcode, ccName, cardNo, expiry, cvv, ccType) 
                 VALUES ('$fname', '$lname', '$email', '$phoneNumber', '$shipmentAddress', '$city', '$state', '$postCode', '$ccName', '$ccNum', '$expDate', '$cvv', '$ccType')";        
 
                 if(mysqli_query($conn, $query)) 
@@ -155,6 +161,93 @@
             }
         }
 
+        else if($loggedIn && $saveDetails) {
+            $sql_table="users";
+            $fieldDefinition="`userID` int(11) NOT NULL,
+            `username` varchar(50) NOT NULL,
+            `pwd` varchar(255) DEFAULT NULL,
+            `firstName` varchar(50) DEFAULT NULL,
+            `lastName` varchar(50) DEFAULT NULL,
+            `email` varchar(100) DEFAULT NULL,
+            `phone` varchar(100) DEFAULT NULL,
+            `address` varchar(100) DEFAULT NULL,
+            `country` varchar(50) DEFAULT 'Malaysia',
+            `city` varchar(50) DEFAULT NULL,
+            `state` varchar(50) DEFAULT NULL,
+            `postcode` varchar(10) DEFAULT NULL,
+            `cardNo` bigint(16) DEFAULT NULL,
+            `expiry` varchar(10) DEFAULT NULL,
+            `cvv` int(3) DEFAULT NULL,
+            `ccType` varchar(50) DEFAULT NULL,
+            `ccName` varchar(100) DEFAULT NULL";
+
+            $query_U1 = "show tables like '$sql_table'";
+            $result_U1 = @mysqli_query($conn, $query_U1);
+
+            if(mysqli_num_rows($result_U1) == 0) {
+                echo "<p>Table does not exist - creating table $sql_table ...</p>"; // Might not show in a production script 
+                $query_U2 = "create table " . $sql_table . "(" . $fieldDefinition . ")";; 
+                $result_U2 = @mysqli_query($conn, $query_U2);
+                // checks if the table was created
+                if($result_U2 === false) 
+                {
+                    echo "<p>Unable to create Table $sql_table.". mysqli_error($conn) . ":". mysqli_error($conn) ." </p>"; //Would not show in a production script 
+                    $orderPlaced = false;
+                } 
+                else 
+                {                
+                    $query = "UPDATE $sql_table
+                    SET
+                        address = '$shipmentAddress',
+                        city = '$city',
+                        state = '$state',
+                        postcode = '$postCode',
+                        ccName = '$ccName',
+                        cardNo = '$ccNum',
+                        expiry = '$expDate',
+                        cvv = '$cvv',
+                        ccType = '$ccType'
+                    WHERE
+                        userID = $_SESSION[userid];";        
+
+                    if(mysqli_query($conn, $query)) 
+                    {
+                        echo "User Record stored successfully.";
+                    }
+                    else 
+                    {
+                        echo "<br>Error storing User Record.";
+                        $orderPlaced = false;
+                    }
+                } // if successful query operation
+            }
+            else
+            {
+                $query = "UPDATE $sql_table
+                    SET
+                        address = '$shipmentAddress',
+                        city = '$city',
+                        state = '$state',
+                        postcode = '$postCode',
+                        ccName = '$ccName',
+                        cardNo = '$ccNum',
+                        expiry = '$expDate',
+                        cvv = '$cvv',
+                        ccType = '$ccType'
+                    WHERE
+                        userID = $_SESSION[userid];";        
+
+                if(mysqli_query($conn, $query)) 
+                {
+                    echo "User Record stored successfully.";
+                }
+                else 
+                {
+                    echo "<br>Error storing User Record.";
+                    $orderPlaced = false;
+                }
+            }
+        }
         
         $sql_table="sales";
         $fieldDefinition="`sales_id` int(11) NOT NULL,
