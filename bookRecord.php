@@ -31,8 +31,6 @@ else {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    
-    <script src="scripts/tableSortable.js"></script>
 </head>
 
 <?php
@@ -44,7 +42,7 @@ else {
 ?>
 
 <body>
-    <h2 class="heading">Book Records</h2>
+    <h2 class="heading">Book Record</h2>
     <div class="title"><a class="btn btn-primary" href="addBook.php" role="button">Create New Book</a></div>
 
     <?php
@@ -64,13 +62,18 @@ else {
             $sql_table="books";
             $int = 1;
 
-            $query = "SELECT book_id, title, image, author, genre, format, publisher, publication_date, description, book_ISBN, language, price, stock, amt_sold FROM $sql_table;";
+            //Pagination Variable
+            $page_size = 10;
+            $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+            $offset = ($current_page - 1) * $page_size;
+
+            $query = "SELECT * FROM $sql_table ORDER BY title ASC LIMIT $offset, $page_size;";
             $result = mysqli_query($conn, $query);
 
             //Checks if the execution was successful
             if(!$result) 
             {
-                echo "<p>Something is wrong with ", $query, "</p>";
+                echo "<p>No Book Record(s) found.</p>";
             } 
             else 
             {
@@ -81,20 +84,20 @@ else {
                     echo "<table id=\"bookTable\" class=\"table table-bordered table-hover\">";
                     echo "<thead class=\"table-dark\">";
                     echo "<tr>\n"
-                        ."<th><div class=\"column-width\">#<i class=\"fas fa-sort\" onclick=sortTable(0)></i></div></th>\n"
-                        ."<th><div class=\"column-width\">Title<i class=\"fas fa-sort\" onclick=sortTable(1)></i></div></th>\n"
+                        ."<th><div class=\"column-width\">#</div></th>\n"
+                        ."<th><div class=\"column-width\">Title</div></th>\n"
                         ."<th>Cover</div></th>\n"
-                        ."<th><div class=\"column-width\">Author<i class=\"fas fa-sort\" onclick=sortTable(3)></i></div></th>\n"
-                        ."<th><div class=\"column-width\">Genre<i class=\"fas fa-sort\" onclick=sortTable(4)></i></div></th>\n"
-                        ."<th><div class=\"column-width\">Type<i class=\"fas fa-sort\" onclick=sortTable(5)></i></div></th>\n"
-                        ."<th><div class=\"column-width\">Publisher<i class=\"fas fa-sort\" onclick=sortTable(6)></i></div></th>\n"
-                        ."<th><div class=\"column-width\">Publication Date<i class=\"fas fa-sort\" onclick=sortTable(7)></i></div></th>\n"
-                        ."<th><div class=\"column-width-xl\">Description<i class=\"fas fa-sort\" onclick=sortTable(8)></i></div></th>\n"
-                        ."<th><div class=\"column-width\">ISBN Number<i class=\"fas fa-sort\" onclick=sortTable(9)></i></div></th>\n"
-                        ."<th><div class=\"column-width\">Language<i class=\"fas fa-sort\" onclick=sortTable(10)></i></div></th>\n"
-                        ."<th><div class=\"column-width\">Price(RM)<i class=\"fas fa-sort\" onclick=sortTable(11)></i></div></th>\n"
-                        ."<th><div class=\"column-width\">Stock<i class=\"fas fa-sort\" onclick=sortTable(12)></i></div></th>\n"
-                        ."<th><div class=\"column-width\">Sold<i class=\"fas fa-sort\" onclick=sortTable(13)></i></div></th>\n"
+                        ."<th><div class=\"column-width\">Author</div></th>\n"
+                        ."<th><div class=\"column-width\">Genre</div></th>\n"
+                        ."<th><div class=\"column-width\">Type</div></th>\n"
+                        ."<th><div class=\"column-width\">Publisher</div></th>\n"
+                        ."<th><div class=\"column-width\">Publication Date</div></th>\n"
+                        ."<th><div class=\"column-width-xl\">Description</div></th>\n"
+                        ."<th><div class=\"column-width\">ISBN Number</div></th>\n"
+                        ."<th><div class=\"column-width\">Language</div></th>\n"
+                        ."<th><div class=\"column-width\">Price(RM)</div></th>\n"
+                        ."<th><div class=\"column-width\">Stock</div></th>\n"
+                        ."<th><div class=\"column-width\">Sold</div></th>\n"
                         ."<th><div class=\"column-width-l\">Action</div></th>\n"
                         ."</tr>\n";
                     echo "</thead>";
@@ -104,7 +107,7 @@ else {
                     {
                         echo "<tbody class=\"table-group-divider\">";
                         echo "<tr>";
-                        echo "<td>", $row["book_id"],"</td>";  
+                        echo "<td>", ($int++) + $offset,"</td>";  
                         echo "<td>", $row["title"], "</td>";  
                         echo "<td><img src='", $row["image"], "'alt='Book Cover' width=100></td>";
                         echo "<td>", $row["author"], "</td>";
@@ -126,13 +129,32 @@ else {
                     echo "</table>";
                     echo "</div>";
 
+                    //Pagination Footer
+                    $countQuery = "SELECT COUNT(*) as records FROM $sql_table";
+                    $record = mysqli_query($conn, $countQuery);
+                    $row = mysqli_fetch_assoc($record);
+                    $recordCount = $row['records'];
+                    $total_pages = ceil($recordCount / $page_size);
+
+                    echo '<div class="pagination">';
+                    if ($current_page > 1) {
+                        echo '<a class="btn" href="?page=' . ($current_page - 1) . '"><i class="fas fa-angle-left"></i></a>';
+                    }
+                    for ($i = 1; $i <= $total_pages; $i++) {
+                        echo '<a class="btn" href="?page=' . $i . '">' . $i . '</a>';
+                    }
+                    if ($current_page < $total_pages) {
+                        echo '<a class="btn" href="?page=' . ($current_page + 1) . '"><i class="fas fa-angle-right"></i></a>';
+                    }
+                    echo '</div>';
+
                     // Frees up the memory, after using the result pointer
                     mysqli_free_result($result);
                 } // if successful query operation
             } // end if no rows
             mysqli_close($conn);  // close the database connection
         }  
-        include 'inc/footer.inc';
+        include 'includes/footer.inc';
     ?>
 </body>
 
