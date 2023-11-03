@@ -1,0 +1,12 @@
+.heading{
+    margin-left: 2%;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.stateSelect {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}

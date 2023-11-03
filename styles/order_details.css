@@ -1,0 +1,90 @@
+.orderNum {
+    margin-left: 4%;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2%;
+}
+
+.status {
+    font-weight: bold;
+    margin-bottom: 2%;
+    padding: 1%;
+    border: 0.5px solid rgb(185, 183, 183);
+    margin-right: 4%;
+}
+
+.orderDetContainer {
+    display: flex;
+    gap: 5%;
+}
+
+.table-responsive table {
+    border: 0.5px solid rgb(185, 183, 183);
+}
+
+.orderSummaryContainer {
+    flex: 50%;
+    margin-left: 4%;
+}
+
+.custDetContainer {
+    border: 0.5px solid rgb(185, 183, 183);
+    padding: 3%;
+    border-radius: 1rem;
+    margin-right: 4%;
+    padding-top: 2%;
+    height: 70%;
+}
+
+.label {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.orderSubHeader {
+    display: flex;
+    margin-left: 4%;
+    gap: 60.5%;
+}
+
+.orderHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.orderSubHeader h3, .subHeader {
+    font-size: 1.5rem;
+    margin-bottom: 1%;
+}
+
+.paymentDetails {
+    display: flex;
+    justify-content: space-between;
+    border: 0.5px solid rgb(185, 183, 183);
+    width: 100%;
+    padding: 4%;
+    border-radius: 1rem;
+}
+
+.labels p {
+    margin-bottom: 2%;
+}
+
+.subHeader {
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.labels p, .details p {
+    font-size: 1rem;
+}
+
+.dateTime {
+    color: rgb(119, 116, 116);
+    margin-top: 2%;
+    margin-left: 4%;
+    margin-bottom: 0;
+    font-size: 1.25rem;
+}
