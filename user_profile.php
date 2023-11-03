@@ -40,9 +40,9 @@
             <div class="profile-blue-box">
             <!-- <img src="images/minon.jpg" alt="Minion with cigar" width="200" height="200"> -->
                 <i class="bi bi-person-circle icon-large"></i>
-                <p class="profile-info">Welcome, <?php echo $_SESSION["username"]; ?>.</p>
+                <p class="profile-info">Welcome, <?php echo $_SESSION["username"]; ?>!</p>
                 <p class="profile-info"><?php echo $_SESSION["email"];?></p>
-                <p class="profile-info">Phone number: <?php echo $_SESSION["phone"];?></p>
+                <p class="profile-info"><?php echo $_SESSION["phone"];?></p>
             </div>
         </div>
         <!-- Right Panel -->
