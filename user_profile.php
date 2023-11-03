@@ -11,6 +11,8 @@
     <!-- CSS -->
     <link href = "styles/user.css" rel="stylesheet">
     <link href = "styles/responsive.css" rel="stylesheet" media ="screen and (max-width:1024px)"/>
+    <link href = "styles/user-responsive.css" rel="stylesheet" media ="screen and (max-width:1024px)"/>
+
 
     <!-- Javascript -->
     <script src="scripts/index.js"></script>
