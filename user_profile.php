@@ -34,6 +34,10 @@
         include_once 'inc/functions.php';
         include_once 'inc/header.inc';
         include_once 'inc/menu.inc';
+
+        // For database connection
+        require_once "settings.php";
+        $conn=@mysqli_connect ($host, $user, $pwd, $sql_db);
     ?>
     <!-- User Profile Container -->
     <div class="container">
@@ -46,6 +50,25 @@
                 <p class="profile-info"><?php echo $_SESSION["email"];?></p>
                 <p class="profile-info"><?php echo $_SESSION["phone"];?></p>
             </div>
+            <!-- My Orders Section -->
+            <?php
+                $user_id = $_SESSION["userid"];
+                $sql_table="sales";
+                $query = "SELECT * FROM $sql_table
+                          WHERE user_id = $user_id";
+                $result = mysqli_query($conn, $query);
+
+                if($result && mysqli_num_rows($result) > 0) {
+                    echo "<div class='ordersContainer'>";
+                    echo "<h2 class = 'ordersHeader'>My Orders</h2>";
+                    while($row = mysqli_fetch_assoc($result)) {
+                        echo <<<EOD
+                        <a href="order_details.php?sales_id={$row['sales_id']}">Order #$row[sales_id]</a><br>
+EOD;
+                    }
+                    echo "</div>";
+                }
+            ?>
         </div>
         <!-- Right Panel -->
         <div class="right-content">
