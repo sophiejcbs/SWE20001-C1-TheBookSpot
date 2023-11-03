@@ -42,7 +42,7 @@ else {
 ?>
 
 <body>
-    <h2 class="heading">Book Record</h2>
+    <h2 class="heading">Book Records</h2>
     <div class="title"><a class="btn btn-primary" href="addBook.php" role="button">Create New Book</a></div>
 
     <?php
