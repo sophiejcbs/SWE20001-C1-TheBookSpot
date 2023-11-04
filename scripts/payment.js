@@ -59,8 +59,8 @@ function validate() {
         document.getElementById("errFname").innerHTML = '<i class="bi bi-exclamation-circle-fill"></i> Your first name cannot be empty.';
         fname.style.border = "1.5px solid #f00";
         result = false;
-    } else if (!fname.value.match(/^[a-zA-Z]{2,25}$/)) {
-        document.getElementById("errFname").innerHTML = '<i class="bi bi-exclamation-circle-fill"></i> Your first name can only have alphabets and be between 2 and 25 characters.';
+    } else if (!fname.value.match(/^[a-zA-Z ]{2,40}$/)) { // Allow spaces with " [a-zA-Z ]"
+        document.getElementById("errFname").innerHTML = '<i class="bi bi-exclamation-circle-fill"></i> Your first name can only have alphabets and be between 2 and 40 characters.';
         fname.style.border = "1.5px solid #f00";
         result = false;
     } else {
@@ -73,8 +73,8 @@ function validate() {
         document.getElementById("errLname").innerHTML = '<i class="bi bi-exclamation-circle-fill"></i> Your last name cannot be empty.';
         lname.style.border = "1.5px solid #f00";
         result = false;
-    } else if (!lname.value.match(/^[a-zA-Z]{2,25}$/)) {
-        document.getElementById("errLname").innerHTML = '<i class="bi bi-exclamation-circle-fill"></i> Your last name can only have alphabets and be between 2 and 25 characters.';
+    } else if (!lname.value.match(/^[a-zA-Z ]{2,40}$/)) { // Allow spaces with " [a-zA-Z ]"
+        document.getElementById("errLname").innerHTML = '<i class="bi bi-exclamation-circle-fill"></i> Your last name can only have alphabets and be between 2 and 40 characters.';
         lname.style.border = "1.5px solid #f00";
         result = false;
     } else {
@@ -115,7 +115,7 @@ function validate() {
         document.getElementById("errAddr").innerHTML = '<i class="bi bi-exclamation-circle-fill"></i> Your address cannot be empty.';
         address.style.border = "1.5px solid #f00";
         result = false;
-    } else if (!address.value.match(/^.{5,40}$/)) {
+    } else if (!address.value.match(/^.{5,125}$/)) {
         document.getElementById("errAddr").innerHTML = '<i class="bi bi-exclamation-circle-fill"></i> Your address should be between 5 and 40 characters.';
         address.style.border = "1.5px solid #f00";
         result = false;
@@ -129,7 +129,7 @@ function validate() {
         document.getElementById("errCity").innerHTML = '<i class="bi bi-exclamation-circle-fill"></i> Your city cannot be empty.';
         city.style.border = "1.5px solid #f00";
         result = false;
-    } else if (!city.value.match(/^[a-zA-Z ]{2,20}$/)) {
+    } else if (!city.value.match(/^[a-zA-Z ]{2,100}$/)) {
         document.getElementById("errCity").innerHTML = '<i class="bi bi-exclamation-circle-fill"></i> Please enter a valid city name (2-20 characters).';
         city.style.border = "1.5px solid #f00";
         result = false;
@@ -260,24 +260,34 @@ function validate() {
         }
     }
     else {
-        console.log("hai")
         ccNum.style.border = "1.5px solid #f00";
         result = false;
         document.getElementById("errCCNum").innerHTML = '<i class="bi bi-exclamation-circle-fill"></i> Your credit card type cannot be empty.';
     }
     
-    
+    // Validation for Credit Card Expiry Date (MM-YY format)
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear() % 100; // Get last two digits of the current year
+    const currentMonth = currentDate.getMonth() + 1; // Current month (1-12)
+
     if (expDate.value == "") {
         document.getElementById("errExpDate").innerHTML = '<i class="bi bi-exclamation-circle-fill"></i> Your credit card expiry date cannot be empty.';
         expDate.style.border = "1.5px solid #f00";
         result = false;
-    } else if (!expDate.value.match(/^\d{2}-\d{2}$/)) {
-        document.getElementById("errExpDate").innerHTML = '<i class="bi bi-exclamation-circle-fill"></i> Your expiry date needs to be digits in the MM-YY format.';
+    } else if (!expDate.value.match(/^(0[1-9]|1[0-2])-(\d{2})$/)) {
+        document.getElementById("errExpDate").innerHTML = '<i class="bi bi-exclamation-circle-fill"></i> Your expiry date needs to be in MM-YY format (e.g., 01-23).';
         expDate.style.border = "1.5px solid #f00";
         result = false;
     } else {
-        document.getElementById("errExpDate").innerHTML = "";
-        expDate.style.border = "1.5px solid rgb(133, 133, 133)";
+        const [expMonth, expYear] = expDate.value.split('-');
+        if (Number(expYear) < currentYear || (Number(expYear) === currentYear && Number(expMonth) < currentMonth)) {
+            document.getElementById("errExpDate").innerHTML = '<i class="bi bi-exclamation-circle-fill"></i> Your credit card has already expired.';
+            expDate.style.border = "1.5px solid #f00";
+            result = false;
+        } else {
+            document.getElementById("errExpDate").innerHTML = "";
+            expDate.style.border = "1.5px solid rgb(133, 133, 133)";
+        }
     }
     
     if (cvv.value == "") {
@@ -292,8 +302,6 @@ function validate() {
         document.getElementById("errCVV").innerHTML = "";
         cvv.style.border = "1.5px solid rgb(133, 133, 133)";
     }
-    
-    
     
     return result;
 }
