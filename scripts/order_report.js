@@ -21,7 +21,8 @@ function drawBarChart(id, dataTable){
     var chart = new google.visualization.BarChart(document.getElementById(id));
     var options = {
         legend: {position: 'none'},
-        chartArea: {'right':'3%', 'height': '85%'}
+        chartArea: {'right':'3%', 'height': '85%'},
+        tooltip: { isHtml: true }
     };
     chart.draw(data, options);
 }
@@ -33,7 +34,8 @@ function drawPieChart(id, dataTable){
     var options = {
         legend: {position: 'bottom'},
         chartArea: {'left':'5%','right':'5%'},
-        pieSliceText: 'value'
+        pieSliceText: 'value',
+        tooltip: { isHtml: true }
     };
     chart.draw(data, options);
 }
