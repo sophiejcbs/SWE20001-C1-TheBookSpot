@@ -13,7 +13,7 @@
     <link href = "styles/responsive.css" rel="stylesheet" media ="screen and (max-width:1024px)"/>
     <link href = "styles/bookCat.css" rel="stylesheet">
     <link href = "styles/receipt.css" rel="stylesheet">
-
+    <link href = "styles/receipt_resp.css" rel="stylesheet" media ="screen and (max-width:1024px)"/>
 
     <!-- Javascript -->
     <script src="scripts/book_details.js"></script>
@@ -34,6 +34,15 @@
         $shade = basename($url['path']);
         include_once 'inc/header.inc';
         include_once 'inc/menu.inc';
+
+        if (isset($_SESSION['salesid']) && !empty($_SESSION['salesid'])) {
+            //in session
+        }
+        else {
+            //no session id
+            header("location: index.php");
+            exit();
+        }
 
         // For database connection
         require_once "settings.php";
