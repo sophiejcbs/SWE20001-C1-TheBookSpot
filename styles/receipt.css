@@ -68,6 +68,22 @@
     font-size: 0.8rem;
 }
 
+.author {
+    margin-top: 4%;
+    margin-bottom: 0;
+    font-size: 0.75rem;
+}
+
+.price {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.format {
+    font-weight: bold;
+    font-size: 0.75rem;
+    margin-top: 5%;
+}
 
 .orderItem .price {
     font-weight: bold;
@@ -98,23 +114,6 @@
 
 .orderItem .title:hover, .cover:hover {
     cursor:pointer;
-}
-
-.author {
-    margin-top: 4%;
-    margin-bottom: 0;
-    font-size: 0.75rem;
-}
-
-.price {
-    margin: 0;
-    font-size: 0.9rem;
-}
-
-.format {
-    font-weight: bold;
-    font-size: 0.75rem;
-    margin-top: 5%;
 }
 
 .paymentDetails {
@@ -164,10 +163,11 @@ hr {
 .priceContainer {
     display: flex;
     margin-left: 8%;
+    width: 85%;
 }
 
 .priceLabels {
-    width: 75%;
+    flex: 70%;
 }
 
 .priceVal {
@@ -202,8 +202,4 @@ hr {
 
 #totalLabel, #totalVal {
     font-weight: bold;
-}
-
-#totalLabel {
-    width: 74%;
 }
