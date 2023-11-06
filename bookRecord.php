@@ -154,7 +154,7 @@ else {
             } // end if no rows
             mysqli_close($conn);  // close the database connection
         }  
-        include 'includes/footer.inc';
+        include 'inc/footer.inc';
     ?>
 </body>
 
