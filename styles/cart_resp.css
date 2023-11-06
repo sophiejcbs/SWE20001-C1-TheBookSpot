@@ -1,0 +1,106 @@
+/* 
+Purpose: responsive style for book catalogue and book details
+*/
+
+/* For larger screen/tablet */
+/* media query for display: over 700px */
+@media screen and (min-width:701px)
+{
+    .checkout  {
+        padding: 2%;
+        width: 50%;
+    }
+
+    .cartContainer {
+        flex-direction: column;
+    }
+
+    .cartForm {
+        width: 90%;
+    }
+
+    .cartHeader {
+        font-size: 1.65rem;
+        padding: 3%;
+    }
+
+    .cartItem .title, .cartItem .bookPrice {
+        font-size: 0.9rem;
+    }
+
+    .cartItem .price {
+        font-size: 1rem;
+    }
+
+    .author {
+        font-size: 0.8rem;
+    }
+
+    .coverContainer {
+        flex-shrink: 0;
+    }
+
+    .bookDetails {
+        flex: 75%;
+    }
+
+    .subtotalContainer {
+        margin-left: 5.5%;
+        width: 86.5%;
+    }
+
+    .shopNow {
+        padding: 1.25%;
+        margin-top: 2%;
+    }
+}
+
+/* For small screen/phone */
+/* media query for display:under 700px */
+@media screen and (max-width:700px)
+{
+    .checkout  {
+        padding: 2%;
+        width: 50%;
+    }
+
+    .cartContainer {
+        flex-direction: column;
+    }
+
+    .cartForm {
+        width: 90%;
+    }
+
+    .cartHeader {
+        font-size: 1.25rem;
+        padding: 3%;
+    }
+
+    .cartItem .title, .cartItem .bookPrice {
+        font-size: 0.8rem;
+    }
+
+    .cartItem .price {
+        font-size: 0.9rem;
+    }
+
+    .author {
+        font-size: 0.7rem;
+    }
+
+    .bookDetails {
+        flex: 70%;
+    }
+
+    .subtotalContainer {
+        margin-left: 5.5%;
+        width: 86.5%;
+    }
+
+    .shopNow {
+        padding: 1.75%;
+        margin-top: 2%;
+        margin-bottom: 3%;
+    }
+}

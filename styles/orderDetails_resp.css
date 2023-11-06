@@ -1,0 +1,58 @@
+/* 
+Purpose: responsive style for book catalogue and book details
+*/
+
+/* For larger screen/tablet */
+/* media query for display: over 700px */
+@media screen and (min-width:701px)
+{
+    .orderDetContainer {
+        flex-direction: column-reverse;
+    }
+
+    .orderSummaryContainer {
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .custDetContainer {
+        width: 80%;
+        margin: 3% 0 6% 11%;
+    }
+
+    .status {
+        padding: 2.25%;
+    }
+
+    .subHeader {
+        margin-top: 3%;
+    }
+}
+
+/* For small screen/phone */
+/* media query for display:under 700px */
+@media screen and (max-width:700px)
+{
+
+    .orderDetContainer {
+        flex-direction: column-reverse;
+    }
+
+    .orderSummaryContainer {
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .custDetContainer {
+        width: 80%;
+        margin: 6% 0 6% 11%;
+    }
+
+    .status {
+        padding: 2.25%;
+    }
+
+    .subHeader {
+        margin-top: 6%;
+    }
+}

@@ -1,0 +1,122 @@
+/* 
+Purpose: responsive style for book catalogue and book details
+*/
+
+/* For larger screen/tablet */
+/* media query for display: over 700px */
+@media screen and (min-width:701px)
+{
+    .checkoutContainer {
+        flex-direction: column;
+    }
+
+    .checkoutSubContainer {
+        margin-left: 10%;
+        background-color: red;
+    }
+
+    .checkoutSubcontainer {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    #paymentSub {
+        margin-right: 5%;
+        margin-top: 7%;
+    }
+
+    .cartHeader, .cartItem {
+        margin-left: 0;
+    }
+
+    .cartItem .title, .bookPrice {
+        font-size: 1rem;
+    }
+
+    .cartItem .price {
+        font-size: 1rem;
+    }
+
+    .author {
+        font-size: 0.8rem;
+    }
+
+    .coverContainer {
+        flex: 10%;
+    }
+
+    .cartItem .instock, .cartItem .outstock {
+        font-size: 0.65rem;
+    }
+
+    .format {
+        font-size: 0.65rem;
+    }
+
+    .ccType {
+        padding: 0;
+    }
+
+    #ccTypeSect {
+        height: 70%;
+    }
+
+    #mcContainer {
+        width: 30%;
+    }
+    
+    #visaContainer {
+        width: 20%;
+    }
+    
+    #amexContainer {
+        width: 20%;
+    }
+
+    .summaryContainer {
+        margin-top: 7%;
+    }
+}
+
+/* For small screen/phone */
+/* media query for display:under 700px */
+@media screen and (max-width:700px)
+{
+    .checkoutContainer {
+        flex-direction: column;
+    }
+
+    .checkoutSubContainer {
+        margin-left: 10%;
+    }
+
+    .checkoutSubcontainer {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    #paymentSub {
+        margin-right: 5%;
+        margin-top: 7%;
+    }
+
+    .cartHeader, .cartItem {
+        margin-left: 0;
+    }
+
+    .cartItem .title, .bookPrice {
+        font-size: 0.8rem;
+    }
+
+    .cartItem .price {
+        font-size: 0.9rem;
+    }
+
+    .author {
+        font-size: 0.7rem;
+    }
+
+    .summaryContainer {
+        margin-top: 7%;
+    }
+}

@@ -1,0 +1,128 @@
+/* 
+Purpose: responsive style for book catalogue and book details
+*/
+
+/* For larger screen/tablet */
+/* media query for display: over 700px */
+@media screen and (min-width:701px)
+{
+    .itemsHeader {
+        width: 80%;
+        margin-left: 10%;
+        font-size: 1.45rem;
+    }
+
+    .thanksMsg {
+        font-size: 1.5rem;
+    }
+
+    .greetings {
+        font-size: 1rem;
+    }
+
+    .receiptContainer { 
+        flex-direction: column;
+    }
+
+    .paymentContainer {
+        align-items: center;
+    }
+
+    .paymentContainer, .paymentDetails {
+        width: 90%;
+    }
+
+    .paySubcontainer .itemsHeader {
+        width: 90%;
+    }
+
+    .orderItem {
+        padding: 3%;
+    }
+
+    .orderItem, .divider2, .divider3 {
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .priceContainer {
+        margin-left: 10%;
+        width: 80%;
+    }
+
+    .coverContainer {
+        flex: 18%;
+    }
+
+    .bookDetails {
+        flex: 80%;
+    }
+
+    .orderItem .title, .bookPrice, .qty {
+        font-size: 1rem;
+    }
+
+    .orderItem .price {
+        font-size: 1.1rem;
+    }
+
+    .author {
+        font-size: 0.85rem;
+    }
+
+    .format {
+        font-size: 0.85rem;
+    }
+}
+
+/* For small screen/phone */
+/* media query for display:under 700px */
+@media screen and (max-width:700px)
+{
+    .itemsHeader {
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .thanksMsg {
+        font-size: 1.5rem;
+    }
+
+    .greetings {
+        font-size: 1rem;
+    }
+
+    .receiptContainer { 
+        flex-direction: column;
+    }
+
+    .paymentContainer {
+        align-items: center;
+    }
+
+    .paymentContainer, .paymentDetails {
+        width: 90%;
+    }
+
+    .paySubcontainer .itemsHeader {
+        width: 90%;
+    }
+
+    .orderItem, .divider2, .divider3 {
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .priceContainer {
+        margin-left: 10%;
+        width: 80%;
+    }
+
+    .bookDetails {
+        flex: 80%;
+    }
+
+    .coverContainer {
+        flex: 15%;
+    }
+}
