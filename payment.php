@@ -13,6 +13,7 @@
     <link href = "styles/responsive.css" rel="stylesheet" media ="screen and (max-width:1024px)"/>
     <link href = "styles/bookCat.css" rel="stylesheet">
     <link href = "styles/payment.css" rel="stylesheet">
+    <link href = "styles/payment_resp.css" rel="stylesheet" media ="screen and (max-width:1024px)"/>
 
     <!-- Javascript -->
     <script src="scripts/book_details.js"></script>
@@ -216,50 +217,52 @@ EOD;
     
             <!-- Payment Form -->
             <div id = "paymentSub" class = "checkoutSubcontainer">
-                    <h1 class = "cartHeader">3. Payment Details</h1>
-                    <div class = "paymentFields">
-                        <p class = "unofficialLabel">Credit Card Type<span class="required">*</span></p>
-                        <section id = "ccTypeSect">
-                            <section class = "ccSub" id = "visaContainer">
-                                <input type="radio" name="ccType" id="visa" value="Visa"></input> <!-- -->
-                                <label for="visa" id = "visaLabel" class = "ccType"><img class = "ccIcon" src = "images/visa.png" alt = "Visa Credit Card Icon"><p>Visa</p></label>
+                    <div class = "paymentWrapper">
+                        <h1 class = "cartHeader">3. Payment Details</h1>
+                        <div class = "paymentFields">
+                            <p class = "unofficialLabel">Credit Card Type<span class="required">*</span></p>
+                            <section id = "ccTypeSect">
+                                <section class = "ccSub" id = "visaContainer">
+                                    <input type="radio" name="ccType" id="visa" value="Visa"></input> <!-- -->
+                                    <label for="visa" id = "visaLabel" class = "ccType"><img class = "ccIcon" src = "images/visa.png" alt = "Visa Credit Card Icon"><p class = "ccText">Visa</p></label>
+                                </section>
+                                
+                                <section class = "ccSub" id = "mcContainer">
+                                    <input type="radio" name="ccType" id="mastercard" value="Mastercard">
+                                    <label for="mastercard" class = "ccType"><img class = "ccIcon" src = "images/mastercard.png" alt = "Mastercard Card Icon"><p class = "ccText">Mastercard</p></label>
+                                </section>
+                                
+                                <section class = "ccSub" id = "amexContainer">
+                                    <input type="radio" name="ccType" id="amex" value="American Express">
+                                    <label for="amex" class = "ccType"><img class = "ccIcon" src = "images/american-express.png" alt = "American Express Credit Card Icon"><p id = "amexOpt" class = "ccText">AmEx</p></label>
+                                </section>
                             </section>
-                            
-                            <section class = "ccSub" id = "mcContainer">
-                                <input type="radio" name="ccType" id="mastercard" value="Mastercard">
-                                <label for="mastercard" class = "ccType"><img class = "ccIcon" src = "images/mastercard.png" alt = "Mastercard Card Icon"><p>Mastercard</p></label>
-                            </section>
-                            
-                            <section class = "ccSub" id = "amexContainer">
-                                <input type="radio" name="ccType" id="amex" value="American Express">
-                                <label for="amex" class = "ccType"><img class = "ccIcon" src = "images/american-express.png" alt = "American Express Credit Card Icon"><p id = "amexOpt">AmEx</p></label>
-                            </section>
-                        </section>
-                        <p>
-                            <span id = "errCCType" class = "errMsg"></span>
-                        </p>
-    
-                        <p>
-                            <label for = "ccName">Name on Credit Card<span class="required">*</span></label><br>
-                            <input type = "text" name = "ccName" id = "ccName" placeholder="John Doe" pattern="[a-zA-Z ]{2,40}" required><br>
-                            <span id = "errCCName" class = "errMsg"></span>
-                        </p>
-                        <p>
-                            <label for = "ccNum">Credit Card Number<span class="required">*</span></label><br>
-                            <input type = "text" name = "ccNum" id = "ccNum" placeholder="1111222233334444" pattern="\d{15,16}" required><br>
-                            <span id = "errCCNum" class = "errMsg"></span>
-                        </p>
-                        <p>
-                            <label for="expDate">Credit Card Expiry Date<span class="required">*</span></label><br>
-                            <input type="text" id="expDate" name="expDate" placeholder="MM-YY" pattern="\d{2}-\d{2}" required><br>
-                            <span id = "errExpDate" class = "errMsg"></span>
-                        </p>
-                        <p>
-                            <label for = "cvv">Card Verification Value (CVV)<span class="required">*</span></label><br>
-                            <input type = "text" name = "cvv" id = "cvv" placeholder="123" pattern="\d{3,4}" required><br>
-                            <span id = "errCVV" class = "errMsg"></span>
-                        </p>
-                        <span class = "requiredText"><i><span class="required">*</span> indicates REQUIRED</i><br></span>
+                            <p>
+                                <span id = "errCCType" class = "errMsg"></span>
+                            </p>
+        
+                            <p>
+                                <label for = "ccName">Name on Credit Card<span class="required">*</span></label><br>
+                                <input type = "text" name = "ccName" id = "ccName" placeholder="John Doe" pattern="[a-zA-Z ]{2,40}" required><br>
+                                <span id = "errCCName" class = "errMsg"></span>
+                            </p>
+                            <p>
+                                <label for = "ccNum">Credit Card Number<span class="required">*</span></label><br>
+                                <input type = "text" name = "ccNum" id = "ccNum" placeholder="1111222233334444" pattern="\d{15,16}" required><br>
+                                <span id = "errCCNum" class = "errMsg"></span>
+                            </p>
+                            <p>
+                                <label for="expDate">Credit Card Expiry Date<span class="required">*</span></label><br>
+                                <input type="text" id="expDate" name="expDate" placeholder="MM-YY" pattern="\d{2}-\d{2}" required><br>
+                                <span id = "errExpDate" class = "errMsg"></span>
+                            </p>
+                            <p>
+                                <label for = "cvv">Card Verification Value (CVV)<span class="required">*</span></label><br>
+                                <input type = "text" name = "cvv" id = "cvv" placeholder="123" pattern="\d{3,4}" required><br>
+                                <span id = "errCVV" class = "errMsg"></span>
+                            </p>
+                            <span class = "requiredText"><i><span class="required">*</span> indicates REQUIRED</i><br></span>
+                        </div>
                     </div>
 EOD;
             }
@@ -434,7 +437,7 @@ EOD;
 
         ?>
 
-                <div class = "summaryContainer">
+                <div class = "summaryContainer" id = "summarySect">
                     <?php
                         if(isset($_SESSION["cart"])) {
                             echo "<h1 class = 'cartHeader'>Order Summary</h1><br>";
