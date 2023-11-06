@@ -367,6 +367,10 @@ footer {
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
+.paymentWrapper {
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
 .indvItem, .indvPrice {
     font-size: 0.9rem;
 }
