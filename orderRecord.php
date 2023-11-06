@@ -144,8 +144,8 @@ else {
 
                             <input type='hidden' id = 'newStatus_$salesID' name='status' value=$currentStatus>
                             <input type = 'submit' value = 'Save' class="btn btn-success"/>
-                            <a class="btn btn-danger" href="deleteOrder_posting.php?sales_id={$salesID}" role="button">Delete</a><br>
-                            <a class="btn btn-primary" href="order_details.php?sales_id={$salesID}" role="button" style = "margin-top: 4%;">View More</a></td>
+                            <a class="btn btn-danger" href="deleteOrder_posting.php?sales_id={$salesID}&status={$currentStatus}" role="button">Delete</a><br>
+                            <a class="btn btn-primary" href="orderDetails_admin.php?sales_id={$salesID}" role="button" style = "margin-top: 4%;">View More</a></td>
                         </td>
                         </form>
 EOD;
