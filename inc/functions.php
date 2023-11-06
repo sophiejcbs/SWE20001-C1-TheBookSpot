@@ -465,7 +465,7 @@
             }
     }
 
-   // GET DATA FOR CHART
+    // GET DATA FOR CHART
     // For earning overiew chart
     function earningsData($conn){
         $earningSql = "
@@ -493,12 +493,13 @@
 
         $result = mysqli_query($conn, $earningSql);
         // Initialize the array with column headers
-        $earnings = [['Months', 'Total Earning']];
+        $earnings = [['Months', 'Total Earning', ['type' => 'string', 'role' => 'tooltip']]];
 
         // Fetch data from the result set
         while ($row = mysqli_fetch_assoc($result)) {
             $month = date('M Y', strtotime("{$row['sales_year']}-{$row['sales_month']}-01"));
-            $earnings[] = [$month, (float)$row['total_earning']];
+            $totalearnings=number_format((float)$row['total_earning'], 2);
+            $earnings[] = [$month, (float)$row['total_earning'], $month."\nRM".$totalearnings];
         }
 
         // Convert the PHP array to JSON for use in JavaScript
@@ -512,14 +513,14 @@
 
         $result = mysqli_query($conn, $query);
         // Initialize the array with column headers
-        $data = [['Book Name', 'Amount Sold',['role' => 'style']]];
+        $data = [['Book Name', 'Amount Sold',['role' => 'style'], ['type' => 'string', 'role' => 'tooltip']]];
 
         // Color for the bar
         $colors=['#006bcf','#FFA500','#FFD700', '#3eb55a','#2850a6','#f7346b'];
         $count=0;
         // Fetch data from the result set
         while ($row = mysqli_fetch_assoc($result)) {
-            $data[] = [$row['title'], (int)$row['amt_sold'],$colors[$count]];
+            $data[] = [$row['title'], (int)$row['amt_sold'],$colors[$count], $row['title']."\n".(int)$row['amt_sold']];
             $count++;
         }
 
