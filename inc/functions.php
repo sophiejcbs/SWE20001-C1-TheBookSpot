@@ -520,7 +520,7 @@
         $count=0;
         // Fetch data from the result set
         while ($row = mysqli_fetch_assoc($result)) {
-            $data[] = [$row['title'], (int)$row['amt_sold'],$colors[$count], $row['title']."\n".(int)$row['amt_sold']];
+            $data[] = [$row['title'], (int)$row['amt_sold'],$colors[$count], $row['title']."\nSold: ".(int)$row['amt_sold']];
             $count++;
         }
 
