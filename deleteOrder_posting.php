@@ -10,7 +10,7 @@
         //Displays an error message
         $message = "Database Connection Failure!";
     }
-    else if(ctype_lower($status) != "pending") {
+    else if($status != "PENDING") {
         $message = "Invalid action! You cannot delete a non-pending order.";
     }
     else //Connection Successful and Valid Order Status
