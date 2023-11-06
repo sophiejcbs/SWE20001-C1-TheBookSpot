@@ -32,7 +32,7 @@
             </span> 
             <span class="cart">Cart</span></a>
         <a href="aboutUs.php"><i class="bi bi-info-circle"></i><span class="title">About</span></a>
-        <a href=""><i class="bi bi-question-circle"></i><span class="title">Help</span></a>
+        <a href="helpdesk.php"><i class="bi bi-question-circle"></i><span class="title">Help</span></a>
         <?php
         //displays Profile button only when user is logged in, otherwise Log In button
         if(isset($_SESSION["userid"])){
