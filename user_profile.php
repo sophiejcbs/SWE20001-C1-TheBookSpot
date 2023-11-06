@@ -35,6 +35,15 @@
         include_once 'inc/header.inc';
         include_once 'inc/menu.inc';
 
+        if (isset($_SESSION['userid']) && !empty($_SESSION['userid'])) {
+            //in session
+        }
+        else {
+            //no session id
+            header("location: index.php");
+            exit();
+        }
+
         // For database connection
         require_once "settings.php";
         $conn=@mysqli_connect ($host, $user, $pwd, $sql_db);
@@ -63,7 +72,7 @@
                     echo "<h2 class = 'ordersHeader'>My Orders</h2>";
                     while($row = mysqli_fetch_assoc($result)) {
                         echo <<<EOD
-                        <a href="order_details.php?sales_id={$row['sales_id']}">Order #$row[sales_id]</a><br>
+                        <a href="orderDetails_cust.php?sales_id={$row['sales_id']}">Order #$row[sales_id]</a><br>
 EOD;
                     }
                     echo "</div>";
