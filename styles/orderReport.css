@@ -116,3 +116,10 @@
 .piechart{
     width:30%;
 }
+
+.google-visualization-tooltip {
+    line-height:1em ;
+    text-align: left;
+    white-space: nowrap;
+    margin:0 !important;
+}
