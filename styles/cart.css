@@ -29,10 +29,11 @@
     align-items:center;
     gap: 2%;
     padding-top:3%;
+    flex-wrap: wrap;
 }
 
 .coverContainer {
-    width :16%;
+    flex: 16%;
 }
 
 .cover {
@@ -45,7 +46,7 @@
 
 .bookDetails {
     margin-left: 2%;
-    width: 80%;
+    flex: 80%;
 }
 
 .bookDetails p {
@@ -109,6 +110,7 @@
 .cartContainer {
     display: flex;
     gap: 10%;
+    flex-wrap: wrap;
 }
 
 .cartForm {
@@ -169,7 +171,7 @@
     background-color: #1B99D4;
     border-radius: 1rem;
     border: 0;
-    padding: 0.75%;
+    padding: 1%;
     margin-left: 4%;
     margin-top: 1%;
 }
