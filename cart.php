@@ -11,8 +11,10 @@
     <!-- CSS -->
     <link href = "styles/style.css" rel="stylesheet">
     <link href = "styles/bookCat.css" rel="stylesheet"/>
+    <link href = "styles/bookCat_resp.css" rel="stylesheet"/>
     <link href = "styles/cart.css" rel="stylesheet"/>
     <link href = "styles/responsive.css" rel="stylesheet" media ="screen and (max-width:1024px)"/>
+    <link href = "styles/cart_resp.css" rel="stylesheet" media ="screen and (max-width:1024px)"/>
 
     <!-- Javascript -->
     <script src="scripts/cart.js"></script>
