@@ -37,7 +37,8 @@ else {
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
+    <script src="scripts/order_report.js"></script>
+    
 </head>
 <body>
     <!-- Header & Menu -->
@@ -174,48 +175,18 @@ else {
         google.charts.setOnLoadCallback(bestsellers);
         google.charts.setOnLoadCallback(genresales);
 
-        // Draw Earning Overview
-        function earningsOverview() {
-            var dataTable=<?php echo earningsData($conn);?>;
-            var data = google.visualization.arrayToDataTable(dataTable);
-
-            var chart = new google.visualization.LineChart(document.getElementById('earningsOverview'));
-
-            var options = {
-                colors: ['#1B99D4'],
-                pointSize: 10,
-                legend: {position: 'none'},
-                vAxis: { format:'RM #,###.##'},
-                chartArea: {'width': '80%', 'height': '85%'}
-            };
-
-            chart.draw(data, options);
+        function earningsOverview(){
+            drawLineChart('earningsOverview', <?php echo earningsData($conn);?>)
         }
 
-        // Draw Best Sellers
         function bestsellers(){
-            var dataTable=<?php echo getBestSellersData($conn);?>;
-            var data = google.visualization.arrayToDataTable(dataTable);
-            var chart = new google.visualization.BarChart(document.getElementById('bestSellers'));
-            var options = {
-                legend: {position: 'none'},
-                chartArea: {'right':'3%', 'height': '85%'}
-            };
-            chart.draw(data, options);
+            drawBarChart('bestSellers', <?php echo getBestSellersData($conn);?>)
         }
 
-        // Draw Genre Sales
         function genresales(){
-            var dataTable=<?php echo getGenreSalesData($conn);?>;
-            var data = google.visualization.arrayToDataTable(dataTable);
-            var chart = new google.visualization.PieChart(document.getElementById('genresales'));
-            var options = {
-                legend: {position: 'bottom'},
-                chartArea: {'left':'5%','right':'5%'},
-                pieSliceText: 'value'
-            };
-            chart.draw(data, options);
+            drawPieChart('genresales', <?php echo getGenreSalesData($conn);?>)
         }
+
     </script>
 
     <?php
