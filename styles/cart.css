@@ -183,6 +183,7 @@
 
 .checkout:hover, .shopNow:hover {
     background-color: #167CAC;
+    transition: background-color 0.5s, color 0.5s;
 }
 
 .title:hover, .cover:hover {
