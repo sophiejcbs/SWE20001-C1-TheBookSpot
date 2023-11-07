@@ -127,6 +127,10 @@ nav li a:hover, header .search button[type="submit"]:hover{
     background-color: #3a8db3;
 }
 
+.shaded{
+    background-color: #3a8db3;
+}
+
 .func a:hover{
     color:#3a8db3;
 }
