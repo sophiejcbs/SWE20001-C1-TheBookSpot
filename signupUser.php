@@ -48,6 +48,9 @@
             else if($_GET["error"] == "phone"){
                 echo "<p class = \"errormessage\">Phone number must be numeric!</p>";
             }
+            else if($_GET["error"] == "phoneexists"){
+                echo "<p class = \"errormessage\">Phone number already in use!</p>";
+            }
             else if($_GET["error"] == "pwdnomatch"){
                 echo "<p class = \"errormessage\">Password does not match!</p>";
             }
