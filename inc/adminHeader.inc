@@ -6,10 +6,7 @@
     </div>
     
     <div class="search">
-        <form action="">
-            <input type="text" placeholder="Search..." name="search">
-            <button type="submit"><i class="fa fa-search text-white"></i></button>
-        </form>
+        <h3>Administrator Dashboard</h3>
     </div>
 
     <div class="func">
