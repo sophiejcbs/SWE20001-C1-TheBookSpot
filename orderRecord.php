@@ -62,6 +62,11 @@ else {
             $sql_table="sales";
             $int = 1;
 
+            //Pagination Variable
+            $page_size = 10;
+            $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+            $offset = ($current_page - 1) * $page_size;
+
             $query = "SELECT * FROM $sql_table;";
             $result = mysqli_query($conn, $query);
 
@@ -106,6 +111,7 @@ else {
 
                         echo "<tbody class=\"table-group-divider\">";
                         echo "<tr>";
+                        echo "<td>", ($int++) + $offset,"</td>"; 
                         echo "<td>", $row["sales_id"],"</td>";  
                         echo "<td>", $row["total_price"], "</td>";  
                         
@@ -154,6 +160,25 @@ EOD;
 
                     echo "</table>";
                     echo "</div>";
+
+                    //Pagination Footer
+                    $countQuery = "SELECT COUNT(*) as records FROM $sql_table";
+                    $record = mysqli_query($conn, $countQuery);
+                    $row = mysqli_fetch_assoc($record);
+                    $recordCount = $row['records'];
+                    $total_pages = ceil($recordCount / $page_size);
+
+                    echo '<div class="pagination">';
+                    if ($current_page > 1) {
+                        echo '<a class="btn" href="?page=' . ($current_page - 1) . '"><i class="fas fa-angle-left"></i></a>';
+                    }
+                    for ($i = 1; $i <= $total_pages; $i++) {
+                        echo '<a class="btn" href="?page=' . $i . '">' . $i . '</a>';
+                    }
+                    if ($current_page < $total_pages) {
+                        echo '<a class="btn" href="?page=' . ($current_page + 1) . '"><i class="fas fa-angle-right"></i></a>';
+                    }
+                    echo '</div>';
 
                     // Frees up the memory, after using the result pointer
                     mysqli_free_result($result);
