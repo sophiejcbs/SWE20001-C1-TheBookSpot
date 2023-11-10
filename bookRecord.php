@@ -67,7 +67,7 @@ else {
             $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
             $offset = ($current_page - 1) * $page_size;
 
-            $query = "SELECT * FROM $sql_table ORDER BY title ASC LIMIT $offset, $page_size;";
+            $query = "SELECT * FROM $sql_table";
             $result = mysqli_query($conn, $query);
 
             //Checks if the execution was successful
@@ -84,7 +84,7 @@ else {
                     echo "<table id=\"bookTable\" class=\"table table-bordered table-hover\">";
                     echo "<thead class=\"table-dark\">";
                     echo "<tr>\n"
-                        ."<th><div class=\"column-width\">#</div></th>\n"
+                        ."<th><div class=\"column-width\">Book ID</div></th>\n"
                         ."<th><div class=\"column-width\">Title</div></th>\n"
                         ."<th>Cover</div></th>\n"
                         ."<th><div class=\"column-width\">Author</div></th>\n"
@@ -107,7 +107,7 @@ else {
                     {
                         echo "<tbody class=\"table-group-divider\">";
                         echo "<tr>";
-                        echo "<td>", ($int++) + $offset,"</td>";  
+                        echo "<td>", $row["book_id"],"</td>";  
                         echo "<td>", $row["title"], "</td>";  
                         echo "<td><img src='", $row["image"], "'alt='Book Cover' width=100></td>";
                         echo "<td>", $row["author"], "</td>";
