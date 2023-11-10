@@ -83,8 +83,7 @@ else {
                         ."<th><div class=\"column-width\">Total Price (RM)</div></th>\n"
                         ."<th><div class=\"column-width\">Status</div></th>\n"
                         ."<th><div class=\"column-width\">Date/Time</div></th>\n"
-                        ."<th><div class=\"column-width\">User ID</div></th>\n"
-                        ."<th><div class=\"column-width\">Guest ID</div></th>\n"
+                        ."<th><div class=\"column-width\">Customer ID</div></th>\n"
                         ."<th><div class=\"column-width-xl\">Address</div></th>\n"
                         ."<th><div class=\"column-width\">City</div></th>\n"
                         ."<th><div class=\"column-width\">State</div></th>\n"
@@ -124,8 +123,7 @@ else {
 
                         $formattedDateTime = date('Y-m-d H:i', strtotime($row["create_at"]));
                         echo "<td>", $formattedDateTime, "</td>";
-                        echo "<td>", ($row["user_id"] == -1 ? "-" : $row["user_id"]), "</td>";
-                        echo "<td>", ($row["guest_id"] == -1 ? "-" : $row["guest_id"]), "</td>";
+                        echo "<td>", ($row["guest_id"] == -1 ? "U".$row["user_id"] : "G".$row["guest_id"]), "</td>";
                         echo "<td>", $row["address"], "</td>";
                         echo "<td>", $row["city"], "</td>";
                         echo "<td>", $row["state"],"</td>";  
@@ -133,7 +131,8 @@ else {
                         echo "<td>", $row["postcode"], "</td>";
                         echo "<td>", $row["ccName"], "</td>";
                         echo "<td>", $row["ccType"], "</td>";
-                        echo "<td>", $row["cardNo"], "</td>";
+                        $ccNum = substr($row["cardNo"], -4);
+                        echo "<td>", "*".$ccNum, "</td>";
                         echo "<td>", $row["expiry"], "</td>";
                         echo "<td>", $row["cvv"], "</td>";
 
