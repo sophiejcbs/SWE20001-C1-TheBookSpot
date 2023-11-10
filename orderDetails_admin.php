@@ -207,6 +207,7 @@ EOD;
 
                     $salesTax = number_format(0.06*$totalB4Tax, 2);
                     $total_price = number_format($total_price, 2);
+                    $ccNum = substr($cardNo, -4);
 
                     echo <<<EOD
                     <h3 class = "subHeader">Paid by Customer</h1>
@@ -228,15 +229,16 @@ EOD;
 EOD;
             echo "</div>";
 
-            $idLabel = "User ID";
             if($guest) {
-                $idLabel = "Guest ID";
-                $user_id = $guest_id;
+                $user_id = "G".$guest_id;
+            }
+            else {
+                $user_id = "U".$user_id;
             }
 
             echo <<<EOD
             <div class = "custDetContainer">
-                <p class = "label">$idLabel<p>
+                <p class = "label">Customer ID<p>
                 <span>$user_id</span>
                 <p class = "label">First Name<p>
                 <span>$firstName</span>
@@ -252,7 +254,7 @@ EOD;
                 $state<br>
                 $country</span>
                 <p class = "label">Payment Method<p>
-                <span>$ccType $cardNo</span>
+                <span>$ccType *$ccNum</span>
             </div>
 EOD;
         echo "</div>";
