@@ -35,7 +35,7 @@
         include_once 'inc/header.inc';
         include_once 'inc/menu.inc';
 
-        if (isset($_SESSION['salesid']) && !empty($_SESSION['salesid'])) {
+        if (isset($_SESSION['salesID']) && !empty($_SESSION['salesID'])) {
             //in session
         }
         else {
