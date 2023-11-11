@@ -53,18 +53,8 @@ else {
         // For database connection
         require_once "settings.php";
 
-        function getValueCard($query, $conn, $col){
-            $result = mysqli_query($conn, $query);
-            if ($result) {
-                $row = mysqli_fetch_assoc($result);
-                $value = ($row[$col] !== null) ? $row[$col] : 0;
-            } 
-            else{
-                $value ='NA';
-            }
-
-            return $value;
-        }
+        // Function
+        include_once 'inc/functions.php';
     ?>
     <h2 class="heading">Order Report</h2>
 
@@ -150,9 +140,6 @@ else {
     </div>
 
     <!-- CHART -->
-    <?php
-        include_once 'inc/functions.php';
-    ?>
     <div class="chartsec">
         <div class="chart linechart">
             <h2 class="charttitle">Earnings Overview</h2>
