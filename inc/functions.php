@@ -465,6 +465,21 @@
             }
     }
 
+    //GET DATA FOR CARD VIEW (Order report page)
+    function getValueCard($query, $conn, $col){
+        $result = mysqli_query($conn, $query);
+        if ($result) {
+            $row = mysqli_fetch_assoc($result);
+            // display 0 if no record return
+            $value = ($row[$col] !== null) ? $row[$col] : 0;
+        } 
+        else{
+            $value ='NA';
+        }
+
+        return $value;
+    }
+
     // GET DATA FOR CHART
     // For earning overiew chart
     function earningsData($conn){
