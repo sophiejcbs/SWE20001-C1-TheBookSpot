@@ -111,7 +111,6 @@ else {
 
                         echo "<tbody class=\"table-group-divider\">";
                         echo "<tr>";
-                        echo "<td>", ($int++) + $offset,"</td>"; 
                         echo "<td>", $row["sales_id"],"</td>";  
                         echo "<td>", $row["total_price"], "</td>";  
                         
