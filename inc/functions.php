@@ -382,9 +382,9 @@
 
 //Payment Information
     function updatePaymentInformation($conn, $userid, $ccName, $cardNo, $expiry, $cvv, $ccType){
-        $sql = "UPDATE users SET ccName = ?, cardNo = ?, expiry = ?, cvv = ?, ccType = ?";
+        $sql = "UPDATE users SET ccName = ?, cardNo = ?, expiry = ?, cvv = ?, ccType = ? WHERE userid = ?";
         $stmt = mysqli_prepare($conn, $sql);
-        mysqli_stmt_bind_param($stmt, "sisis", $ccName, $cardNo, $expiry, $cvv, $ccType);
+        mysqli_stmt_bind_param($stmt, "sisisi", $ccName, $cardNo, $expiry, $cvv, $ccType, $userid);
         if(mysqli_stmt_execute($stmt)){
             mysqli_stmt_close($stmt);
             userSessionRefresh($conn, $userid);
