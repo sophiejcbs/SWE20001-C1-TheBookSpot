@@ -23,8 +23,9 @@ else {
 
     <link rel="icon" type="image/x-icon" href="images\logo.png" />
     <!-- CSS -->
-    <link href = "styles/helpdeskRecord.css" rel="stylesheet" />
+    <link href = "styles/style.css" rel="stylesheet" />
     <link href = "styles/responsive.css" rel="stylesheet" media ="screen and (max-width:1024px)" />
+    <link href = "styles/helpdeskRecord.css" rel="stylesheet" />
     
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
@@ -42,7 +43,7 @@ else {
 ?>
 
 <body>
-    <h2 class="heading">Helpdesk Record</h2>
+    <h2 class="heading">Helpdesk Records</h2>
 </body>
 
 <?php
@@ -87,7 +88,7 @@ else {
         {
             if(mysqli_num_rows($result1) > 0) 
             {
-                echo "<h2 class=\"tableheading\">Complaint Record</h2>\n";
+                echo "<h2 class=\"tableheading\" id = 'complaintHeader'>Complaint Record</h2>\n";
                 // Display the retrieved records
                 echo "<div class=\"table-responsive\">";
                 echo "<table id=\"bookTable\" class=\"table table-bordered table-hover\">";
@@ -111,7 +112,13 @@ else {
                     echo "<tbody class=\"table-group-divider\">";
                     echo "<tr>";
                     echo "<td>", ($int1++) + $offset1,"</td>";  
-                    echo "<td>", $row["customer_id"], "</td>";  
+
+                    $custID = $row["customer_id"];
+                    if($row["customer_id"] == -1) {
+                        $custID = "Guest";
+                    }
+
+                    echo "<td>", $custID, "</td>";  
                     echo "<td>", $row["name"], "</td>";
                     echo "<td>", $row["email"], "</td>";
                     echo "<td>", $row["phone"], "</td>";
@@ -174,7 +181,13 @@ else {
                     echo "<tbody class=\"table-group-divider\">";
                     echo "<tr>";
                     echo "<td>", ($int2++) + $offset2 ,"</td>";  
-                    echo "<td>", $row["customer_id"], "</td>";  
+
+                    $custID = $row["customer_id"];
+                    if($row["customer_id"] == -1) {
+                        $custID = "Guest";
+                    }
+
+                    echo "<td>", $custID, "</td>";  
                     echo "<td>", $row["name"], "</td>";
                     echo "<td>", $row["email"], "</td>";
                     echo "<td>", $row["phone"], "</td>";
