@@ -67,7 +67,7 @@ else {
             $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
             $offset = ($current_page - 1) * $page_size;
 
-            $query = "SELECT * FROM $sql_table";
+            $query = "SELECT * FROM $sql_table LIMIT $offset, $page_size";
             $result = mysqli_query($conn, $query);
 
             //Checks if the execution was successful
