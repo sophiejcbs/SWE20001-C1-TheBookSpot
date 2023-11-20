@@ -88,7 +88,7 @@ else {
         {
             if(mysqli_num_rows($result1) > 0) 
             {
-                echo "<h2 class=\"tableheading\" id = 'complaintHeader'>Complaint Record</h2>\n";
+                echo "<h2 class=\"tableheading\" id = 'complaintHeader'>Complaint Records</h2>\n";
                 // Display the retrieved records
                 echo "<div class=\"table-responsive\">";
                 echo "<table id=\"bookTable\" class=\"table table-bordered table-hover\">";
@@ -158,7 +158,7 @@ else {
 
             if(mysqli_num_rows($result2) > 0) 
             {
-                echo "<h2 class=\"tableheading\">Feedback Record</h2>\n";
+                echo "<h2 class=\"tableheading\">Feedback Records</h2>\n";
                 // Display the retrieved records
                 echo "<div class=\"table-responsive\">";
                 echo "<table id=\"bookTable\" class=\"table table-bordered table-hover\">";
