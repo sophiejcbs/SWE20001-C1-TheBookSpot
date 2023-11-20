@@ -14,4 +14,17 @@
     .right-content {
         width: 100%;
     }
+
+    .profile-blue-box {
+        margin-right: 5%;
+        width: 60%;
+    }
+
+    .profile-info {
+        font-size: 1rem;
+    }
+
+    .ordersHeader {
+        font-size: 1.25rem;
+    }
 }
