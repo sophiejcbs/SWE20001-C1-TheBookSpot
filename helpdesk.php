@@ -10,8 +10,13 @@
 
     <link rel="icon" type="image/x-icon" href="images\logo.png" />
     <!-- CSS -->
-    <link href = "styles/helpdesk.css" rel="stylesheet" />
+    <link href = "styles/style.css" rel="stylesheet" />
     <link href = "styles/responsive.css" rel="stylesheet" media ="screen and (max-width:1024px)" />
+    <link href = "styles/helpdesk.css" rel="stylesheet" />
+    <link href = "styles/helpdesk_resp.css" rel="stylesheet" media ="screen and (max-width:1024px)"/>
+
+    <!-- Javascript -->
+    <script src="scripts/helpdesk.js"></script>
     
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
@@ -30,23 +35,23 @@
 
 <body>
     <h1 class = "cta">Facing issues, or have a suggestion? We're here to help.</h1>
-    <div class="formContainer">
-        <div class = "complaint">
+    <div class="formsContainer">
+        <div class = "formSubcontainer">
             <p class = "label">Submit Complaint</p><br>
-            <img src = "Images/Complaint.png" style = "width: 30%;margin-top:5px;">
+            <img src = "Images/Complaint.png" class = "complaintImg">
             <div class = "descContainer">
-                <p>Help us fix problems and improve your experience as a customer by submitting complaints here.</p>
+                <p class = "helpdeskDesc">Help us fix problems and improve your experience as a customer by submitting complaints here.</p>
             </div>
-            <a class="btn btn-primary complaintFormButton" href="complaintForm.php" role="button">File Complaint</a>
+            <button class="helpdeskBtn" href="complaintForm.php" onclick = "complaintForm()">File Complaint</button>
         </div>
     
-        <div class = "feedback">
+        <div class = "formSubcontainer" id = "feedbackContainer">
             <p class = "label">Provide Feedback</p><br>
-            <img src = "Images/Feedback.png" style = "width: 25%;margin-top:25px;">
-            <div class = "descContainer">
-                <p style = "margin-top:10px;margin-bottom:30px;">Have a suggestion or comment for The Book Spot that you want to voice out? Submit them here.</p>
+            <img src = "Images/Feedback.png" class = "feedbackImg">
+            <div class = "descContainer" id = "feedbackDesc">
+                <p class = "helpdeskDesc">Have a suggestion or comment for The Book Spot that you want to voice out? Submit them here.</p>
             </div>
-            <a class="btn btn-primary feedbackFormButton" href="feedbackForm.php" role="button">Provide Feedback</a>
+            <button class="helpdeskBtn" href="feedbackForm.php" onclick = "feedbackForm()">Provide Feedback</button>
         </div>
     </div>
 </body>
