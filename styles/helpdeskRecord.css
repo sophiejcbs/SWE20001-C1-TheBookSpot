@@ -157,7 +157,7 @@ nav li a:hover, header .search button[type="submit"]:hover{
     margin-left: 2%;
     font-size: 2rem;
     font-weight: bold;
-    margin-top: 1%;
+    margin-top: 2%;
     margin-bottom: 1%;
 }
 
@@ -177,4 +177,10 @@ nav li a:hover, header .search button[type="submit"]:hover{
     font-weight: bold;
     margin-top: 1%;
     margin-left: 1%;
+    text-align: center;
+    margin-bottom: 1.5%;
+}
+
+#complaintHeader {
+    margin-top: 2%;
 }
