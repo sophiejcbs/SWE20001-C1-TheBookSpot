@@ -67,7 +67,7 @@ else {
             $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
             $offset = ($current_page - 1) * $page_size;
 
-            $query = "SELECT * FROM $sql_table;";
+            $query = "SELECT * FROM $sql_table LIMIT $offset, $page_size;";
             $result = mysqli_query($conn, $query);
 
             //Checks if the execution was successful
@@ -143,15 +143,20 @@ else {
 
                         echo <<<EOD
                         <td>
-                            <form method = "post" action = "updateOrder_posting.php">
-                            <input type='hidden' name='sales_id' value=$salesID>
-
-                            <input type='hidden' id = 'newStatus_$salesID' name='status' value=$currentStatus>
-                            <input type = 'submit' value = 'Save' class="btn btn-success"/>
-                            <a class="btn btn-danger" href="deleteOrder_posting.php?sales_id={$salesID}&status={$currentStatus}" role="button">Delete</a><br>
+                            <div class = 'formContainer'>
+                                <form onsubmit = "return confirmUpdate($salesID)" method = "post" action = "updateOrder_posting.php">
+                                    <input type='hidden' name='sales_id' value=$salesID>
+                                    <input type='hidden' id = 'newStatus_$salesID' name='status' value=$currentStatus>
+                                    <input type = 'submit' value = 'Save' class="btn btn-success"/>
+                                </form>&nbsp;
+                                <form onsubmit = "return confirmDelete($salesID)" method = "post" action = "deleteOrder_posting.php">
+                                    <input type='hidden' name='sales_id' value=$salesID>
+                                    <input type='hidden' id = 'newStatus_$salesID' name='status' value=$currentStatus>
+                                    <input type = 'submit' value = 'Delete' class="btn btn-danger"/><br>
+                                </form>
+                            </div>
                             <a class="btn btn-primary" href="orderDetails_admin.php?sales_id={$salesID}" role="button" style = "margin-top: 4%;">View More</a></td>
                         </td>
-                        </form>
 EOD;
                         echo "</tr>";
                         echo "</tbody>";
@@ -189,7 +194,7 @@ EOD;
     ?>
 </body>
 
-<script  type="text/javascript">
+<script type="text/javascript">
     function update(salesID) {
         const statusSelect = document.getElementById("statusSelect_" + salesID);
         const newStatus = document.getElementById("newStatus_" + salesID);
@@ -205,4 +210,14 @@ EOD;
             echo "alert('$message');";
         }
     ?>
+
+    function confirmUpdate(salesID) {
+        var userConfirmation = window.confirm("Are you sure you want to update Order " + salesID + "?");
+        return userConfirmation;
+    }
+
+    function confirmDelete(salesID, $currentStatus) {
+        var userConfirmation = window.confirm("Are you sure you want to delete Order " + salesID + "?");
+        return userConfirmation;
+    }
 </script>
