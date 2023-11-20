@@ -1,0 +1,72 @@
+/* 
+Purpose: responsive style for helpdesk page
+*/
+
+/* For larger screen/tablet */
+/* media query for display: over 700px */
+@media screen and (min-width:701px)
+{
+    .formsContainer {
+        flex-direction: column;
+    }
+
+    .formSubcontainer {
+        padding-top: 5%;
+        padding-bottom: 9%;
+    }
+
+    #feedbackContainer {
+        margin-top: 6%;
+    }
+    
+    .cta {
+        font-size: 1.75rem;
+        margin: 5% 3% 3% 3%;
+    }
+
+    .label {
+        font-size: 1.5rem;
+    }
+
+    .helpdeskDesc {
+        font-size: 1rem;
+    }
+
+    .helpdeskBtn {
+        width: 50%;
+        padding: 2%;
+        font-size: 1rem;
+    }
+}
+
+/* For small screen/phone */
+/* media query for display:under 700px */
+@media screen and (max-width:700px)
+{
+    .formsContainer {
+        flex-direction: column;
+    }
+
+    .formSubcontainer {
+        padding-top: 5%;
+        padding-bottom: 7%;
+    }
+
+    #feedbackContainer {
+        margin-top: 6%;
+    }
+    
+    .cta {
+        font-size: 1.5rem;
+        margin: 5% 3% 5% 3%;
+    }
+
+    .helpdeskDesc {
+        font-size: 0.9rem;
+    }
+
+    .helpdeskBtn {
+        width: 60%;
+        padding: 2.75%;
+    }
+}
