@@ -1,9 +1,20 @@
 <?php
-    $sales_id = $_GET['sales_id'];
-    $status = $_GET['status'];
-
     require_once ("settings.php"); //Connection Info
     $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
+
+    function sanitise_input($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+    if(isset($_POST["sales_id"])) $sales_id = $_POST["sales_id"];
+    if(isset($_POST["status"])) $status = $_POST["status"];
+
+    $sales_id = sanitise_input($sales_id);
+    $status = sanitise_input($status);
     
     if(!$conn) //Connection Failed
     {
