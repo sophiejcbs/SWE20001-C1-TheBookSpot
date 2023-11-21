@@ -384,6 +384,7 @@ EOD;
     
             <!-- Payment Form -->
             <div id = "paymentSub" class = "checkoutSubcontainer">
+                <div class = "paymentWrapper">
                     <h1 class = "cartHeader">3. Payment Details</h1>
                     <div class = "paymentFields">
                         <p class = "unofficialLabel">Credit Card Type<span class="required">*</span></p>
@@ -429,6 +430,7 @@ EOD;
                         </p>
                         <span class = "requiredText"><i><span class="required">*</span> indicates REQUIRED</i><br></span>
                     </div>
+                </div>
 EOD;
                 }
             }
