@@ -120,11 +120,16 @@ EOD;
                         $format = $row['format'];
                         $qty = $item['qty'];
 
-                        //Calculate indv total and subtotal price
-                        $indvTotal = ((float)$row['price']*(int)$item['qty']);
-                        $indvTotal = number_format($indvTotal, 2);
+                        //stock
+                        $stock = $row['stock'];
+
+                        // Calculate individual total and subtotal price
+                        $indvTotal = ((float)$row['price'] * (int)$item['qty']);
                         $total += $indvTotal;
-                        $total = number_format($total, 2);
+
+                        // Format numbers for display
+                        $indvTotalFormatted = number_format($indvTotal, 2);
+                        $totalFormatted = number_format($total, 2);
 
                         //Stock status
                         if ($row['stock']>0){
@@ -146,7 +151,7 @@ EOD;
                                     <div class = "bookDetails">
                                         <div class = "detailsContainer">
                                             <p class = "title" onclick = displayBook($book_id)>$title</p>
-                                            <p class = "bookPrice">RM$indvTotal</p>
+                                            <p class = "bookPrice">RM$indvTotalFormatted</p>
                                         </div>
                                         <p class = "author">by $author</p>
                                         <p class = "price">RM $price</p>
@@ -155,7 +160,7 @@ EOD;
                                         <div class="quanContainer">
                                             <button type="button" id = "decrement" class="decrementButton" onclick = "decrementFunc($book_id)">—</button>
                                             <input type="text" name="Quantity" value="$qty" class="quanInput" id = "quantity_$book_id" readonly>  
-                                            <button type="button" id = "increment" class="incrementButton" onclick = "incrementFunc($book_id)">+</button>
+                                            <button type="button" id = "increment" class="incrementButton" onclick = "incrementFunc($book_id, $stock)">+</button>
                                         </div>
                                         <button type = "submit" class = "deleteBtn" name = "remove"><i class="bi bi-trash"></i>&nbsp;Delete</button>
                                     </div>
@@ -172,7 +177,7 @@ EOD;
                     </div>
                     <div class = "subtotalContainer">
                         <div class = "labelAmtContainer">
-                            <p class = "subtotal">Subtotal</p><span class = "subtotal">RM$total</span>
+                            <p class = "subtotal">Subtotal</p><span class = "subtotal">RM$totalFormatted</span>
                         </div>
                         <hr class = "divider">
                         <br>
