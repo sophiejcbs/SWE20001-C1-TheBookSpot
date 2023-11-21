@@ -81,10 +81,18 @@
         if(isset($_POST['add']) && $_POST["stock"]>0) {
             if(isset($_SESSION["cart"])) {
                 $exist = false; 
+                $maxStock = false;
                 foreach($_SESSION["cart"] as $index => $item) {
                     if($item["book_id"] == $_POST["book_id"]) {
                         $newQty = intval($_SESSION['cart'][$index]["qty"]) + intval($_POST["qty"]);
-                        $_SESSION['cart'][$index]["qty"] = $newQty;
+
+                        if($newQty <= $_POST["stock"]) {
+                            $_SESSION['cart'][$index]["qty"] = $newQty;
+                        }
+                        else {
+                            $maxStock = true;
+                        }
+
                         $exist = true;
                     }
                 }
@@ -116,17 +124,31 @@
 
             $_SESSION['cart'] = array_reverse($_SESSION['cart']);
             
-            header('Location: cart.php'); //redirect to cart pg (PRG pattern)
+            if(!$maxStock) {
+                header('Location: cart.php'); //redirect to cart pg (PRG pattern)
+            }
+            else {
+                echo "<script>alert('Invalid action! Maximum book stock is already in your cart.');</script>";
+                echo "<script>window.location.href = 'book_details.php?book_id=$_POST[book_id]';</script>";
+            }
             exit(); 
         }
 
         if(isset($_POST['buyNow']) && $_POST["stock"]>0) {
             if(isset($_SESSION["cart"])) {
                 $exist = false; 
+                $maxStock = false;
                 foreach($_SESSION["cart"] as $index => $item) {
                     if($item["book_id"] == $_POST["book_id"]) {
                         $newQty = intval($_SESSION['cart'][$index]["qty"]) + intval($_POST["qty"]);
-                        $_SESSION['cart'][$index]["qty"] = $newQty;
+
+                        if($newQty <= $_POST["stock"]) {
+                            $_SESSION['cart'][$index]["qty"] = $newQty;
+                        }
+                        else {
+                            $maxStock = true;
+                        }
+
                         $exist = true;
                     }
                 }
@@ -158,7 +180,13 @@
 
             $_SESSION['cart'] = array_reverse($_SESSION['cart']);
             
-            header('Location: payment.php'); //redirect to payment pg (PRG pattern)
+            if(!$maxStock) {
+                header('Location: payment.php'); //redirect to payment pg (PRG pattern)
+            }
+            else {
+                echo "<script>alert('Invalid action! Maximum book stock is already in your cart.');</script>";
+                echo "<script>window.location.href = 'book_details.php?book_id=$_POST[book_id]';</script>";
+            }
             exit(); 
         }
     ?>
@@ -180,10 +208,10 @@
             <h3 class="bi bi-circle-fill <?php echo $stockIndicator?>"> <span class="stockTxt"><?php echo $stockTxt?></span></h3>
             <br>
             <div class="quanContainer">
-                <h3 id="quan">Quantity:</h3> 
+                <h3 id="quan">Quantity:</h3>
                 <button type="button" class="decrementButton" onclick = "decrement()">—</button>
                 <input type="text" name="Quantity" value="1" class="quanInput" id = "quantity" readonly>  
-                <button type="button" class="incrementButton" onclick = "increment()">+</button>
+                <button type="button" class="incrementButton" onclick = "increment(<?php echo $stock?>)">+</button>
             </div>
         
             <!-- form for submitting prod data -->
