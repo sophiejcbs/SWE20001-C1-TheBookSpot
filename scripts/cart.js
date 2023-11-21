@@ -1,11 +1,14 @@
-function incrementFunc(book_id) {
+function incrementFunc(book_id, stock) {
     var quantity = document.querySelector("#quantity_" + book_id);
-    if(quantity) {
+
+    if(quantity && (quantity.value < stock)) {
         quantity.value = parseInt(quantity.value) + 1;
+    }
+    else if(quantity.value >= stock) {
+        alert("Invalid action! Maximum book stock is already in your cart.");
     }
 
     sendAjaxRequest('cart.php', { book_id: book_id, qty: quantity.value });
-    console.log(book_id);
 }
 
 function decrementFunc(book_id) {
@@ -18,7 +21,6 @@ function decrementFunc(book_id) {
     }
 
     sendAjaxRequest('cart.php', { book_id: book_id, qty: quantity.value });
-    console.log(book_id);
 }
 
 function sendAjaxRequest(url, data) {
