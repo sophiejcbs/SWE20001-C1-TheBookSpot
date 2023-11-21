@@ -187,22 +187,17 @@
             </div>
         
             <!-- form for submitting prod data -->
-                <div class="purchaseContainer">
-                    <form action = "book_details.php?book_id=<?php echo $book_id?>" method = "post">
-                        <button type="submit" name = "add" class="cartButton" id = "addToCart">Add To Cart</button>
+            <div class="purchaseContainer">
+                <form action = "book_details.php?book_id=<?php echo $book_id?>" method = "post">
+                    <button type="submit" name = "add" class="cartButton" id = "addToCart">Add To Cart</button>
+                    <button type="submit" name = "buyNow" class="buyButton">Buy It Now</button>
 
-                        <!-- hidden product id to submit with add click -->
-                        <input type = "hidden" name = "book_id" value = "<?php echo $book_id?>"/>
-                        <input type = "hidden" name = "qty" id = "hiddenQty" value = "1"/>
-                        <?php echo "<input type = 'hidden' name = 'stock' value = '$stock'/>"; ?>
-                    </form>
-                    <form action = "book_details.php?book_id=<?php echo $book_id?>" method = "post">
-                        <button type="submit" name = "buyNow" class="buyButton">Buy It Now</button>
-                        <input type = "hidden" name = "book_id" value = "<?php echo $book_id?>"/>
-                        <input type = "hidden" name = "qty" id = "hiddenQty" value = "1"/>
-                        <?php echo "<input type = 'hidden' name = 'stock' value = '$stock'/>"; ?>
-                    </form>
-                </div>
+                    <!-- hidden product id to submit with add click -->
+                    <input type = "hidden" name = "book_id" value = "<?php echo $book_id?>"/>
+                    <input type = "hidden" name = "qty" id = "hiddenQty" value = "1"/>
+                    <?php echo "<input type = 'hidden' name = 'stock' value = '$stock'/>"; ?>
+                </form>
+            </div>
             <hr>
             <div class="prodDetails">
                 <table>
