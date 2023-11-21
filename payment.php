@@ -471,12 +471,14 @@ EOD;
 
                             echo "<div class = 'indvItemContainer'><span class = 'indvItem'>Sales Tax (6%)</span><span class = 'indvPrice'>RM$salesTax</span></div>";
 
-                            echo <<<EOD
-                            <div class = "saveContainer">
-                                <input type="checkbox" name="saveDetails" class="saveDetails" checked>
-                                <span class = "saveText">Save details in your account</span>
-                            </div>
+                            if($loggedIn) {
+                                echo <<<EOD
+                                <div class = "saveContainer">
+                                    <input type="checkbox" name="saveDetails" class="saveDetails" checked>
+                                    <span class = "saveText">Save details in your account</span>
+                                </div>
 EOD;
+                            }
 
                             echo "<div class = 'indvItemContainer' id = 'orderTotal'><span class = 'indvItem'>ORDER TOTAL</span><span class = 'indvPrice'>RM$totalTax</span></div>";
 
