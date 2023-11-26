@@ -174,12 +174,11 @@ EOD;
                             $price = number_format($item['price'], 2);
 
                             $indvTotal = ((float)$item['price']*(int)$qty);
-                            $indvTotal = number_format($indvTotal, 2);
-
                             $totalQty += $qty;
-
                             $totalB4Tax += $indvTotal;
-                            $totalB4Tax = number_format($totalB4Tax, 2);
+
+                            $indvTotalFormatted = number_format($indvTotal, 2);
+                            $totalB4TaxFormatted = number_format($totalB4Tax, 2);
 
                             $query = "SELECT * FROM books WHERE book_id LIKE '$book_id'";
                             $result = mysqli_query($conn, $query);
@@ -198,15 +197,18 @@ EOD;
                             echo "<td><img src='", $img, "'alt='Book Cover' width=100></td>";
                             echo "<td>", $qty, "</td>";
                             echo "<td>", $price, "</td>";
-                            echo "<td>", $indvTotal, "</td>";
+                            echo "<td>", $indvTotalFormatted, "</td>";
                             echo "</tr>";
                             echo "</tbody>";
                         }
 
                     echo "</table></div>";
 
-                    $salesTax = number_format(0.06*$totalB4Tax, 2);
+                    $salesTax = 0.06*$totalB4Tax;
+
+                    $salesTaxFormatted = number_format($salesTax, 2);
                     $total_price = number_format($total_price, 2);
+                    
                     $ccNum = substr($cardNo, -4);
 
                     echo <<<EOD
@@ -220,8 +222,8 @@ EOD;
                             </div>
                         
                             <div class="details">
-                                <p>RM$totalB4Tax</p>
-                                <p>RM$salesTax</p>
+                                <p>RM$totalB4TaxFormatted</p>
+                                <p>RM$salesTaxFormatted</p>
                                 <p>RM$total_price</p>
                             </div>
                         </div>
