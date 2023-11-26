@@ -141,6 +141,8 @@ EOD;
                 }
 
                 $totalPrice = number_format($_SESSION["totalPrice"], 2);
+                $totalB4TaxFormatted = number_format($_SESSION["totalB4Tax"], 2);
+                $salesTaxFormatted = number_format($_SESSION["salesTax"], 2);
 
                 echo <<<EOD
                     <hr class = "divider2">
@@ -150,8 +152,8 @@ EOD;
                             <p>Sales Tax (6%)<p>
                         </div>
                         <div class = "priceVal">
-                            <p>RM$_SESSION[totalB4Tax]<p>
-                            <p>RM$_SESSION[salesTax]<p>
+                            <p>RM$totalB4TaxFormatted<p>
+                            <p>RM$salesTaxFormatted<p>
                         </div>
                     </div>
                     <hr class = "divider3">
