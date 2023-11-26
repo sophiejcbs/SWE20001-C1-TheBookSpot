@@ -4,7 +4,7 @@ function increment(stock) {
         quantity.setAttribute("value", parseInt(quantity.getAttribute("value")) + 1);
     }
     else if(quantity.value >= stock) {
-        alert("Invalid action! Maximum book stock is already in your cart.");
+        alert("Invalid action! Maximum book stock already reached.");
     }
 
     document.getElementById("hiddenQty").value = quantity.value;
