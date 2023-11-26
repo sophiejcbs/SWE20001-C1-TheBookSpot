@@ -5,7 +5,7 @@ function incrementFunc(book_id, stock) {
         quantity.value = parseInt(quantity.value) + 1;
     }
     else if(quantity.value >= stock) {
-        alert("Invalid action! Maximum book stock is already in your cart.");
+        alert("Invalid action! Maximum book stock already reached.");
     }
 
     sendAjaxRequest('cart.php', { book_id: book_id, qty: quantity.value });
