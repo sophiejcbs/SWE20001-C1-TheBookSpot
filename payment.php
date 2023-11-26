@@ -83,11 +83,13 @@ EOD;
                                 $format = $row['format'];
                                 $qty = $item['qty'];
         
-                                //Calculate indv total and subtotal price
-                                $indvTotal = ((float)$row['price']*(int)$item['qty']);
-                                $indvTotal = number_format($indvTotal, 2);
+                                // Calculate individual total and subtotal price
+                                $indvTotal = ((float)$row['price'] * (int)$item['qty']);
                                 $total += $indvTotal;
-                                $total = number_format($total, 2);
+
+                                // Format numbers for display
+                                $indvTotalFormatted = number_format($indvTotal, 2);
+                                $totalFormatted = number_format($total, 2);
         
                                 //Stock status
                                 if ($row['stock']>0){
@@ -109,7 +111,7 @@ EOD;
                                             <div class = "bookDetails">
                                                 <div class = "detailsContainer">
                                                     <p class = "title" onclick = displayBook($book_id)>$title</p>
-                                                    <p class = "bookPrice">RM$indvTotal</p>
+                                                    <p class = "bookPrice">RM$indvTotalFormatted</p>
                                                 </div>
                                                 <p class = "author">by $author</p>
                                                 <p class = "price">RM $price</p>
@@ -465,13 +467,17 @@ EOD;
                             }
 
                             echo "<hr class = 'divider'>";
-                            echo "<div class = 'indvItemContainer' id = 'subtotalVal'><span class = 'indvItem'>Subtotal</span><span class = 'indvPrice'>RM$total</span></div>";
+                            echo "<div class = 'indvItemContainer' id = 'subtotalVal'><span class = 'indvItem'>Subtotal</span><span class = 'indvPrice'>RM$totalFormatted</span></div>";
                             echo "<div class = 'indvItemContainer' id = 'shippingFee'><span class = 'indvItem'>Shipping within Malaysia</span><span class = 'indvPrice'>FREE</span></div>";
 
-                            $salesTax = number_format(0.06*$total, 2);
-                            $totalTax = number_format($salesTax + $total, 2);
+                            $salesTax = 0.06*$total;
+                            $totalTax = $salesTax + $total;
 
-                            echo "<div class = 'indvItemContainer'><span class = 'indvItem'>Sales Tax (6%)</span><span class = 'indvPrice'>RM$salesTax</span></div>";
+                            //formatted
+                            $salesTaxFormatted = number_format(0.06*$total, 2);
+                            $totalTaxFormatted = number_format($salesTax + $total, 2);
+
+                            echo "<div class = 'indvItemContainer'><span class = 'indvItem'>Sales Tax (6%)</span><span class = 'indvPrice'>RM$salesTaxFormatted</span></div>";
 
                             if($loggedIn) {
                                 echo <<<EOD
@@ -482,7 +488,7 @@ EOD;
 EOD;
                             }
 
-                            echo "<div class = 'indvItemContainer' id = 'orderTotal'><span class = 'indvItem'>ORDER TOTAL</span><span class = 'indvPrice'>RM$totalTax</span></div>";
+                            echo "<div class = 'indvItemContainer' id = 'orderTotal'><span class = 'indvItem'>ORDER TOTAL</span><span class = 'indvPrice'>RM$totalTaxFormatted</span></div>";
 
                             echo "<input type = 'hidden' name = 'totalB4Tax' value = '$total'</input>";
                             echo "<input type = 'hidden' name = 'salesTax' value = '$salesTax'</input>";
