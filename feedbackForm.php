@@ -75,7 +75,7 @@
                             <option value="Comment">Comment</option>
                         </select>
         
-                        <label for="Feedback">Feedback Description </label><p class="required">*</p><br>
+                        <br><br><label for="Feedback">Feedback Description </label><p class="required">*</p><br>
                             <div>
                                 <textarea class = "textField" id="msg" name="feedbackDesc" rows="10" cols="40"
                                 placeholder="Dear The Book Spot Customer Service, I am submitting this form to suggest that..."></textarea>
@@ -133,7 +133,7 @@
                                     <option value="Comment">Comment</option>
                                 </select>
                 
-                                <label for="Feedback">Feedback Description </label><p class="required">*</p><br>
+                                <br><br><label for="Feedback">Feedback Description </label><p class="required">*</p><br>
                                     <div>
                                         <textarea class = "textField" id="msg" name="feedbackDesc" rows="10" cols="40"
                                         placeholder="Dear The Book Spot Customer Service, I am submitting this form to suggest that..."></textarea>
